@@ -1,6 +1,7 @@
 package com.eastrise.web.bjtpb.controller.admin;
 
 import com.eastrise.base.TSysUser;
+import com.eastrise.security.SecurityConstants;
 import com.eastrise.utils.DateHelper;
 import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.ApiResponse;
@@ -53,7 +54,7 @@ public class UserController {
             }else{
                 TSysUser tSysUser = new TSysUser();
                 BeanUtils.copyProperties(userAddData,tSysUser);
-                tSysUser.setPwd(passwordEncoder.encode("666666"));
+                tSysUser.setPwd(passwordEncoder.encode(SecurityConstants.DEFAULT_PASSWORD));
                 tSysUser.setCreateTime(DateHelper.getDateTime());
                 userService.save(tSysUser);
             }
@@ -65,7 +66,6 @@ public class UserController {
     }
     @PostMapping(value = "/del")
     public ApiResponse del(String id){
-        System.out.println(id);
         try{
             userService.del(id);
         }catch (Exception e){

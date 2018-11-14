@@ -106,7 +106,7 @@ public class SecurityConstants {
     /**
      * 默认用户密码
      */
-    String DEFAULT_PASSWORD="666666";
+    public static String DEFAULT_PASSWORD="666666";
 
     /**
      * 记住我的有效时间秒
