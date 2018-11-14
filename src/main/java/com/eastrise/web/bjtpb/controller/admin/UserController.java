@@ -39,7 +39,6 @@ public class UserController {
         return userService.findPageData(pageSize,pageNumber,loginName,userName);
     }
 
-
     @PostMapping(value = "/save")
     public ApiResponse save(UserAddData userAddData){
         if(checkUserIsExist(userAddData)){
