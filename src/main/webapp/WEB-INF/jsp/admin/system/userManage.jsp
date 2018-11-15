@@ -30,7 +30,7 @@
 
 <script type="text/javascript">
     $(function(){
-        $(function(){
+
             var pager = $('#dg').datagrid().datagrid('getPager');	// get the pager of datagrid
             pager.pagination({
                 buttons:[{
@@ -42,7 +42,6 @@
                     }
                 }]
             });
-        })
 
 
     })

@@ -6,7 +6,7 @@
             <table cellpadding="5">
                 <tr>
                     <td>登录名:</td>
-                    <td><input class="easyui-textbox" type="text" name="loginName" id="loginName" value="${user.loginName}" data-options="required:true,validType:'length[6,20]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="loginName" id="loginName" value="${user.loginName}" data-options="required:true,validType:'length[4,20]'"></input></td>
                 </tr>
                 <tr>
                     <td>姓名:</td>

@@ -56,6 +56,6 @@ input[type="checkbox"] { cursor: pointer;}
 .wu-toolbar-button,
 .wu-toolbar-search { padding:3px 5px;}
 
-.wu-footer { height:20px; padding:5px; text-align:center; overflow:hidden; background:#e0ecff;}
+.wu-footer { height:40px; padding:5px; text-align:center; overflow:hidden; background:#e0ecff;}
 
 

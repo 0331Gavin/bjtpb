@@ -31,7 +31,7 @@
 	</div>
 	<div class="wu-header-right">
 		<p><strong class="easyui-tooltip" title="2条未读消息">admin</strong>，欢迎您！</p>
-		<p><a href="/">网站首页</a>|<a href="/help">帮助中心</a>|<a href="/logout">安全退出</a></p>
+		<p><a href="/">网站首页</a>|<a href="/help">帮助中心</a>|<a href="/logout">注销</a></p>
 	</div>
 </div>
 <!-- end of header -->
@@ -71,8 +71,8 @@
 </div>
 <!-- end of main -->
 <!-- begin of footer -->
-<div class="wu-footer" data-options="region:'south',border:true,split:true">
-	&copy; 2013 Wu All Rights Reserved
+<div class="wu-footer" data-options="region:'south',border:true,split:true" style="height: 40px;">
+	北京东方坦达科技有限公司
 </div>
 <!-- end of footer -->
 <script type="text/javascript">
@@ -111,7 +111,18 @@
             iconCls:'icon-reload',
             border:false,
             handler:function(){
-                $('#wu-datagrid').datagrid('reload');
+                var tab = $('#wu-tabs').tabs('getSelected');
+                tab.panel('refresh');
+            }
+        },{
+            iconCls:'icon-remove',
+            border:false,
+            handler:function(){
+                var tab = $('#wu-tabs').tabs('getSelected');
+                if (tab){
+                    var index = $('#wu-tabs').tabs('getTabIndex', tab);
+                    $('#wu-tabs').tabs('close', index);
+                }
             }
         }]
     });
