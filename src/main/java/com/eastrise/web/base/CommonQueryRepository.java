@@ -43,5 +43,15 @@ public class CommonQueryRepository {
         logger.info("Sql:"+sql);
         return jdbcTemplate.queryForList(sql).size();
     }
-
+    /**
+     * 查询sql,返回值为驼峰式字段名
+     * @param  sql 查询语句
+     * @return List<Map<String, Object>>
+     * @author wbw
+     */
+    public List<Map<String, Object>> findFormatResultBySqlQuery(String sql ) throws Exception{
+        logger.info("Sql:"+sql);
+        List<Map<String, Object>> queryResult = ChangeNameForm.changeSqlResult(jdbcTemplate.queryForList(sql));
+        return queryResult;
+    }
 }
