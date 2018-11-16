@@ -24,7 +24,7 @@
     </div>
 </div>
 
-
+<%@ include file="../commonWindow.jsp" %>
 
 <script type="text/javascript">
     $(function(){

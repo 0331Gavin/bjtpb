@@ -60,8 +60,9 @@ public class AdminRoutController {
     }
     @GetMapping("/system/deptEdit")
     public String engineeringProjectEdit(String id, HttpServletRequest request) throws Exception {
+        if(id!=null){
         Map<String, Object> list =orgService.findById(id).get(0);
-        request.setAttribute("dept",list);
+        request.setAttribute("dept",list);}
         return "/admin/system/deptEdit.jsp";
     }
 }

@@ -10,7 +10,12 @@
                 </tr>
                 <tr>
                     <td>上级部门名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="sjorgname" id="sjorgname"  value="${dept.sjorgname}" data-options="required:true,validType:'length[2,10]'"></input></td>
+                    <td><input class="easyui-combotree" value="122" data-options="url:'tree_data1.json',method:'get',required:true" style="width:140px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>顺序:</td>
+                    <td><input class="easyui-textbox" type="text" name="ORG_ORDER" id="ORG_ORDER"  value="${dept.ORG_ORDER}" data-options="required:true,validType:'length[2,10]'"></input></td>
                 </tr>
                 <tr>
                     <td>备注:</td>
