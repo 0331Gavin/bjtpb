@@ -76,18 +76,6 @@
         });
     }
 
-    function openWindow(title,url) {
-        $('#w_user').window({
-            title:title,
-            //    content : '<iframe scrolling="yes" frameborder="0"  src="'+ url+ '" style="width:100%;height:98%;"></iframe>',
-            collapsible:false,
-            minimizable:false,
-            maximizable:true,
-            resizable: false
-        });
-        $('#w_user').window('open');
-        $('#w_user').window('refresh', url);
-    }
 </script>
 </body>
 
