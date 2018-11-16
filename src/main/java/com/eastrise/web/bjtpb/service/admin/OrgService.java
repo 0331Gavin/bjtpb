@@ -1,8 +1,10 @@
 package com.eastrise.web.bjtpb.service.admin;
-
+import com.eastrise.web.base.ApiPageResponse;
+import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.bjtpb.entity.TSysOrg;
 import com.eastrise.web.bjtpb.repository.IOrgRepository;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -23,7 +26,8 @@ public class OrgService {
 
     @Autowired
     private IOrgRepository orgRepository;
-
+    @Autowired
+    private CommonQueryRepository commonQueryRepository;
     /**
      * 通过ID查询下级组织列表
      * @param orgId 组织ID
@@ -80,6 +84,20 @@ public class OrgService {
         });
         return record.get();
     }
-
+    /**
+     * 系统管理/部门管理列表
+     */
+    public ApiPageResponse findPageData(int pageSize, int pageNumber, String orgName, String sjorgname) {
+        StringBuilder sql = new StringBuilder("select dept.* from (select   g.*,bm.sjorgname   from   t_sys_org g  left      join   (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where dept.status='1' ");
+        if(Strings.isNotEmpty(orgName)) sql.append(" and dept.ORG_NAME like '%"+orgName+"%'");
+        if(Strings.isNotEmpty(sjorgname)) sql.append(" and dept.sjorgname like '%"+sjorgname+"%'");
+        return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
+    }
+    public List<Map<String, Object>> findById(String id) throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select dept.* from (select g.*,bm.sjorgname  from t_sys_org g left join  (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where dept.status='1' and dept.id='"+id+"'");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
 
 }

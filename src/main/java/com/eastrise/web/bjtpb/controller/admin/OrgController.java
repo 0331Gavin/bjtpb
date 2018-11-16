@@ -3,6 +3,7 @@ package com.eastrise.web.bjtpb.controller.admin;
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.base.TSysUser;
 import com.eastrise.security.RoleTypes;
+import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.bjtpb.entity.TSysOrg;
 import com.eastrise.web.bjtpb.service.admin.OrgService;
 import org.apache.logging.log4j.util.Strings;
@@ -30,5 +31,9 @@ public class OrgController {
         List<TSysOrg> orgs = orgService.findChildOrgById(orgId,isAll);
         return orgs;
     }
-
+    @PostMapping(value = "/findPageData")
+    public ApiPageResponse findPageData(@RequestParam(value = "orgName",required = false) String orgName , @RequestParam(value = "sjorgname",required = false) String sjorgname,
+                                        @RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize){
+        return orgService.findPageData(pageSize,pageNumber,orgName,sjorgname);
+    }
 }
