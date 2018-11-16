@@ -40,24 +40,24 @@
 	<div class="easyui-accordion" data-options="border:false,fit:true">
 		<div title="文章管理" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleAdd" iframe="0">添加文章内容</a></li>
-				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleManage" iframe="0">文章内容管理</a></li>
+				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleAdd" iframe="1">添加文章内容</a></li>
+				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleManage" iframe="1">文章内容管理</a></li>
 			</ul>
 		</div>
 		<div title="文章类别管理" data-options="iconCls:'icon-application-form-edit'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleTypeAdd" iframe="0">添加文章类别</a></li>
-				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleTypeManage" iframe="0">文章类别管理</a></li>
+				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleTypeAdd" iframe="1">添加文章类别</a></li>
+				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleTypeManage" iframe="1">文章类别管理</a></li>
 			</ul>
 		</div>
 
 		<div title="系统管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="0">修改密码</a></li>
-				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/system/userManage" iframe="0">用户管理</a></li>
-				<li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="/admin/system/deptManage" iframe="0">部门管理</a></li>
-				<li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="0">数据字典</a></li>
-				<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="0">系统日志</a></li>
+				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="layout-3.html" iframe="1">修改密码</a></li>
+				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/system/userManage" iframe="1">用户管理</a></li>
+				<li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="/admin/system/deptManage" iframe="1">部门管理</a></li>
+				<li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="1">数据字典</a></li>
+				<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="1">系统日志</a></li>
 			</ul>
 		</div>
 	</div>
@@ -137,14 +137,14 @@
     function addTab(title, href, iconCls, iframe){
         var tabPanel = $('#wu-tabs');
         if(!tabPanel.tabs('exists',title)){
-            var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;"></iframe>';
+            var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:99%;padding: 0 0;margin: 0 0;"></iframe>';
             if(iframe){
                 tabPanel.tabs('add',{
                     title:title,
                     content:content,
                     iconCls:iconCls,
                     fit:true,
-                    cls:'pd3',
+
                     closable:true
                 });
             }

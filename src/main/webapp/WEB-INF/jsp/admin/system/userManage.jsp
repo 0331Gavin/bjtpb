@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-
-
-    <table id="dg"  style="width:100%;height:100%"  url="/admin/user/findPageData"
+<html>
+<head>
+    <%@ include file="../common.jsp" %>
+</head>
+<body style="overflow:hidden;">
+    <table id="dg"  style="width:99%;height:99%"  url="/admin/user/findPageData"
            data-options="rownumbers:true,singleSelect:true,method:'post',toolbar:'#tb',pagination:true">
         <thead>
         <tr>
@@ -26,11 +27,8 @@
         </div>
     </div>
 
-<%@ include file="../commonWindow.jsp" %>
-
 <script type="text/javascript">
     $(function(){
-
             var pager = $('#dg').datagrid().datagrid('getPager');	// get the pager of datagrid
             pager.pagination({
                 buttons:[{
@@ -76,7 +74,21 @@
                 })
             }
         });
+    }
 
-
+    function openWindow(title,url) {
+        $('#w_user').window({
+            title:title,
+            //    content : '<iframe scrolling="yes" frameborder="0"  src="'+ url+ '" style="width:100%;height:98%;"></iframe>',
+            collapsible:false,
+            minimizable:false,
+            maximizable:true,
+            resizable: false
+        });
+        $('#w_user').window('open');
+        $('#w_user').window('refresh', url);
     }
 </script>
+</body>
+
+</html>
