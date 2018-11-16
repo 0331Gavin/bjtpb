@@ -1,8 +1,10 @@
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-
-
+<html>
+<head>
+    <%@ include file="../common.jsp" %>
+</head>
+<body>
 <table id="dg"  style="width:100%;height:100%"  url="/admin/org/findPageData"
        data-options="rownumbers:true,singleSelect:true,method:'post',toolbar:'#tb',pagination:true">
     <thead>
@@ -23,9 +25,6 @@
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
 </div>
-
-<%@ include file="../commonWindow.jsp" %>
-
 <script type="text/javascript">
     $(function(){
         $(function(){
@@ -74,3 +73,6 @@
 
     }
 </script>
+</body>
+
+</html>
