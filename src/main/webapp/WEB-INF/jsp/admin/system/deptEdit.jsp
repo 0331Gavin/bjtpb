@@ -13,6 +13,10 @@
                     <td><input class="easyui-textbox" type="text" name="sjorgname" id="sjorgname"  value="${dept.sjorgname}" data-options="required:true,validType:'length[2,10]'"></input></td>
                 </tr>
                 <tr>
+                    <td>顺序:</td>
+                    <td><input class="easyui-textbox" type="text" name="ORG_ORDER" id="ORG_ORDER"  value="${dept.ORG_ORDER}" data-options="required:true,validType:'length[2,10]'"></input></td>
+                </tr>
+                <tr>
                     <td>备注:</td>
                     <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options="required:true,validType:'length[2,10]'"></input></td>
                 </tr>
