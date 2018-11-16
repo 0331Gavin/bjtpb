@@ -30,7 +30,7 @@ public class IndexController {
         //如果已经登陆跳转到个人首页
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
-            return "index.jsp";
+            return "home.jsp";
         }
         return "index.jsp";
     }
