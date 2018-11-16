@@ -24,4 +24,5 @@
         $('#w').window('refresh', url);
     }
 
+
 </script>
