@@ -102,7 +102,9 @@
             }
         }
     });
-
+	function createFrame(href){
+	    return  '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:99%;padding: 0 0;margin: 0 0;"></iframe>';
+	}
     /**
      * Name 选项卡初始化
      */
@@ -112,7 +114,11 @@
             border:false,
             handler:function(){
                 var tab = $('#wu-tabs').tabs('getSelected');
-                tab.panel('refresh');
+                var iframe = $(tab.panel('options').content);
+                var src = iframe.attr('src');
+                $('#wu-tabs').tabs('update', { tab: tab, options: { content: createFrame(src)} });
+
+
             }
         },{
             iconCls:'icon-remove',
@@ -137,11 +143,10 @@
     function addTab(title, href, iconCls, iframe){
         var tabPanel = $('#wu-tabs');
         if(!tabPanel.tabs('exists',title)){
-            var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:99%;padding: 0 0;margin: 0 0;"></iframe>';
             if(iframe){
                 tabPanel.tabs('add',{
                     title:title,
-                    content:content,
+                    content:createFrame(href),
                     iconCls:iconCls,
                     fit:true,
 
