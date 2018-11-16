@@ -1,6 +1,7 @@
 package com.eastrise.web.bjtpb.service.admin;
 
 import com.eastrise.web.base.CommonQueryRepository;
+import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,14 @@ public class ArticleManageService {
 
     public void del(String id){
         articleManageRepository.deleteById(Integer.valueOf(id));
+    }
+
+    public boolean isExist(ArticleTypeForm articleTypeForm)throws Exception{
+        String sql=" select t.* from T_SYS_ARTICLEMANAGE t where 1=1 and t.category_name='"+articleTypeForm.getCategoryname()+"'";
+        List<Map<String, Object>> result=commonQueryRepository.findResultBySqlQuery(sql);
+        if(result.size()>0){
+            return false;
+        }
+        return true;
     }
 }

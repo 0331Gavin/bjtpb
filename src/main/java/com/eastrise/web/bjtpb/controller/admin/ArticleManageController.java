@@ -60,8 +60,6 @@ public class ArticleManageController {
     @PostMapping("/save")
     @ResponseBody
     public String save(ArticleTypeForm articleTypeForm)throws Exception{
-        //验重
-
         //id判断新增   修改
         JSONObject json =new JSONObject();
         if(StringUtils.isNotEmpty(articleTypeForm.getId())){
@@ -69,6 +67,11 @@ public class ArticleManageController {
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
             manageService.save(tArticleManage);
         }else{
+            //验重
+            if(!manageService.isExist(articleTypeForm)){
+                json.put("message","类别已存在");
+                return json.toString();
+            }
             TArticleManage tArticleManage=new TArticleManage();
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
             manageService.save(tArticleManage);
@@ -87,4 +90,6 @@ public class ArticleManageController {
         json.put("message","删除成功");
         return json.toString();
     }
+
+
 }
