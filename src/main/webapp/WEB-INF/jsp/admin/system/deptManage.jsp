@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<%@ include file="../commonWindow.jsp" %>
+<%@ include file="../orgWindow.jsp" %>
 
 <script type="text/javascript">
     $(function(){
@@ -34,7 +34,7 @@
                 buttons:[{
                     iconCls:'icon-add',
                     handler:function(){
-                        openWindow("新增部门","/admin/system/deptEdit")
+                        openorgWindow("新增部门","/admin/system/deptEdit")
 
                         //
                     }
@@ -56,7 +56,7 @@
         return val;
     }
     function editorg(id) {
-        openWindow("修改部门","/admin/system/deptEdit?id="+id)
+        openorgWindow("修改部门","/admin/system/deptEdit?id="+id)
     }
     function delorg(id) {
         $.ajax({
