@@ -180,17 +180,7 @@
             tabPanel.tabs('close', index);
         }
     }
-    /**
-	 * 自定义封装
-	 *
-	 * */
 
-    function message(val) {
-        $.messager.alert('系统提示',val,'info');
-    }
-    var saveSuccessCode=201;
-    var delSuccessCode=203;
-    var editSuccessCode=202;
 </script>
 </body>
 </html>

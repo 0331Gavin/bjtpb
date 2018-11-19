@@ -206,6 +206,10 @@
         padding: 1px 0;
         width: 330px;
     }
+    ul.nice-list li .left{
+        width: 268px;word-break: keep-all;overflow:hidden;text-overflow: ellipsis;
+    }
+
     ul.nice-list li:first-child {border-top: none;}
     ul.nice-list li .right {color: #999;}
 
@@ -326,21 +330,7 @@
 
                 <ul>
                     <li><a href="index.html">首页</a></li>
-                    <li><a href="admin.html">部门简介 <!--[if IE 7]><!--></a><!--<![endif]-->
-                        <!--[if lte IE 6]><table><tr><td><![endif]-->
-                        <ul>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                        </ul>
-                        <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+                    <li><a href="admin.html">部门简介</a>
                     </li>
                     <li><a href="login.html">文件电报<!--[if IE 7]><!--></a><!--<![endif]-->
                         <!--[if lte IE 6]><table><tr><td><![endif]-->
@@ -400,7 +390,7 @@
                     <div class="content">
                         <ul class="nice-list">
                             <li>
-                                <div class="left"><a href="#">中国铁路总公路总公路总公路总公路总公路总公路总公路总公司关于印发</a></div>
+                                <div class="left"><a href="#" title="中国铁路总公路总公路总公路总公路总公路总公路总公路总公司关于印发">中国铁路总公路总公路总公路总公路总公路总公路总公路总公司关于印发</a></div>
                                 <div class="right">20.49</div>
                                 <div class="clearer">&nbsp;</div>
                             </li>
