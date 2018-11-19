@@ -11,7 +11,12 @@
             <table cellpadding="5">
                 <tr>
                     <td>部门名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="orgName" id="orgName"  value="${dept.ORG_NAME}" data-options="events:{blur:checkorgName},required:true"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="orgName" id="orgName"  value="${dept.ORG_NAME}" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td>部门简称:</td>
+                    <td> <input class="easyui-textbox" type="text" name="shortName" id="shortName"  value="${dept.short_Name }" data-options="required:true" >
+                    </td>
                 </tr>
                 <tr>
                     <td>上级部门名称:</td>
