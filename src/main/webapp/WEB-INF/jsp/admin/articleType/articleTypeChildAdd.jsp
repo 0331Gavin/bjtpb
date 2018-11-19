@@ -6,7 +6,8 @@
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;类别名称:</td>
                     <td><input class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="${articleManage.categoryname}" data-options="required:true,validType:'length[4,20]'"></input></td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:</td>
+                </tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
                     <td>
                         <input class="easyui-combobox" id="status" name="status" value="${articleManage.status}" editable="false" data-options="required:true,
                         valueField: 'label',
@@ -20,13 +21,15 @@
                             value: '无效'
                         }]" />
                     </td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序:</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序:</td>
                     <td><input class="easyui-textbox" type="text" name="articleorder" id="articleorder"  value="${articleManage.articleorder}" data-options="validType:'length[1,10]'"></input></td>
                 </tr>
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;类别描述:</td>
                     <td colspan="5">
-                        <input class="easyui-textbox"  name="memo" id="memo" value="${articleManage.memo}"  data-options="multiline:true"  style="width:580px;height:60px" >
+                        <input class="easyui-textbox"  name="memo" id="memo" value="${articleManage.memo}"  data-options="multiline:true"  style="width:600px;height:80px" >
                     </td>
                 </tr>
             </table>
