@@ -72,7 +72,7 @@
 <!-- end of main -->
 <!-- begin of footer -->
 <div class="wu-footer" data-options="region:'south',border:true,split:true" style="height: 40px;">
-	北京东方坦达科技有限公司
+	版权所有：中国铁路总公司北京特派办 | 技术支持： <a href="#" rel="nofollow">北京东方坦达科技有限公司</a>
 </div>
 <!-- end of footer -->
 <script type="text/javascript">
