@@ -23,7 +23,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序:</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序:</td>
                     <td><input class="easyui-textbox" type="text" name="articleorder" id="articleorder"  value="${articleManage.articleorder}" data-options="validType:'length[1,10]'"></input></td>
                 </tr>
                 <tr>
