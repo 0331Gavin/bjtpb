@@ -130,4 +130,8 @@ public class OrgService {
         commonQueryRepository.executeUpdate(sql.toString());
 
     }
+    public void del(String id) throws Exception{
+        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where  id='"+id+"'");
+        commonQueryRepository.executeUpdate(sql.toString());
+    }
 }
