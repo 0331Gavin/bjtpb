@@ -59,7 +59,7 @@
     }
     function del(id) {
         $.ajax({
-            url : "/admin/user/del?id="+id,
+            url : "/admin/org/del?id="+id,
             type : "POST",
             contentType: "application/json;charset=utf-8",
             dataType : "json",
