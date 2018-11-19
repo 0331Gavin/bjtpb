@@ -59,9 +59,8 @@ public class ArticleManageController {
 
     @PostMapping("/save")
     @ResponseBody
-    public String save(ArticleTypeForm articleTypeForm)throws Exception{
+    public ApiResponse save(ArticleTypeForm articleTypeForm)throws Exception{
         //id判断新增   修改
-        JSONObject json =new JSONObject();
         if(StringUtils.isNotEmpty(articleTypeForm.getId())){
             TArticleManage tArticleManage = manageService.findArticle(articleTypeForm.getId());
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
@@ -69,8 +68,7 @@ public class ArticleManageController {
         }else{
             //验重
             if(!manageService.isExist(articleTypeForm)){
-                json.put("message","类别已存在");
-                return json.toString();
+                return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该文章类别已存在，不能重复添加");
             }
             TArticleManage tArticleManage=new TArticleManage();
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
@@ -83,20 +81,13 @@ public class ArticleManageController {
             }
             manageService.save(tArticleManage);
         }
-        json.put("code","saveSuccessCode");
-        json.put("message","保存成功");
-       return json.toString();
+       return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
     }
 
     @PostMapping(value = "/del")
     @ResponseBody
-    public String del(String id){
-        JSONObject json =new JSONObject();
+    public ApiResponse del(String id){
         manageService.del(id);
-        json.put("code","delSuccessCode");
-        json.put("message","删除成功");
-        return json.toString();
+        return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
-
-
 }

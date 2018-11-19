@@ -46,7 +46,7 @@
                     dataType : "json",
                     success : function(data) {
                         message(data.message);
-                        if(data.code=="delSuccessCode"){
+                        if(data.code==delSuccessCode){
                             doload();
                         }
                     }
@@ -72,10 +72,6 @@
     function qx() {
         $('#xz').window('close');
         doload();
-    }
-
-    function message(val) {
-        $.messager.alert('系统提示',val,'info');
     }
 </script>
 </body>

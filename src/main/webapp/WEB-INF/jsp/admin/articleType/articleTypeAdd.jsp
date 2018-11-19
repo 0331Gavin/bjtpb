@@ -56,15 +56,12 @@
             success:function(data){
                 var data = eval('(' + data + ')'); // change the JSON string to javascript object
                 message(data.message)
-                if (data.code == "saveSuccessCode") {
+                if (data.code == saveSuccessCode) {
                     $("input[type='text']").val("");
                     //$("input[type='text']").val("");
                 }
             }
         });
-    }
-    function message(val) {
-        $.messager.alert('系统提示',val,'info');
     }
 </script>
 </body>

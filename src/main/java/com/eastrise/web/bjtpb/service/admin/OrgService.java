@@ -1,6 +1,8 @@
 package com.eastrise.web.bjtpb.service.admin;
+import com.eastrise.base.TSysUser;
 import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.CommonQueryRepository;
+import com.eastrise.web.bjtpb.controller.admin.form.OrgAddData;
 import com.eastrise.web.bjtpb.entity.TSysOrg;
 import com.eastrise.web.bjtpb.repository.IOrgRepository;
 import org.apache.commons.lang.StringUtils;
@@ -100,4 +102,32 @@ public class OrgService {
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
 
+    public List<Map<String, Object>> findParentorgseqbyID(String id) throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select t.org_seq  from T_SYS_ORG  t where t.id='"+id+"'");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
+    public boolean checkOrgIsExist(OrgAddData orgAddData) {
+        StringBuilder sql = new StringBuilder("select t.id from T_SYS_ORG t where t.ORG_NAME = '"+orgAddData.getOrgName()+"'");
+        int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
+        return i>0?true:false;
+    }
+    public TSysOrg findOrgInfo(String orgId){
+        TSysOrg tSysOrg = orgRepository.findByIdAndStatus(orgId);
+        return tSysOrg;
+    }
+    /**
+     * 新增部门
+     * @param tSysOrg
+     * @return
+     */
+    public TSysOrg save(TSysOrg tSysOrg) throws Exception {
+        return orgRepository.save(tSysOrg);
+    }
+    public void updateSeq(Long id,String seq) {
+        StringBuilder sql = new StringBuilder("update T_SYS_ORG  set org_seq='"+seq+"' where  id='"+id+"'");
+        commonQueryRepository.executeUpdate(sql.toString());
+
+    }
 }
