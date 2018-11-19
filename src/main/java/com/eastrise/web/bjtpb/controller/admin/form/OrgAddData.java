@@ -11,7 +11,7 @@ public class OrgAddData {
     private String orgSeq;
     private String status;
     private  String parentId;
-
+    private String shortName;
     public String getId() {
         return id;
     }
@@ -68,16 +68,11 @@ public class OrgAddData {
         this.orgSeq = orgSeq;
     }
 
-    @Override
-    public String toString() {
-        return "OrgAddData{" +
-                "id='" + id + '\'' +
-                ", orgName='" + orgName + '\'' +
-                ", orgOrder='" + orgOrder + '\'' +
-                ", memo='" + memo + '\'' +
-                ", orgSeq='" + orgSeq + '\'' +
-                ", status=" + status +
-                ", parentId='" + parentId + '\'' +
-                '}';
+    public String getShortName() {
+        return shortName;
+    }
+
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 }
