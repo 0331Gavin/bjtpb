@@ -53,7 +53,7 @@
             success:function(data){
                var data = eval('(' + data + ')'); // change the JSON string to javascript object
                 message(data.message)
-                if (data.code == "saveSuccessCode") {
+                if (data.code == saveSuccessCode) {
                     $('#xz').window('close');
                     doload();
                 }
