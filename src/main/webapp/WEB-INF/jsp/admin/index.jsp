@@ -103,7 +103,7 @@
         }
     });
 	function createFrame(href){
-	    return  '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:99%;padding: 0 0;margin: 0 0;"></iframe>';
+	    return  '<iframe scrolling="none" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;padding: 0 0;margin: 0 0;" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"  align="absmiddle" ></iframe>';
 	}
     /**
      * Name 选项卡初始化

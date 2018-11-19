@@ -3,8 +3,8 @@
 <head>
     <%@ include file="../common.jsp" %>
 </head>
-<body style="overflow:hidden;">
-    <table id="dg"  style="width:99%;height:99%"  url="/admin/user/findPageData"
+<body>
+    <table id="dg"  style="width:100%;height:100%"  url="/admin/user/findPageData"
            data-options="rownumbers:true,singleSelect:true,method:'post',toolbar:'#tb',pagination:true">
         <thead>
         <tr>
