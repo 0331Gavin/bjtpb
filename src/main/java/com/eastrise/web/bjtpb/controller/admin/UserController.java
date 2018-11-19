@@ -5,6 +5,7 @@ import com.eastrise.security.SecurityConstants;
 import com.eastrise.utils.DateHelper;
 import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.ApiResponse;
+import com.eastrise.web.bjtpb.controller.admin.form.OrgAddData;
 import com.eastrise.web.bjtpb.controller.admin.form.UserAddData;
 import com.eastrise.web.bjtpb.service.admin.UserService;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
@@ -42,6 +43,7 @@ public class UserController {
 
     @PostMapping(value = "/save")
     public ApiResponse save(UserAddData userAddData){
+
         if(checkUserIsExist(userAddData)){
             return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该登录名已存在，不能重复添加");
         }

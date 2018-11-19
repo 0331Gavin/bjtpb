@@ -54,4 +54,14 @@ public class CommonQueryRepository {
         List<Map<String, Object>> queryResult = jdbcTemplate.queryForList(sql);
         return queryResult;
     }
+    /**
+     * 执行数据更新
+     * @param  sql 查询语句
+     * @return int
+     * @author lh
+     */
+    public void executeUpdate(String sql){
+        logger.info("Sql:"+sql);
+        jdbcTemplate.execute(sql);
+    }
 }

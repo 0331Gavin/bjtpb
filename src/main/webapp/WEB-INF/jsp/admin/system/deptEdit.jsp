@@ -1,4 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <%@ include file="../common.jsp" %>
+</head>
+<body style="overflow:hidden;">
 <div class="easyui-layout" data-options="fit:true">
 
     <div data-options="region:'center'" style="padding:10px;border: 0px;" data-link="/admin/articleManage">
@@ -6,16 +11,16 @@
             <table cellpadding="5">
                 <tr>
                     <td>部门名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="ORG_NAME" id="ORG_NAME" value="${dept.ORG_NAME}" data-options="required:true,validType:'length[6,20]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="orgName" id="orgName"  value="${dept.ORG_NAME}" data-options="required:true,validType:'length[6,20]'"></input></td>
                 </tr>
                 <tr>
                     <td>上级部门名称:</td>
-                    <td><input class="easyui-combotree" value="122" data-options="url:'tree_data1.json',method:'get',required:true" style="width:140px;">
+                    <td> <input class="easyui-combotree" name="parentId" id="parentId"  value="${dept.PARENT_ID }" data-options="url:'/admin/org/listOrgs',method:'post',required:true,validType:'length[1,1000]'" >
                     </td>
                 </tr>
                 <tr>
                     <td>顺序:</td>
-                    <td><input class="easyui-textbox" type="text" name="ORG_ORDER" id="ORG_ORDER"  value="${dept.ORG_ORDER}" data-options="required:true,validType:'length[2,10]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options="required:true,validType:'length[2,10]'"></input></td>
                 </tr>
                 <tr>
                     <td>备注:</td>
@@ -25,7 +30,7 @@
                 <tr>
                     <td>状态:</td>
                     <td>
-                        <input class="easyui-combobox" id="status" name="status" value="${user.status}" editable="false" data-options="required:true,
+                        <input class="easyui-combobox" id="status" name="status" value="${dept.status}" editable="false" data-options="required:true,
                         valueField: 'label',
                         textField: 'value',
 				          panelHeight:'auto',
@@ -39,18 +44,18 @@
                     </td>
                 </tr>
             </table>
-            <input type="hidden" id="id" name="id" value="${id}"/>
+            <input type="hidden" id="id" name="id" value="${dept.id}"/>
         </form>
     </div>
     <div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 0;">
-        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:save()" style="width:80px">保存</a>
+        <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:savea()" style="width:80px">保存</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:cancel()" style="width:80px">取消</a>
     </div>
 </div>
 <script>
-    function save() {
+    function savea() {
         $('#ff').form('submit', {
-            url:"/admin/user/save",
+            url:"/admin/org/savea",
             onSubmit: function(){
                 // do some check
                 // return false to prevent submit;
@@ -71,9 +76,9 @@
         $('#w').window('close');
         doSearch();
     }
-    $(function(){
 
-
-    });
 
 </script>
+</body>
+
+</html>

@@ -33,7 +33,7 @@
                 buttons:[{
                     iconCls:'icon-add',
                     handler:function(){
-                        openWindow("新增用户","/admin/system/userEdit")
+                        openWindow("新增部门","/admin/system/deptEdit")
 
                         //
                     }
