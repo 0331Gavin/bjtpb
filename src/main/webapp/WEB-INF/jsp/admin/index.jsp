@@ -72,7 +72,7 @@
 <!-- end of main -->
 <!-- begin of footer -->
 <div class="wu-footer" data-options="region:'south',border:true,split:true" style="height: 40px;">
-	北京东方坦达科技有限公司
+	版权所有：中国铁路总公司北京特派办 | 技术支持： <a href="#" rel="nofollow">北京东方坦达科技有限公司</a>
 </div>
 <!-- end of footer -->
 <script type="text/javascript">
@@ -103,7 +103,7 @@
         }
     });
 	function createFrame(href){
-	    return  '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:99%;padding: 0 0;margin: 0 0;"></iframe>';
+	    return  '<iframe scrolling="none" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;padding: 0 0;margin: 0 0;" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"  align="absmiddle" ></iframe>';
 	}
     /**
      * Name 选项卡初始化
