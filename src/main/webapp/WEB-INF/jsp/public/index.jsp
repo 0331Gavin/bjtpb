@@ -578,7 +578,7 @@
 </body>
 <script>
     function toAdminIndex(){
-        window.open("/adminIndex");
+        window.open("../adminIndex");
     }
 </script>
 </html>
