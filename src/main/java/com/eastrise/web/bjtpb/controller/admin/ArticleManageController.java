@@ -74,6 +74,13 @@ public class ArticleManageController {
             }
             TArticleManage tArticleManage=new TArticleManage();
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
+            tArticleManage= manageService.save(tArticleManage);
+            if(articleTypeForm.getParentid().equals("0")){
+                tArticleManage.setCategoryseq(tArticleManage.getId()+"");
+            }else{
+                TArticleManage prticleManage = manageService.findArticle(articleTypeForm.getParentid());
+                tArticleManage.setCategoryseq(prticleManage.getCategoryseq()+"."+tArticleManage.getId());
+            }
             manageService.save(tArticleManage);
         }
         json.put("code","saveSuccessCode");
