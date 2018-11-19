@@ -42,16 +42,20 @@ public class OrgController {
         return orgService.findPageData(pageSize,pageNumber,orgName,sjorgname);
     }
 
+    /**
+     * 保存部门
+     * @param orgAddData
+     * @return
+     */
     @PostMapping(value = "/savea")
     public ApiResponse savea(OrgAddData orgAddData){
         System.out.println(orgAddData);
-        if(checkOrgmcIsExist(orgAddData)){
-            return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该登录名已存在，不能重复添加");
-        }
         String parentid=orgAddData.getParentId();
+
+
         try {
             if (parentid.equals("0")){
-                orgAddData.setOrgSeq("ORG");
+                orgAddData.setOrgSeq("1");
             }else{
                 String parentorgseq=orgService.findParentorgseqbyID(parentid).get(0).get("org_seq").toString();
                 orgAddData.setOrgSeq(parentorgseq+"."+orgAddData.getId());
@@ -61,22 +65,42 @@ public class OrgController {
                 TSysOrg tSysOrg = orgService.findOrgInfo(orgAddData.getId());
                 BeanUtils.copyProperties(orgAddData,tSysOrg);
 
+
             }else{
                 TSysOrg tSysOrg = new TSysOrg();
+                long l1 =Long.valueOf(orgAddData.getParentId());
+
                 BeanUtils.copyProperties(orgAddData,tSysOrg);
-                tSysOrg.setParentId(Long.parseLong("parentid"));
-                orgService.save(tSysOrg);
-                TSysOrg i=orgService.save(tSysOrg);
-                String seq=i.getOrgSeq()+i.getId();
+                tSysOrg.setParentId(l1);
+                TSysOrg i=  orgService.save(tSysOrg);
+                String seq=i.getOrgSeq()+ i.getId();
                 orgService.updateSeq(i.getId(),seq);
 
             }
 
         }
-        catch(Exception e){}
-        return null;
+        catch(Exception e){
+
+        }
+        return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
     }
     private boolean checkOrgmcIsExist(OrgAddData orgAddData){
         return orgService.checkOrgIsExist(orgAddData);
+    }
+
+    /**
+     * 删除部门
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/del")
+    public ApiResponse del(String id){
+        try{
+            orgService.del(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            ApiResponse.ofStatus(ApiResponse.Status.DEL_FAILD);
+        }
+        return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
 }

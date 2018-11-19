@@ -58,19 +58,22 @@
         openWindow("修改部门","/admin/system/deptEdit?id="+id)
     }
     function del(id) {
-        $.ajax({
-            url : "/admin/user/del?id="+id,
-            type : "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType : "json",
-            success : function(data) {
-                message(data.message);
-                if(data.code==delSuccessCode){
-                    doSearch();
-                }
+        $.messager.confirm('系统提示','是否确认删除?',function(r){
+            if (r){
+                $.ajax({
+                    url : "/admin/org/del?id="+id,
+                    type : "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType : "json",
+                    success : function(data) {
+                        message(data.message);
+                        if(data.code==delSuccessCode){
+                            doSearch();
+                        }
+                    }
+                })
             }
-        })
-
+        });
     }
 </script>
 </body>

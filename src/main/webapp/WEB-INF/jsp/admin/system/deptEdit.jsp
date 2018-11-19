@@ -11,20 +11,25 @@
             <table cellpadding="5">
                 <tr>
                     <td>部门名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="orgName" id="orgName"  value="${dept.ORG_NAME}" data-options="required:true,validType:'length[6,20]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="orgName" id="orgName"  value="${dept.ORG_NAME}" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td>部门简称:</td>
+                    <td> <input class="easyui-textbox" type="text" name="shortName" id="shortName"  value="${dept.short_Name }" data-options="required:true" >
+                    </td>
                 </tr>
                 <tr>
                     <td>上级部门名称:</td>
-                    <td> <input class="easyui-combotree" name="parentId" id="parentId"  value="${dept.PARENT_ID }" data-options="url:'/admin/org/listOrgs',method:'post',required:true,validType:'length[1,1000]'" >
+                    <td> <input class="easyui-combotree" name="parentId" id="parentId"  value="${dept.PARENT_ID }" data-options="url:'/admin/org/listOrgs',method:'post',required:true" >
                     </td>
                 </tr>
                 <tr>
                     <td>顺序:</td>
-                    <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options="required:true,validType:'length[2,10]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options="required:true"></input></td>
                 </tr>
                 <tr>
                     <td>备注:</td>
-                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options="required:true,validType:'length[2,10]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options="required:true"></input></td>
                 </tr>
 
                 <tr>
@@ -53,6 +58,10 @@
     </div>
 </div>
 <script>
+
+
+</script>
+<script>
     function savea() {
         $('#ff').form('submit', {
             url:"/admin/org/savea",
@@ -63,7 +72,10 @@
             },
             success:function(data){
                 var data = eval('(' + data + ')'); // change the JSON string to javascript object
-                message(data.message)
+                message(data.message);
+
+                // change the JSON string to javascript object
+               // message(data)
                 if (data.code == saveSuccessCode) {
                     $('#w').window('close');
                     doSearch();
@@ -75,6 +87,10 @@
     function cancel() {
         $('#w').window('close');
         doSearch();
+    }
+    function checkorgName() {
+
+        
     }
 
 
