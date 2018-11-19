@@ -41,8 +41,8 @@ public class ArticleManageController {
         return json;
     }
 
-    @GetMapping("/addChild")
-    public String articleaddChild(String id, HttpServletRequest request){
+    @GetMapping("/toArticleaddChild")
+    public String toArticleaddChild(String id, HttpServletRequest request){
         request.setAttribute("parentid",id);
         return "/admin/articleType/articleTypeChildAdd.jsp";
     }

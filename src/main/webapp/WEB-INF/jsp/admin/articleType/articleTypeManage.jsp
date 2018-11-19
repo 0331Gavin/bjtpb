@@ -31,7 +31,7 @@
         return"<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='updataSet("+row.id+")'><u>修改设置</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='deleteRow("+row.id+")'><u>删除</u></a>";
     }
     function addChild(id){
-        openxzWindow("新增子项","/admin/article/addChild?id="+id);
+        openxzWindow("新增子项","/admin/article/toArticleaddChild?id="+id);
     }
     function updataSet(id){
         openxzWindow("修改类别","/admin/article/toupdataArticle?id="+id);
