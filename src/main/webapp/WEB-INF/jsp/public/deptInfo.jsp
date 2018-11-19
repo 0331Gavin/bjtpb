@@ -15,72 +15,12 @@
     <title>中国铁路总公司北京特派办</title>
     <script type="text/javascript" src="../easyui/1.6.7/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/public/base.css" />
+    <link rel="stylesheet" type="text/css" href="../css/public/inner.css" />
     <link rel="stylesheet" type="text/css" href="../css/public/common.css" />
     <%@ include file="../base/common.jsp" %>
 </head>
 <style>
-    .in_main{
-        box-shadow:0 0 1px 2px #dfdfdf;
-        background-color:white;
-        padding:18px 8px;
-        width:962px;
 
-        z-index:1
-    }
-    .in_box01{
-        width:850px;
-        padding:10px 55px;
-        border:1px solid #ededed;
-        background:url(../images/inner_images/dh_bg01.gif) repeat-x top
-    }
-    .in_box01 >.title{
-        height:35px;
-        line-height:35px;
-        border-bottom:2px solid #267cb2
-    }
-    .in_box01 >.title h3{
-        /*width:99px;
-        background:url(../images/inner_images/title_bg01.png) bottom center no-repeat;*/
-        height:35px;
-        text-align:center;
-        color:white;
-        background: #267cb2;
-        border-radius: 5px 5px 0 0;
-        padding: 0px 10px;
-    }
-    .dhlistBox{
-        padding:30px
-    }
-
-    .disInBlk{
-        display:inline-block;
-    }
-    .news_con h3{
-        /*color:#166cb8*/
-    }
-    .news_con .date{
-        line-height:40px;
-        height:40px;
-        width:100%;
-        background-color:#f8f8f8
-    }
-    #zoom p{
-        margin-bottom:15px;
-        line-height:24px
-    }
-    #zoom img{
-        max-width:75%;
-        height:auto;
-    }
-    .printpage{
-        padding-left:20px;
-        margin-right:10px;
-        background:url(../images/public/operation_print.jpg) left center no-repeat
-    }
-    .gotop{
-        padding-left:20px;
-        background:url(../images/public/operation_gotop.jpg) left center no-repeat
-    }
 </style>
 <body>
 <div id="bg">
@@ -93,7 +33,7 @@
                     <h3 class="fl mgl20 font14">部门简介</h3><div class="fl mgl10 font12 grey">当前位置：<a href="<%=appPath%>/public/deptInfo">部门简介</a> </div>
                 </div>
                 <div class="pd20 news_con">
-                    <h3 class="text-center yahei font18 font-w">太原市人民政府办公厅关于下达2018年全市主要经济指标考核目标的通知</h3>
+                    <h3 class="text-center yahei font18 font-w">1月至10月铁路客货多项重要指标创历史新高</h3>
                     <p class="date font12 mgt20 grey text-center">
                         发布部门：安监局 发布时间：2018年11月19日
 
@@ -122,9 +62,10 @@
                     <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px;">
                         　　今年以来，铁路部门不断扩大复兴号开行范围，提升服务品质，推进技术创新，复兴号品牌竞争力和影响力进一步提升。目前，复兴号已覆盖京沪、京广、沪昆等25条高铁线路，通达23个省区市和香港特别行政区。16辆长编组复兴号已于今年7月1日在京沪高铁投入运营，并陆续在京广高铁、沪昆高铁、广深港高铁等线路上开行。以复兴号运营为契机，铁路部门全面落实客运提质计划，陆续推出网上订餐、智能导航、刷脸进站、在线选座、中转接续换乘、微信支付、常旅客会员等一系列服务新举措，极大提升了旅客出行获得感。
                     </p>
-                    <p>
-                        <br/>
-                    </p>
+                </div>
+                <div>
+                    <span class="relevant" style="">相关附件：</span>
+                    <a href="#" target="_blank">W020180517600467547078.doc</a>
                 </div>
                 <div class="operation text-right">
                     <a class="printpage" onclick="print();" href="javascript:void(0);">打印本页</a>
@@ -140,8 +81,6 @@
 </div>
 </body>
 <script>
-    function toAdminIndex(){
-        window.open("/adminIndex");
-    }
+
 </script>
 </html>

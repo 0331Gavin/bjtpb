@@ -1,0 +1,65 @@
+.in_main{
+    box-shadow:0 0 1px 2px #dfdfdf;
+    background-color:white;
+    padding:18px 8px;
+    width:962px;
+
+    z-index:1
+}
+.in_box01{
+    width:850px;
+    padding:10px 55px;
+    border:1px solid #ededed;
+    /*  background:url(../../images/public/dh_bg01.gif) repeat-x top*/
+  }
+  .in_box01 >.title{
+      height:35px;
+      line-height:35px;
+      border-bottom:2px solid #267cb2
+  }
+  .in_box01 >.title h3{
+      /*width:99px;
+      background:url(../images/inner_images/title_bg01.png) bottom center no-repeat;*/
+    height:35px;
+    text-align:center;
+    color:white;
+    background: #267cb2;
+    border-radius: 5px 5px 0 0;
+    padding: 0px 10px;
+}
+.dhlistBox{
+    padding:30px
+}
+
+.disInBlk{
+    display:inline-block;
+}
+.news_con h3{
+    /*color:#166cb8*/
+}
+.news_con .date{
+    line-height:40px;
+    height:40px;
+    width:100%;
+    background-color:#f8f8f8
+}
+#zoom p{
+    margin-bottom:15px;
+    line-height:24px
+}
+#zoom img{
+    max-width:75%;
+    height:auto;
+}
+.relevant{
+    color: blue;font-weight: bold;margin-left: 20px;
+}
+.printpage{
+    padding-left:20px;
+    margin-right:10px;
+    background:url(../../images/public/operation_print.jpg) left center no-repeat
+}
+.gotop{
+    padding-left:20px;
+    background:url(../../images/public/operation_gotop.jpg) left center no-repeat
+}
