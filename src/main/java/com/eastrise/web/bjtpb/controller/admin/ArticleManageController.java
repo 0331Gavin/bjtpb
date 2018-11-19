@@ -5,16 +5,15 @@ import com.eastrise.web.base.ApiResponse;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
+import org.bouncycastle.crypto.tls.ContentType;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.apache.commons.lang.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +56,7 @@ public class ArticleManageController {
     }
 
 
-    @PostMapping("/save")
+    @PostMapping(value = "/save",produces="text/html;charset=utf-8")
     @ResponseBody
     public ApiResponse save(ArticleTypeForm articleTypeForm)throws Exception{
         //id判断新增   修改
@@ -81,7 +80,7 @@ public class ArticleManageController {
             }
             manageService.save(tArticleManage);
         }
-       return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
+      return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
     }
 
     @PostMapping(value = "/del")
