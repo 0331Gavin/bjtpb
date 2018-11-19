@@ -1,4 +1,4 @@
-package com.eastrise.web.base;
+package com.eastrise.web.bjtpb.controller;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,7 +22,7 @@ public class IndexController {
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
 
-        return "index.jsp";
+        return "public/index.jsp";
     }
 
     @RequestMapping(value = {"/", "/index.html", "/index"}, method = RequestMethod.GET)
@@ -30,15 +30,15 @@ public class IndexController {
         //如果已经登陆跳转到个人首页
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
-            return "index.jsp";
+            return "public/index.jsp";
         }
-        return "index.jsp";
+        return "public/index.jsp";
     }
 
     @RequestMapping(value = {"/loginSuccess"}, method = RequestMethod.GET)
     public String loginSuccess(HttpServletRequest request) {
 
-        return "home.jsp";
+        return "public/index.jsp";
     }
    // @PreAuthorize("hasAuthority('ROLE_ADMIN')")//这里可以指定特定角色的用户访问权限
     //  @Secured("ROLE_ADMIN")
