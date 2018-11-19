@@ -48,6 +48,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/","index","index.html").permitAll()
+                .antMatchers("/public/**").permitAll()
                 .antMatchers("/anonymous/**").hasRole("ANONYMOUS")
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/")
@@ -102,7 +103,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         //设置静态资源不要拦截
         web.ignoring().antMatchers("/js/**","/css/**","/images/**");
-        web.ignoring().antMatchers("/public/**", "/webjars/**", "/v2/**", "/swagger**");
+
     }
     @Bean
     @Override
