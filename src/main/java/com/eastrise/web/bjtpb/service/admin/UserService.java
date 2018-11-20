@@ -86,7 +86,7 @@ public class UserService {
 
     public LocalUserDetails findUserDetails(){
         String loginName = SecurityContexUtils.getLoginName();
-        String sql = "select t.id,t.login_name,t.user_name,t.deptId,o.org_name from t_sys_user t ,t_sys_org o where t.dept_id = o.id and t.login_name = '"+loginName+"'";
+        String sql = "select t.id,t.login_name,t.user_name,t.dept_Id,o.org_name from t_sys_user t ,t_sys_org o where t.dept_id = o.id and t.login_name = '"+loginName+"'";
         List<Map<String, Object>> result = ChangeNameForm.changeSqlResult(jdbcTemplate.queryForList(sql));
         if (result.size() <= 0) {
             throw new NRAPException(SystemErrorCodeType.E_NOT_EXIST, "用户");
