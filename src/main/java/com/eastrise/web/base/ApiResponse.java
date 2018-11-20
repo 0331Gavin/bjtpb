@@ -71,6 +71,7 @@ public class ApiResponse {
         SAVE_SUCCESS(201,"保存成功"),
         EDIT_SUCCESS(202,"保存成功"),
         DEL_SUCCESS(203,"删除成功"),
+        DELORG_FAILD(209,"删除失败，请前往用户管理删除有关用户"),
         SAVE_FAILD(204,"保存失败"),
         DEL_FAILD(205,"删除失败"),
         DATA_EXISTED(206,"保存失败"),

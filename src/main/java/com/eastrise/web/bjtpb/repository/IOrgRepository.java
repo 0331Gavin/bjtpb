@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface IOrgRepository extends CrudRepository<TSysOrg, Long>, PagingAndSortingRepository<TSysOrg, Long>,JpaSpecificationExecutor<TSysOrg> {
     @Query("select u from TSysOrg u where u.id = ?1 and u.status <> '-1'")
-    TSysOrg findByIdAndStatus(String id);
+    TSysOrg findByIdAndStatus(Long id);
 }

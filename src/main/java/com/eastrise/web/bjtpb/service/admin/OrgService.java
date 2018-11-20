@@ -90,9 +90,17 @@ public class OrgService {
      * 系统管理/部门管理列表
      */
     public ApiPageResponse findPageData(int pageSize, int pageNumber, String orgName, String sjorgname) {
+
+
         StringBuilder sql = new StringBuilder("select dept.* from (select   g.*,bm.sjorgname   from   t_sys_org g  left      join   (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where dept.status='1' ");
-        if(Strings.isNotEmpty(orgName)) sql.append(" and dept.ORG_NAME like '%"+orgName+"%'");
-        if(Strings.isNotEmpty(sjorgname)) sql.append(" and dept.sjorgname like '%"+sjorgname+"%'");
+        if(Strings.isNotEmpty(orgName)) {
+            long deptid =Long.valueOf(orgName);
+            sql.append(" and dept.id='"+deptid+"'");
+        }
+        if(Strings.isNotEmpty(sjorgname)){
+            long pardeptid =Long.valueOf(sjorgname);
+            sql.append(" and dept.parent_id like '"+pardeptid+"'");
+        }
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
     public List<Map<String, Object>> findById(String id) throws Exception {
@@ -108,12 +116,19 @@ public class OrgService {
         sql.append("select t.org_seq  from T_SYS_ORG  t where t.id='"+id+"'");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
+    public List<Map<String, Object>> findallOrgid(String seq) throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select t.id  from T_SYS_ORG  t where t.org_seq like'"+"%"+seq+"%"+"'");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
+
     public boolean checkOrgIsExist(OrgAddData orgAddData) {
         StringBuilder sql = new StringBuilder("select t.id from T_SYS_ORG t where t.ORG_NAME = '"+orgAddData.getOrgName()+"'");
         int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
         return i>0?true:false;
     }
-    public TSysOrg findOrgInfo(String orgId){
+    public TSysOrg findOrgInfo(Long orgId){
         TSysOrg tSysOrg = orgRepository.findByIdAndStatus(orgId);
         return tSysOrg;
     }
@@ -131,7 +146,18 @@ public class OrgService {
 
     }
     public void del(String id) throws Exception{
-        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where  id='"+id+"'");
+        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where org_seq  like '"+"%"+id+"%"+"'");
         commonQueryRepository.executeUpdate(sql.toString());
+    }
+    /**
+     * 根据部门id判断有没有用户
+     * @param deptid
+     * @return
+     */
+    public boolean findCountyh(String deptid) {
+        StringBuilder sql = new StringBuilder("select t.id from T_SYS_USER t where t.dept_id = '"+deptid+"'");
+
+        int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
+        return i>0?true:false;
     }
 }

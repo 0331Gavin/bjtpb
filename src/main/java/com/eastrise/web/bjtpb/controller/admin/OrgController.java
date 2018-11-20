@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.eastrise.web.bjtpb.controller.admin.form.UserAddData;
 import java.util.List;
+import java.util.Map;
 
 /**
  * create by gzq on 2018/11/14 14:12
@@ -49,7 +50,9 @@ public class OrgController {
      */
     @PostMapping(value = "/savea")
     public ApiResponse savea(OrgAddData orgAddData){
-        System.out.println(orgAddData);
+
+        long l1 =Long.valueOf(orgAddData.getParentId());
+        long deptid =Long.valueOf(orgAddData.getId());
         String parentid=orgAddData.getParentId();
 
 
@@ -59,16 +62,18 @@ public class OrgController {
             }else{
                 String parentorgseq=orgService.findParentorgseqbyID(parentid).get(0).get("org_seq").toString();
                 orgAddData.setOrgSeq(parentorgseq+"."+orgAddData.getId());
-                System.out.println(orgAddData);
+
             }
             if(StringUtils.isNotEmpty(orgAddData.getId())){
-                TSysOrg tSysOrg = orgService.findOrgInfo(orgAddData.getId());
+
+                TSysOrg tSysOrg = orgService.findOrgInfo(deptid);
                 BeanUtils.copyProperties(orgAddData,tSysOrg);
+                tSysOrg.setParentId(l1);
 
-
+                orgService.save(tSysOrg);
             }else{
+
                 TSysOrg tSysOrg = new TSysOrg();
-                long l1 =Long.valueOf(orgAddData.getParentId());
 
                 BeanUtils.copyProperties(orgAddData,tSysOrg);
                 tSysOrg.setParentId(l1);
@@ -90,12 +95,23 @@ public class OrgController {
 
     /**
      * 删除部门
-     * @param id
+     * @param id（部门seq）
      * @return
      */
     @PostMapping(value = "/del")
     public ApiResponse del(String id){
         try{
+            List<Map<String, Object>> mapList= orgService.findallOrgid(id);
+            for (Map<String,Object> map:mapList) {
+                for (String s:map.keySet() ) {
+                    String deptid=map.get("ID").toString();
+
+                    if(orgService.findCountyh(deptid)){
+                        return ApiResponse.ofStatus(ApiResponse.Status.DELORG_FAILD);
+                    };
+
+                }
+            }
             orgService.del(id);
         }catch (Exception e){
             e.printStackTrace();
