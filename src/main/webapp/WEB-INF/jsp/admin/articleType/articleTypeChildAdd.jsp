@@ -5,7 +5,7 @@
             <table cellpadding="5">
                 <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;类别名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="${articleManage.categoryname}" data-options="required:true,validType:'length[4,20]'"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="${articleManage.categoryname}" data-options="required:true,validType:'length[1,20]'"></input></td>
                 </tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
                     <td>

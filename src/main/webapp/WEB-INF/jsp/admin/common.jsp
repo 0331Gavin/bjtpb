@@ -19,6 +19,11 @@
     <script type="text/javascript" src="<%=appPath%>/js/zTree_v3/js/jquery.ztree.excheck-3.5.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=appPath%>/js/zTree_v3/css/zTreeStyle/zTreeStyle.css">
 
+    <script type="text/javascript" src="<%=appPath%>/uejs/utf8-jsp/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="<%=appPath%>/uejs/utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" src="<%=appPath%>/uejs/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
+
+
     <script type="text/javascript" src="<%=appPath%>/easyui/1.6.7/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="<%=appPath%>/easyui/1.6.7/locale/easyui-lang-zh_CN.js"></script>
 
