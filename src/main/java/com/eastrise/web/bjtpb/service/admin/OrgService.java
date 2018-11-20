@@ -90,9 +90,17 @@ public class OrgService {
      * 系统管理/部门管理列表
      */
     public ApiPageResponse findPageData(int pageSize, int pageNumber, String orgName, String sjorgname) {
+
+
         StringBuilder sql = new StringBuilder("select dept.* from (select   g.*,bm.sjorgname   from   t_sys_org g  left      join   (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where dept.status='1' ");
-        if(Strings.isNotEmpty(orgName)) sql.append(" and dept.ORG_NAME like '%"+orgName+"%'");
-        if(Strings.isNotEmpty(sjorgname)) sql.append(" and dept.sjorgname like '%"+sjorgname+"%'");
+        if(Strings.isNotEmpty(orgName)) {
+            long deptid =Long.valueOf(orgName);
+            sql.append(" and dept.id='"+deptid+"'");
+        }
+        if(Strings.isNotEmpty(sjorgname)){
+            long pardeptid =Long.valueOf(sjorgname);
+            sql.append(" and dept.parent_id like '"+pardeptid+"'");
+        }
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
     public List<Map<String, Object>> findById(String id) throws Exception {
@@ -120,7 +128,7 @@ public class OrgService {
         int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
         return i>0?true:false;
     }
-    public TSysOrg findOrgInfo(String orgId){
+    public TSysOrg findOrgInfo(Long orgId){
         TSysOrg tSysOrg = orgRepository.findByIdAndStatus(orgId);
         return tSysOrg;
     }
