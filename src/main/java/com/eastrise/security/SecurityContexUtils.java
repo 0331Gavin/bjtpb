@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  */
 public class SecurityContexUtils {
 
-    public String getLoginName(){
+    public static String getLoginName(){
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {

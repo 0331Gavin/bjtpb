@@ -3,11 +3,13 @@
     padding: 0;
 }
 body {
-    font-size: 9pt;
-    line-height: 1.75em;
-    font-family: Georgia, serif;
+    /*  font-size: 9pt;*/
+      line-height: 1.75em;
+      font-family: Georgia, serif;
     background: #dbe2ea;
     color: #382b31;
+
+    font-size:12px;
 }
 
 #bg {
