@@ -8,12 +8,12 @@
 <div class="easyui-layout" data-options="fit:true">
     <div data-options="region:'center'" style="padding:10px;border: 0px;"  data-link="/admin/articleManage">
         <form id="xzzx" method="post" data-options="novalidate:true" >
-            <div class="easyui-panel" style="width:400px;padding:50px 60px">
+            <div  style="width:400px;padding:50px 60px">
                 <div style="margin-bottom:20px">
                     <input class="easyui-passwordbox" prompt="原密码" name="oldmm" iconWidth="28" style="width:100%;height:34px;padding:10px;"data-options="validType:'length[4,20]'">
                 </div>
                 <div style="margin-bottom:20px">
-                    <input id="pass" class="easyui-passwordbox" prompt="新密码" name="xmm" iconWidth="28" style="width:100%;height:34px;padding:10px"data-options="validType:'length[4,20]'">
+                    <input id="pass" class="easyui-passwordbox" prompt="新密码" name="xmm" iconWidth="28" style="width:100%;height:34px;padding:10px"data-options="required:true,validType:'length[4,20]'">
                 </div>
                 <div style="margin-bottom:20px">
                     <input class="easyui-passwordbox" prompt="确认密码" iconWidth="28" validType="confirmPass['#pass']" style="width:100%;height:34px;padding:10px">
