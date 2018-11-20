@@ -65,4 +65,9 @@ public class AdminRoutController {
         request.setAttribute("dept",list);}
         return "/admin/system/deptEdit.jsp";
     }
+    @GetMapping("/system/xgMa")
+    public String xgMa(){
+        return "/admin/system/xgMa.jsp";
+    }
+
 }

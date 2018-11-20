@@ -33,7 +33,8 @@ public class TArticle {
     /*
     * 文章内容
     **/
-    @Column(name = "CONTENT", length=1000)
+    @Lob
+    @Column(name = "CONTENT", columnDefinition = "CLOB")
     private String content;
     /*
     * 文章HTML内容
@@ -73,6 +74,16 @@ public class TArticle {
     private String status;
 
 
+    @Column(name="ARTICLE_TAG")
+    private String articleTag;
+
+    public String getArticleTag() {
+        return articleTag;
+    }
+
+    public void setArticleTag(String articleTag) {
+        this.articleTag = articleTag;
+    }
     public long getArticleTypeId() {
         return articleTypeId;
     }

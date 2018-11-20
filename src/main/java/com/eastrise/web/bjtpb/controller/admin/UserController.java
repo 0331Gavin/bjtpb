@@ -2,6 +2,7 @@ package com.eastrise.web.bjtpb.controller.admin;
 
 import com.eastrise.base.TSysUser;
 import com.eastrise.security.SecurityConstants;
+import com.eastrise.security.SecurityContexUtils;
 import com.eastrise.utils.DateHelper;
 import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.ApiResponse;
@@ -11,6 +12,7 @@ import com.eastrise.web.bjtpb.service.admin.UserService;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import jdk.net.SocketFlow;
 import org.apache.commons.lang.StringUtils;
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +61,31 @@ public class UserController {
                 tSysUser.setPwd(passwordEncoder.encode(SecurityConstants.DEFAULT_PASSWORD));
                 tSysUser.setCreateTime(DateHelper.getDateTime());
                 userService.save(tSysUser);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            ApiResponse.ofStatus(ApiResponse.Status.SAVE_FAILD);
+        }
+        return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
+    }
+
+    /**
+     * 更新密码
+     * @param oldmm
+     * @param xmm
+     * @return
+     */
+    @PostMapping(value = "/updatemima")
+    public ApiResponse mima(String oldmm,String xmm){
+        try{
+            String loginname=SecurityContexUtils.getLoginName();
+            TSysUser user=userService.findUserbyloginname(loginname );
+            String PWD= user.getPwd();
+            String xmm1=passwordEncoder.encode(xmm);
+            if (passwordEncoder.matches(oldmm,PWD)){
+                userService.updatemimma(xmm1,loginname);
+            }else {
+                return ApiResponse.ofStatus(ApiResponse.Status.UPDATA_CHONGFU);
             }
         }catch (Exception e){
             e.printStackTrace();
