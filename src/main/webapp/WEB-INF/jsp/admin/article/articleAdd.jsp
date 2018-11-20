@@ -32,9 +32,6 @@
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;文章内容:</td>
                     <td><input class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="${articleManage.categoryname}" data-options="required:true,validType:'length[4,20]'"></input></td>
                 </tr>
-                <div style="width: 300px;height:300px">
-                    <script id="editor" type="text/plain" ></script>
-                </div>
             </table>
             <input type="hidden" id="parentid" name="parentid" value="${parentid}"/>
             <input type="hidden" id="id" name="id" value="${id}"/>
@@ -44,7 +41,6 @@
         <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:save()" style="width:80px">保存</a>
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:qx()" style="width:80px">取消</a>
     </div>
-
 </div>
 <script>
     function save() {
@@ -67,4 +63,5 @@
         $('#w').window('close');
         doload();
     }
+
 </script>
