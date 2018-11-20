@@ -14,9 +14,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>中国铁路总公司北京特派办</title>
     <script type="text/javascript" src="../easyui/1.6.7/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/public/base.css" />
     <link rel="stylesheet" type="text/css" href="../css/public/inner.css" />
     <link rel="stylesheet" type="text/css" href="../css/public/common.css" />
+    <link rel="stylesheet" type="text/css" href="../css/public/base.css" />
     <%@ include file="../base/common.jsp" %>
 </head>
 <style>

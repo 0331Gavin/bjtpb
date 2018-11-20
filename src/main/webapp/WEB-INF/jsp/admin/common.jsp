@@ -22,6 +22,9 @@
     <script type="text/javascript" src="<%=appPath%>/easyui/1.6.7/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="<%=appPath%>/easyui/1.6.7/locale/easyui-lang-zh_CN.js"></script>
 
+    <script type="text/javascript" src="<%=appPath%>/js/uedit4.3.3/ueditor.config.js"></script>
+    <script type="text/javascript" src="<%=appPath%>/js/uedit4.3.3/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="<%=appPath%>/js/uedit4.3.3/lang/zh-cn/zh-cn.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/wu.css" />
 </head>
 <body>

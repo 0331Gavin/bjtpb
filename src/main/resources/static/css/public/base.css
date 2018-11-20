@@ -5,15 +5,16 @@
 body {
     /*  font-size: 9pt;*/
       line-height: 1.75em;
-      font-family: Georgia, serif;
-    background: #dbe2ea;
+
+    font-family:"微软雅黑","Microsoft YaHei",Arial;
+    background: #dee5ec;
     color: #382b31;
 
-    font-size:12px;
+    font-size:14px;
 }
 
 #bg {
-    background: url('images/public/highlight.png') top left repeat-x;
+    background: url('../../images/public/highlight.png') top left repeat-x;
     padding: 30px 0 20px 0;
 }
 #outer {
@@ -21,6 +22,7 @@ body {
     width: 980px;
     margin: 0 auto 0 auto;
     background: #fff;
+
 }
 #header {
     position: relative;
@@ -41,6 +43,7 @@ body {
 #logo a {
     text-decoration: none;
     color: #fff;
+
 }
 
 #logo h1 {
@@ -147,8 +150,10 @@ body {
     text-align: center;
     color: #819B95;
     padding: 0px 0 0 0;
+    font-size: 12px;
 }
 
 #copyright a {
+
     color: #819B95;
 }

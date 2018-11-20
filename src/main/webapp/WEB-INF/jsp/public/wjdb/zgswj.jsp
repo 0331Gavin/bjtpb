@@ -11,14 +11,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <%@ include file="../../base/common.jsp" %>
+
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>中国铁路总公司北京特派办</title>
-    <script type="text/javascript" src="<%=appPath%>/easyui/1.6.7/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/base.css" />
-    <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/inner.css" />
-    <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/common.css" />
 
+
+    <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/common.css" />
+    <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/inner.css" />
+    <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/base.css" />
+    <script type="text/javascript" src="<%=appPath%>/js/jquery-1.11.1.min.js"></script>
 </head>
 <style>
     /**公共服务*/
@@ -337,6 +340,14 @@
     .LeftSide_con dl dd.menu a {
         padding-left: 15px;
     }
+    .a_btn {
+        margin-bottom: 2px;
+        padding: 4px 0;
+
+    }
+
+
+
 </style>
 <body>
 <div id="bg">
@@ -399,12 +410,32 @@
                     <div class="title w100">
                         <h3 class="fl font14">政府信息公开</h3>
                     </div>
-                    <div class="font12 pd10 grey LeftSide_con">
+                    <div class="font12 pd10 grey LeftSide_con " id="accordion">
                         <dl>
-                            <dt class="cur"><a href="#">安全文电</a></dt>
+                            <dt class="cur " id="open"><a href="#">安全文电</a></dt>
+                            <dd class="launch_con" >
+                                <div >
+                                    <ul>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="background-color: #267cb2;color: white;">总公司文件</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">总公司电报</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局文件</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局通话记录</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局通知</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">特派办通知</a></li>
+                                    </ul>
+                                </div>
+                            </dd>
                         </dl>
                         <dl>
-                            <dt><a href="/zfxxgk/xxgkzn/index.shtml" title="其他文电">其他文电</a></dt>
+                            <dt class="cur "><a href="#" title="其他文电">其他文电</a></dt>
+                            <dd class="launch_con" >
+                                <div >
+                                    <ul>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">领导讲话</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">其他</a></li>
+                                    </ul>
+                                </div>
+                            </dd>
                         </dl>
 
                     </div>
@@ -417,7 +448,20 @@
 
 </div>
 </body>
-<script>
+<script type="text/javascript">
+    $(function(){
+
+
+        $(".accordion").on("click",function(e){
+
+            var target = e.target;
+
+            alert($(target).attr("id"));
+
+            });
+    });
+
+
 
 </script>
 </html>

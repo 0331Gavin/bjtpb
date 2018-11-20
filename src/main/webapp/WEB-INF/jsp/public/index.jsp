@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="css/public/base.css" />
 </head>
 <style>
+    #bg {
+        background: url('images/public/highlight.png') top left repeat-x;
+        padding: 30px 0 20px 0;
+    }
      /* Floats */
     .left,.alignleft {float: left;}
     .right,.alignright {float: right;}
@@ -58,6 +62,7 @@
         border-top: 1px solid #EEE;
         padding: 1px 0;
         width: 330px;
+        font-family: Georgia, serif;
     }
     ul.nice-list li .left{
         width: 268px;word-break: keep-all;overflow:hidden;text-overflow: ellipsis;
@@ -71,13 +76,13 @@
     }
 
     .title {
-        height: 30px;
-        margin-top: 6px;
+        height: 28px;
+        margin-top: 2px;
 
     }
 
     .title h3 {
-        font-size: 16px;
+        font-size: 14px;
         color: #22325f;
         line-height: 14px;
     }
@@ -94,7 +99,7 @@
         background: #22325f;
         margin-top: 8px;
     }
-    .content a {text-decoration: none;}
+    .content a {text-decoration: none;font-size: 12px;}
     .content a:hover {text-decoration: underline;}
 
     .small_title{
@@ -155,6 +160,11 @@
 
          padding: 1px 0;
      }
+
+    #bg {
+        background: url('images/public/highlight.png') top left repeat-x;
+    }
+
 </style>
 <body>
 <div id="bg">
