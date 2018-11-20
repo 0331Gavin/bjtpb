@@ -4,6 +4,10 @@
     <%@ include file="../common.jsp" %>
 </head>
 <body>
+    <div  style="width:1024px;height:500px;">
+    <h1>完整demo</h1>
+    <script id="editor" type="text/plain"></script>
+    </div>
     <table id="dg"  style="width:100%;height:100%"  url="/admin/user/findPageData"
            data-options="rownumbers:true,singleSelect:true,method:'post',toolbar:'#tb',pagination:true">
         <thead>
@@ -40,7 +44,9 @@
                     }
                 }]
             });
-
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
 
     })
 
