@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.eastrise.web.bjtpb.controller.admin.form.UserAddData;
 import java.util.List;
+import java.util.Map;
 
 /**
  * create by gzq on 2018/11/14 14:12
@@ -90,12 +91,23 @@ public class OrgController {
 
     /**
      * 删除部门
-     * @param id
+     * @param seq
      * @return
      */
     @PostMapping(value = "/del")
     public ApiResponse del(String id){
         try{
+            List<Map<String, Object>> mapList= orgService.findallOrgid(id);
+            for (Map<String,Object> map:mapList) {
+                for (String s:map.keySet() ) {
+                    String deptid=map.get("ID").toString();
+                    System.out.println  (deptid);
+                    if(orgService.findCountyh(deptid)){
+                        return ApiResponse.ofStatus(ApiResponse.Status.DELORG_FAILD);
+                    };
+
+                }
+            }
             orgService.del(id);
         }catch (Exception e){
             e.printStackTrace();

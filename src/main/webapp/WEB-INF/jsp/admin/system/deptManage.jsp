@@ -13,6 +13,7 @@
         <th data-options="field:'orgName',width:130,align:'center'">部门名称</th>
         <th data-options="field:'sjorgname',width:130,align:'center'">上级部门</th>
         <th data-options="field:'orgOrder',width:80,align:'center'">顺序</th>
+        <th data-options="field:'orgSeq',width:80,align:'center'">seq</th>
         <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
@@ -51,7 +52,7 @@
         });
     }
     function formatOper(val,row,index) {
-        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.orgSeq+"\")'>删除</a>";
         return val;
     }
     function edit(id) {

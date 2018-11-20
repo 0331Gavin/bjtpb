@@ -108,6 +108,13 @@ public class OrgService {
         sql.append("select t.org_seq  from T_SYS_ORG  t where t.id='"+id+"'");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
+    public List<Map<String, Object>> findallOrgid(String seq) throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select t.id  from T_SYS_ORG  t where t.org_seq like'"+"%"+seq+"%"+"'");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
+
     public boolean checkOrgIsExist(OrgAddData orgAddData) {
         StringBuilder sql = new StringBuilder("select t.id from T_SYS_ORG t where t.ORG_NAME = '"+orgAddData.getOrgName()+"'");
         int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
@@ -131,7 +138,18 @@ public class OrgService {
 
     }
     public void del(String id) throws Exception{
-        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where  id='"+id+"'");
+        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where org_seq  like '"+"%"+id+"%"+"'");
         commonQueryRepository.executeUpdate(sql.toString());
+    }
+    /**
+     * 根据部门id判断有没有用户
+     * @param deptid
+     * @return
+     */
+    public boolean findCountyh(String deptid) {
+        StringBuilder sql = new StringBuilder("select t.id from T_SYS_USER t where t.dept_id = '"+deptid+"'");
+
+        int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
+        return i>0?true:false;
     }
 }
