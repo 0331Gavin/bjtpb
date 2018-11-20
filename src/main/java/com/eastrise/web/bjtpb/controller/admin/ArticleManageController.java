@@ -56,7 +56,7 @@ public class ArticleManageController {
     }
 
 
-    @PostMapping(value = "/save",produces="text/html;charset=utf-8")
+    @PostMapping(value = "/save",produces = "text/html;charset:utf-8")
     @ResponseBody
     public ApiResponse save(ArticleTypeForm articleTypeForm)throws Exception{
         //id判断新增   修改
@@ -88,5 +88,16 @@ public class ArticleManageController {
     public ApiResponse del(String id){
         manageService.del(id);
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
+    }
+
+    @GetMapping("/getArticleContent")
+    @ResponseBody
+    public String getArticleContent()throws Exception{
+        return manageService.getArticleContent().toString();
+    }
+
+    @GetMapping("/toAddArticleContent")
+    public String toAddArticleContent(){
+        return "/admin/article/articleAdd.jsp";
     }
 }

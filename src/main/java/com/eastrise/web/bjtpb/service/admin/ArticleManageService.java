@@ -1,5 +1,6 @@
 package com.eastrise.web.bjtpb.service.admin;
 
+import com.alibaba.fastjson.JSONObject;
 import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ArticleManageService {
@@ -57,5 +55,25 @@ public class ArticleManageService {
             return false;
         }
         return true;
+    }
+
+    public JSONObject getArticleContent()throws Exception{
+        JSONObject json =new JSONObject();
+        String sql="select t.* from T_ARTICLE t where t.status <>0";
+        List<Map<String, Object>> result= commonQueryRepository.findResultBySqlQuery(sql);
+        json.put("rows",result);
+        json.put("total",result.size());
+        return json;
+    }
+
+    public void formateData(List<Map<String, Object>> listData){
+        for(int i=0;i<listData.size();i++){
+            Iterator entries = listData.get(i).entrySet().iterator();
+            while (entries.hasNext()) {
+                Map.Entry entry = (Map.Entry) entries.next();
+                Integer key = (Integer)entry.getKey();
+                Integer value = (Integer)entry.getValue();
+            }
+        }
     }
 }
