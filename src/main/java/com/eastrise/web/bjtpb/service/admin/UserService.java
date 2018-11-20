@@ -62,12 +62,33 @@ public class UserService {
     }
 
     /**
+     * 根据用户名字获取用户
+     * @param loginname
+     * @return
+     * @throws Exception
+     */
+    public TSysUser findUserbyloginname(String loginname) throws Exception {
+        return userRepository.findByLoginNameAndStatus(loginname);
+    }
+    /**
      * 删除用户
      * @param id
      */
     public void del(String id) throws Exception{
         userRepository.deleteById(id);
     }
+
+    /**
+     * 更新密码
+     * @param xmm1
+     * @param loginname
+     * @throws Exception
+     */
+    public void updatemimma(String xmm1,String loginname) throws Exception{
+        StringBuilder sql = new StringBuilder("update T_SYS_USER  set pwd='"+xmm1+"' where  login_name='"+loginname+"'");
+        commonQueryRepository.executeUpdate(sql.toString());
+    }
+
 
     /**
      * 判断登录名是否已存在
@@ -82,6 +103,7 @@ public class UserService {
         int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
         return i>0?true:false;
     }
+
 
 
     /**

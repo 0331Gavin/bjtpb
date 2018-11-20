@@ -67,7 +67,7 @@ public class ApiResponse {
     }
 
     public enum Status{
-
+        UPDATA_CHONGFU(208,"密码与原密码不一致，请重新输入"),
         SAVE_SUCCESS(201,"保存成功"),
         EDIT_SUCCESS(202,"保存成功"),
         DEL_SUCCESS(203,"删除成功"),
