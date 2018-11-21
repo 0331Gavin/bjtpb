@@ -12,7 +12,7 @@
         <th data-options="field:'id',width:80,hidden:true">数据字典id</th>
         <th data-options="field:'sjbm',width:130,align:'center'">数据编码</th>
         <th data-options="field:'sjmc',width:130,align:'center'">数据名称</th>
-        <th data-options="field:'xssx',width:80,align:'center'">显示顺序</th>
+        <th data-options="field:'xssx',width:80,align:'center',hidden:true">显示顺序</th>
         <th data-options="field:'sjlx',width:80,align:'center'">数据类型</th>
         <th data-options="field:'status',width:80,align:'center'">状态</th>
         <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
