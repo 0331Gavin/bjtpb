@@ -97,7 +97,14 @@ public class ArticleManageController {
     }
 
     @GetMapping("/toAddArticleContent")
-    public String toAddArticleContent(){
+    public String toAddArticleContent(String articleTag,HttpServletRequest request){
+        request.setAttribute("articleTag",articleTag);
         return "/admin/article/articleAdd.jsp";
+    }
+
+    @GetMapping("/listArticles")
+    public List<TArticleManage> listArticles(){
+        List<TArticleManage> articles = manageService.findChildArticleById(0,false);
+        return articles;
     }
 }
