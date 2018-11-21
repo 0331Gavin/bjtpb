@@ -6,7 +6,7 @@
             <table cellpadding="5"   border="0">
                 <tr>
                     <td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;文章类别:</td>
-                    <td colspan="3"><input class="easyui-combotree" data-options="url:'/admin/article/listArticles',method:'post',required:true" style="width:260px;"></td>
+                    <td colspan="3"><input id="articleTypeId" name="articleTypeId" value="${articles.id}" class="easyui-combotree" data-options="url:'/admin/article/listArticles',method:'post',required:true" style="width:260px;"></td>
                 </tr>
                 <tr>
                     <td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;文章标题:</td>
@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                    <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>
-                    <td><input id="dd" type="text" class="easyui-datebox" required="required" style="width:150px;"></td>
+                    <td><input id="sj" type="text" class="easyui-datebox" required="required" style="width:150px;"></td>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起草部门:</td>
                     <td><input class="easyui-textbox" type="text" name="publishDept" id="publishDept" value="" data-options="required:false,validType:'length[1,40]'" style="width:150px;"></input></td>
                 </tr>
@@ -46,10 +46,15 @@
     })
     function save() {
         $('#xzzx').form('submit', {
-            url:"/admin/article/save",
-            onSubmit: function(){
-               alert(getAllHtml());
-                return "";
+            url:"/admin/article/saveArticleContent",
+            type: 'post',
+            onSubmit: function(param){
+                param.publishTime=$("#sj").datetimebox("getValue");
+                if(hasContent()){
+                    param.contentHtml=getAllHtml();
+                    param.content=getContent();
+                }
+                return $(this).form('enableValidation').form('validate');
             },
             success:function(data){
                 var data = eval('(' + data + ')'); // change the JSON string to javascript object
@@ -73,4 +78,8 @@
     function getContent() {
        return UE.getEditor('editor').getContent();
     }
+    function hasContent() {
+        return UE.getEditor('editor').hasContents();
+    }
+
 </script>
