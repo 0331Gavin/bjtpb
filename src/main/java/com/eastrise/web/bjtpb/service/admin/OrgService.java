@@ -101,8 +101,16 @@ public class OrgService {
             long pardeptid =Long.valueOf(sjorgname);
             sql.append(" and dept.parent_id like '"+pardeptid+"'");
         }
+        sql.append("order by dept.org_order");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
+
+    /**
+     * 根据id查询部门详细信息（包括父id对应的部门名称）
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public List<Map<String, Object>> findById(String id) throws Exception {
         //定义 用于查询的SQL
         StringBuffer sql = new StringBuffer();
@@ -110,12 +118,25 @@ public class OrgService {
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
 
+    /**
+     * 根据id查询org_seq
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public List<Map<String, Object>> findParentorgseqbyID(String id) throws Exception {
         //定义 用于查询的SQL
         StringBuffer sql = new StringBuffer();
         sql.append("select t.org_seq  from T_SYS_ORG  t where t.id='"+id+"'");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
+
+    /**
+     * 根据seq查询其部门和子部门的id
+     * @param seq
+     * @return
+     * @throws Exception
+     */
     public List<Map<String, Object>> findallOrgid(String seq) throws Exception {
         //定义 用于查询的SQL
         StringBuffer sql = new StringBuffer();
@@ -123,11 +144,22 @@ public class OrgService {
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
 
+    /**
+     * 检查部门名称是否存在（弃用）
+     * @param orgAddData
+     * @return
+     */
     public boolean checkOrgIsExist(OrgAddData orgAddData) {
         StringBuilder sql = new StringBuilder("select t.id from T_SYS_ORG t where t.ORG_NAME = '"+orgAddData.getOrgName()+"'");
         int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
         return i>0?true:false;
     }
+
+    /**
+     * 根据部门id查询部门
+     * @param orgId
+     * @return
+     */
     public TSysOrg findOrgInfo(Long orgId){
         TSysOrg tSysOrg = orgRepository.findByIdAndStatus(orgId);
         return tSysOrg;
@@ -140,11 +172,23 @@ public class OrgService {
     public TSysOrg save(TSysOrg tSysOrg) throws Exception {
         return orgRepository.save(tSysOrg);
     }
+
+    /**
+     * 根据id更新部门的orgseq
+     * @param id
+     * @param seq
+     */
     public void updateSeq(Long id,String seq) {
         StringBuilder sql = new StringBuilder("update T_SYS_ORG  set org_seq='"+seq+"' where  id='"+id+"'");
         commonQueryRepository.executeUpdate(sql.toString());
 
     }
+
+    /**
+     * 根据seq删除该部门以及子部门
+     * @param id
+     * @throws Exception
+     */
     public void del(String id) throws Exception{
         StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where org_seq  like '"+"%"+id+"%"+"'");
         commonQueryRepository.executeUpdate(sql.toString());

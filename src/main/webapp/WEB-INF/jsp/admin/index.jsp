@@ -56,7 +56,7 @@
 				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/system/xgMa" iframe="1">修改密码</a></li>
 				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/system/userManage" iframe="1">用户管理</a></li>
 				<li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="/admin/system/deptManage" iframe="1">部门管理</a></li>
-				<li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="temp/layout-3.html" iframe="1">数据字典</a></li>
+				<li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="/admin/system/sjZd" iframe="1">数据字典</a></li>
 				<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="1">系统日志</a></li>
 			</ul>
 		</div>

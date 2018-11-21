@@ -10,32 +10,28 @@
         <form id="ff" method="post" data-options="novalidate:true">
             <table cellpadding="5">
                 <tr>
-                    <td>部门名称:</td>
-                    <td><input class="easyui-textbox" type="text" name="orgName" id="orgName"  value="${dept.ORG_NAME}" data-options="required:true"></input></td>
+                    <td>数据类型:</td>
+                    <td><input class="easyui-textbox" type="text" name="sjlx" id="sjlx"  value="${sjzd.sjlx}" data-options="required:true"></input></td>
                 </tr>
                 <tr>
-                    <td>部门简称:</td>
-                    <td> <input class="easyui-textbox" type="text" name="shortName" id="shortName"  value="${dept.short_Name }" data-options="required:true" >
+                    <td>数据编码:</td>
+                    <td> <input class="easyui-textbox" type="text" name="sjbm" id="sjbm"  value="${sjzd.sjbm }" data-options="required:true" >
                     </td>
                 </tr>
+
                 <tr>
-                    <td>上级部门名称:</td>
-                    <td> <input class="easyui-combotree" name="parentId" id="parentId"  value="${dept.PARENT_ID }" data-options="url:'/admin/org/listOrgs',method:'post',required:true" >
-                    </td>
+                    <td>数据名称:</td>
+                    <td><input class="easyui-textbox" type="text" name="sjmc" id="sjmc"  value="${sjzd.sjmc}" data-options="required:true"></input></td>
                 </tr>
                 <tr>
-                    <td>顺序:</td>
-                    <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options=""></input></td>
-                </tr>
-                <tr>
-                    <td>备注:</td>
-                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options=""></input></td>
+                    <td>显示顺序:</td>
+                    <td><input class="easyui-textbox" type="text" name="xssx" id="xssx"  value="${sjzd.xssx}" data-options="required:true"></input></td>
                 </tr>
 
                 <tr>
                     <td>状态:</td>
                     <td>
-                        <input class="easyui-combobox" id="status" name="status" value="${dept.status}" editable="false" data-options="required:true,
+                        <input class="easyui-combobox" id="status" name="status" value="${sjzd.status}" editable="false" data-options="required:true,
                         valueField: 'label',
                         textField: 'value',
 				          panelHeight:'auto',
@@ -49,7 +45,7 @@
                     </td>
                 </tr>
             </table>
-            <input type="hidden" id="id" name="id" value="${dept.id}"/>
+            <input type="hidden" id="id" name="id" value="${sjzd.id}"/>
         </form>
     </div>
     <div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 0;">
@@ -64,7 +60,7 @@
 <script>
     function savea() {
         $('#ff').form('submit', {
-            url:"/admin/org/savea",
+            url:"/admin/sjzd/save",
             onSubmit: function(){
                 // do some check
                 // return false to prevent submit;
@@ -75,7 +71,7 @@
                 message(data.message);
 
                 // change the JSON string to javascript object
-               // message(data)
+                //message(data.code);
                 if (data.code == saveSuccessCode) {
                     $('#w').window('close');
                     doSearch();
@@ -88,6 +84,7 @@
         $('#w').window('close');
         doSearch();
     }
+
     function checkorgName() {
 
         
