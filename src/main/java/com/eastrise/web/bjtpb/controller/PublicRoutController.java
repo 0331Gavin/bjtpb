@@ -32,20 +32,12 @@ public class PublicRoutController {
     public String bmjj(){
         return "/public/bmjj/bmjj.jsp";
     }
-    @GetMapping("/wjdb")
-    public String wjdb(){
 
-        return "/public/wjdb/wjdb.jsp";
-    }
-    @GetMapping("/fgzd")
-    public String fgzd(){
 
-        return "/public/fgzd/fgzd.jsp";
-    }
 
     @GetMapping("/wjdb/{value}")
-    public String wjdbmx(@PathVariable String value,HttpServletRequest request){
-        TArticleManage articleManage = articleManageService.findArticleByCode(value,"1");
+    public String wjdbmx(@PathVariable String code,HttpServletRequest request){
+        TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];
         List<TArticleManage> articleManageList = articleManageService.findArticleByParentId(parentId,"1");
 
@@ -64,9 +56,14 @@ public class PublicRoutController {
             m.put("sons",articleManages);
             result.add(m);
         }
-        request.setAttribute("code",value);
+        request.setAttribute("id",articleManage.getId());
         request.setAttribute("result",result);
         return "/public/wjdb/wjdb.jsp";
+    }
+    @GetMapping("/fgzd/{code}")
+    public String fgzd(@PathVariable String code,HttpServletRequest request){
+
+        return "/public/fgzd/fgzd.jsp";
     }
 
 }

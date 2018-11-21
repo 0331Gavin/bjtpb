@@ -25,10 +25,32 @@
 </head>
 <style>
 
-    .a_btn {
-        margin-bottom: 2px;
-        padding: 4px 0;
-
+    .launch_con li a:hover /*鼠标经过时*/
+    {
+        background-color:#267cb2; /* 改变背景色*/
+        color:#ffffff; /* 改变文字颜色*/
+    }
+    .launch_con{
+        border: 1px solid #e6e6e6;overflow: hidden
+    }
+    .launch_con li{
+        width: 48%;
+        text-align: center;
+        float: left;
+        margin-left: 2%;
+    }
+    .launch_con li a{
+        font-size: 12px;
+        height: 32px;
+        line-height: 32px;
+        padding: 0px;
+        margin: 4px;
+        color: #585858;
+        overflow: hidden;
+        background-color: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 4px;
+        display: block;
     }
 
 
@@ -98,16 +120,18 @@
 
                         <c:forEach items="${result}" var="item">
                             <dl>
-                                <dt <c:if test="${item.check == true}">class="cur "</c:if>><a href="#" title="${item.name}">${item.name}</a></dt>
-                                <c:forEach items="${item.sons}" var="son">
+                                <dt <c:if test="${item.check == true}">class="cur "</c:if>><a href="${item.value}" title="${item.name}">${item.name}</a></dt>
+
                                     <dd class="launch_con" >
                                         <div >
                                             <ul>
-                                                <li><a class="a_btn" href="${son.categorycode}" <c:if test="${son.categorycode == code}">style="background-color: #267cb2;color: white;"</c:if>>${son.categoryname}</a></li>
+                                                <c:forEach items="${item.sons}" var="son">
+                                                <li><a href="${son.categorycode}" <c:if test="${son.id == id}">style="background-color: #267cb2;color: white;"</c:if>>${son.categoryname}</a></li>
+                                                </c:forEach>
                                             </ul>
                                         </div>
                                     </dd>
-                                </c:forEach>
+
                             </dl>
                         </c:forEach>
 
