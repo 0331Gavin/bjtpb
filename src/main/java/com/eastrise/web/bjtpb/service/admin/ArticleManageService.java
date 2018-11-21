@@ -6,9 +6,14 @@ import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.*;
 
 @Service
@@ -18,24 +23,26 @@ public class ArticleManageService {
     @Autowired
     private ArticleManageRepository articleManageRepository;
 
-    public List<Map<String, Object>> getArticleGateGory()throws Exception{
-        String sql="select t.* from T_SYS_ARTICLEMANAGE t where t.status <>0 order by t.article_order";
-        List<Map<String, Object>> result= commonQueryRepository.findResultBySqlQuery(sql);
-        List<Map<String, Object>> arrayList=new ArrayList<Map<String, Object>>();
-        for(int i=0;i<result.size();i++){
-            Map<String,Object> map =new HashMap<String, Object>();
-            String parentId =result.get(i).get("PARENT_ID")+"";
-            map.put("id",Integer.valueOf(result.get(i).get("ID")+""));
-            map.put("categoryName",result.get(i).get("CATEGORY_NAME"));
-            if(!parentId.equals("0")){
-                map.put("_parentId",Integer.valueOf(parentId));
+    public List<Map<String, Object>> getArticleGateGory() throws Exception {
+        String sql = "select t.* from T_SYS_ARTICLEMANAGE t where t.status <>0 order by t.article_order";
+        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
+        List<Map<String, Object>> arrayList = new ArrayList<Map<String, Object>>();
+        for (int i = 0; i < result.size(); i++) {
+            if(!(result.get(i).get("ID")+"").equals("0")){
+                Map<String, Object> map = new HashMap<String, Object>();
+                String parentId = result.get(i).get("PARENT_ID") + "";
+                map.put("id", Integer.valueOf(result.get(i).get("ID") + ""));
+                map.put("categoryName", result.get(i).get("CATEGORY_NAME"));
+                if (!parentId.equals("0")) {
+                    map.put("_parentId", Integer.valueOf(parentId));
+                }
+                arrayList.add(map);
             }
-            arrayList.add(map);
         }
         return arrayList;
     }
 
-    public TArticleManage findArticle(String id){
+    public TArticleManage findArticle(String id) {
         TArticleManage articleManage = articleManageRepository.findByIdAndStatus(Integer.valueOf(id));
         return articleManage;
     }
@@ -53,36 +60,74 @@ public class ArticleManageService {
         return articleManageRepository.save(articleManage);
     }
 
-    public void del(String id){
+    public void del(String id) {
         articleManageRepository.deleteById(Integer.valueOf(id));
     }
 
-    public boolean isExist(ArticleTypeForm articleTypeForm)throws Exception{
-        String sql=" select t.* from T_SYS_ARTICLEMANAGE t where 1=1 and t.category_name='"+articleTypeForm.getCategoryname()+"'";
-        List<Map<String, Object>> result=commonQueryRepository.findResultBySqlQuery(sql);
-        if(result.size()>0){
+    public boolean isExist(ArticleTypeForm articleTypeForm) throws Exception {
+        String sql = " select t.* from T_SYS_ARTICLEMANAGE t where 1=1 and t.category_name='" + articleTypeForm.getCategoryname() + "'";
+        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
+        if (result.size() > 0) {
             return false;
         }
         return true;
     }
 
-    public JSONObject getArticleContent()throws Exception{
-        JSONObject json =new JSONObject();
-        String sql="select t.* from T_ARTICLE t where t.status <>0";
-        List<Map<String, Object>> result= commonQueryRepository.findResultBySqlQuery(sql);
-        json.put("rows",result);
-        json.put("total",result.size());
+    public JSONObject getArticleContent() throws Exception {
+        JSONObject json = new JSONObject();
+        String sql = "select t.* from T_ARTICLE t where t.status <>0";
+        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
+        json.put("rows", result);
+        json.put("total", result.size());
         return json;
     }
-
-    public void formateData(List<Map<String, Object>> listData){
-        for(int i=0;i<listData.size();i++){
-            Iterator entries = listData.get(i).entrySet().iterator();
-            while (entries.hasNext()) {
-                Map.Entry entry = (Map.Entry) entries.next();
-                Integer key = (Integer)entry.getKey();
-                Integer value = (Integer)entry.getValue();
+    /**
+     * 通过ID查询下级
+     * @param
+     * @return
+     */
+    public List<TArticleManage> findChildArticleById(int id,boolean isAll) {
+        Specification specification=new Specification<TArticleManage>() {
+            @Override
+            public Predicate toPredicate(Root<TArticleManage> root, CriteriaQuery<?> criteriaQuery,
+                                         CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                if(id>0){
+                    if(isAll){
+                        TArticleManage tArticle=findOrgById(id);
+                        predicates.add(criteriaBuilder.like(root.get("category_seq"), tArticle.getCategoryseq()+".%" ));
+                    }else{
+                        predicates.add(criteriaBuilder.equal(root.get("parent_id"), id ));
+                    }
+                }else{
+                    int rootId=0;
+                    if(isAll){
+                        TArticleManage tArticle=findOrgById(rootId);
+                        predicates.add(criteriaBuilder.like(root.get("category_seq"), tArticle.getCategoryseq()+"%" ));
+                    }else{
+                        predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
+                    }
+                }
+                predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
+                return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
             }
-        }
+        };
+
+        return (List<TArticleManage>) articleManageRepository.findAll(specification);
+    }
+
+    public TArticleManage findOrgById(int orgId) {
+        System.out.println(orgId);
+        Optional<TArticleManage> record = articleManageRepository.findOne(new Specification<TArticleManage>() {
+            @Override
+            public Predicate toPredicate(Root<TArticleManage> root, CriteriaQuery<?> criteriaQuery,
+                                         CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                predicates.add(criteriaBuilder.equal(root.get("id"), orgId));
+                predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
+                return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+            }
+        });
+        return record.get();
     }
 }

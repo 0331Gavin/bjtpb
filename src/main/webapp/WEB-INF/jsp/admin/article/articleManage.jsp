@@ -4,10 +4,17 @@
     <%@ include file="../common.jsp" %>
 </head>
 <body>
-<div style="padding:1px;background:#fafafa;width:100%;border:1px solid #ccc">
-    <div style="margin-left: 5px"><a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addArticleCont()">添加文章</a></div>
+<div style="padding:0px;background:#fafafa;width:100%;border:0px solid #ccc">
+    <table>
+        <tr>
+            <td><div style="margin-left: 5px"><a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addArticleCont('tw')">添加文章<b>(图文)</b></a></div>
+            </td>
+            <td><div style="margin-left: 5px"><a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addArticleCont('fj')">添加文章<b>(附件)</b></a></div>
+            </td>
+        </tr>
+    </table>
 </div>
-<table id="Twznr" class="easyui-datagrid"  style="width:100%;height:93%;"
+<table id="Twznr" class="easyui-datagrid"  style="width:100%;height:92%;"
        data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'get'" pagination="true">
     <thead>
     <tr>
@@ -20,18 +27,20 @@
     </tr>
     </thead>
 </table>
+<div id="nr" class="easyui-window" data-options="title:' ',inline:true," style="width:100%;height:100%;padding:10px" closed="true">
 
+</div>
 <script>
 
     function formatOper(val,row,index){
         return '<a class="easyui-linkbutton" href="#" onclick="edit('+index+')"><u>修改</u></a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton" href="#" onclick="del('+index+')"><u>删除</u></a>';
     }
     
-    function addArticleCont() {
-        openWindow("新增文章内容","/admin/article/toAddArticleContent");
+    function addArticleCont(tag) {
+        opennrWindow("新增文章内容","/admin/article/toAddArticleContent?articleTag="+tag);
     }
     function edit(id) {
-        openWindow("修改文章内容","/admin/article/toArticleaddChild?id="+id);
+        opennrWindow("修改文章内容","/admin/article/toArticleaddChild?id="+id);
     }
     function del(id) {
         alert(id)
@@ -39,6 +48,28 @@
     function doload() {
         $('#Twznr').datagrid('reload');
     }
+
+    function opennrWindow(title,url) {
+
+        $('#nr').window({
+            title:title,
+            //    content : '<iframe scrolling="yes" frameborder="0"  src="'+ url+ '" style="width:100%;height:98%;"></iframe>',
+            collapsible:false,
+            minimizable:false,
+            maximizable:false,
+            maximized:true,//初始化窗口时  直接显示最大化（默认false）
+            resizable: false,
+            closable:true,
+        });
+        $('#nr').window('open');
+        $('#nr').window('refresh', url);
+    }
+    $('#nr').dialog({
+        //esayui在关闭弹出框时的 事件
+        onClose:function(){
+            UE.delEditor('editor');//关闭弹出窗的时候先关闭编辑框
+        }
+    });
 </script>
 </body>
 </html>
