@@ -56,9 +56,9 @@ public class ArticleManageController {
     }
 
 
-    @PostMapping(value = "/save",produces = "text/html;charset:utf-8")
+    @PostMapping(value = "/saveArticle",produces = "text/html;charset:utf-8")
     @ResponseBody
-    public ApiResponse save(ArticleTypeForm articleTypeForm)throws Exception{
+    public ApiResponse saveArticle(ArticleTypeForm articleTypeForm)throws Exception{
         //id判断新增   修改
         if(StringUtils.isNotEmpty(articleTypeForm.getId())){
             TArticleManage tArticleManage = manageService.findArticle(articleTypeForm.getId());
@@ -83,9 +83,9 @@ public class ArticleManageController {
       return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
     }
 
-    @PostMapping(value = "/del")
+    @PostMapping(value = "/delArticle")
     @ResponseBody
-    public ApiResponse del(String id){
+    public ApiResponse delArticle(String id){
         manageService.del(id);
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
@@ -108,4 +108,6 @@ public class ArticleManageController {
         List<TArticleManage> articles = manageService.findChildArticleById();
         return articles;
     }
+
+
 }
