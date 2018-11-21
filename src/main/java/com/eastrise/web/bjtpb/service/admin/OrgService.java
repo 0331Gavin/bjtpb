@@ -101,6 +101,7 @@ public class OrgService {
             long pardeptid =Long.valueOf(sjorgname);
             sql.append(" and dept.parent_id like '"+pardeptid+"'");
         }
+        sql.append("order by dept.org_order");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
     public List<Map<String, Object>> findById(String id) throws Exception {

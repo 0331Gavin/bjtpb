@@ -2,6 +2,7 @@ package com.eastrise.web.bjtpb.controller.admin;
 import com.eastrise.web.bjtpb.entity.TSysOrg;
 import com.eastrise.base.TSysUser;
 import com.eastrise.web.bjtpb.service.admin.OrgService;
+import com.eastrise.web.bjtpb.service.admin.SjzdService;
 import com.eastrise.web.bjtpb.service.admin.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import java.util.Map;
 public class AdminRoutController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private SjzdService sjzdService;
     @Autowired
     private OrgService orgService;
     @GetMapping("/home")
@@ -65,9 +68,20 @@ public class AdminRoutController {
         request.setAttribute("dept",list);}
         return "/admin/system/deptEdit.jsp";
     }
+    @GetMapping("/system/sjzdEdit")
+    public String sjzdEdit(String id, HttpServletRequest request) throws Exception {
+        if(id!=null){
+            Map<String, Object> list =sjzdService.findById(id).get(0);
+            request.setAttribute("sjzd",list);}
+        return "/admin/system/sjzdEdit.jsp";
+    }
     @GetMapping("/system/xgMa")
     public String xgMa(){
         return "/admin/system/xgMa.jsp";
+    }
+    @GetMapping("/system/sjZd")
+    public String sjZd(){
+        return "/admin/system/sjZd.jsp";
     }
 
 }
