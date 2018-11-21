@@ -442,9 +442,9 @@
                         </dl>
                         <dl>
                             <dt><a href="#" title="其他文电">专业规章</a></dt>
-                            <dd class="launch_con" style="border: 1px solid blue ;" >
-                                <div>
-                                    <ul>
+                            <dd class="launch_con" >
+                                <div style="border: 1px solid #e6e6e6;overflow: hidden">
+                                    <ul style="margin-top:5px">
                                         <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
                                         <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">客运</a></li>
                                         <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">货运</a></li>
