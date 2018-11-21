@@ -102,9 +102,10 @@ public class ArticleManageController {
         return "/admin/article/articleAdd.jsp";
     }
 
-    @GetMapping("/listArticles")
+    @PostMapping("/listArticles")
+    @ResponseBody
     public List<TArticleManage> listArticles(){
-        List<TArticleManage> articles = manageService.findChildArticleById(0,false);
+        List<TArticleManage> articles = manageService.findChildArticleById();
         return articles;
     }
 }

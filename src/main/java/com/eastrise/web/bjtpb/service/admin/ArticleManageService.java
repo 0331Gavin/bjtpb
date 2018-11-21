@@ -86,48 +86,19 @@ public class ArticleManageService {
      * @param
      * @return
      */
-    public List<TArticleManage> findChildArticleById(int id,boolean isAll) {
+    public List<TArticleManage> findChildArticleById() {
         Specification specification=new Specification<TArticleManage>() {
             @Override
             public Predicate toPredicate(Root<TArticleManage> root, CriteriaQuery<?> criteriaQuery,
                                          CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicates = new ArrayList<>();
-                if(id>0){
-                    if(isAll){
-                        TArticleManage tArticle=findOrgById(id);
-                        predicates.add(criteriaBuilder.like(root.get("category_seq"), tArticle.getCategoryseq()+".%" ));
-                    }else{
-                        predicates.add(criteriaBuilder.equal(root.get("parent_id"), id ));
-                    }
-                }else{
-                    int rootId=0;
-                    if(isAll){
-                        TArticleManage tArticle=findOrgById(rootId);
-                        predicates.add(criteriaBuilder.like(root.get("category_seq"), tArticle.getCategoryseq()+"%" ));
-                    }else{
-                        predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
-                    }
-                }
+                int rootId=0;
+                predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
                 predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
                 return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
             }
         };
 
         return (List<TArticleManage>) articleManageRepository.findAll(specification);
-    }
-
-    public TArticleManage findOrgById(int orgId) {
-        System.out.println(orgId);
-        Optional<TArticleManage> record = articleManageRepository.findOne(new Specification<TArticleManage>() {
-            @Override
-            public Predicate toPredicate(Root<TArticleManage> root, CriteriaQuery<?> criteriaQuery,
-                                         CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                predicates.add(criteriaBuilder.equal(root.get("id"), orgId));
-                predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
-                return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
-            }
-        });
-        return record.get();
     }
 }
