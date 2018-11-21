@@ -21,6 +21,8 @@ public class TArticleManage {
 
     @Column(name = "category_seq", length=500)
     private String categoryseq;
+    @Column(name = "category_CODE", length=1000)
+    private String categorycode;
 
     @Column(name = "parent_id", length=500)
     private String parentid;
@@ -85,5 +87,13 @@ public class TArticleManage {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCategorycode() {
+        return categorycode;
+    }
+
+    public void setCategorycode(String categorycode) {
+        this.categorycode = categorycode;
     }
 }

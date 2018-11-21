@@ -16,9 +16,9 @@
 
         <ul>
             <li><a href="<%=appPath%>/">首页</a></li>
-            <li><a href="<%=appPath%>/public/deptInfo">部门简介</a>
+            <li><a href="<%=appPath%>/public/bmjj">部门简介</a>
             </li>
-            <li><a href="<%=appPath%>/public/wjdb/zgswj">文件电报</a>
+            <li><a href="<%=appPath%>/public/wjdb">文件电报</a>
                 <ul>
                     <li><a href="<%=appPath%>/public/wjdb/zgswj" title="">总公司文件</a></li>
                     <li><a href="<%=appPath%>/public/wjdb/zgsdb" title="">总公司电报</a></li>
@@ -33,7 +33,7 @@
                 </ul>
                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
             </li>
-            <li><a href="list.html">法规制度<!--[if IE 7]><!--></a><!--<![endif]-->
+            <li><a href="<%=appPath%>/public/fgzd">法规制度<!--[if IE 7]><!--></a><!--<![endif]-->
                 <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                     <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>

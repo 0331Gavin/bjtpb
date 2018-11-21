@@ -350,10 +350,103 @@
 
 </style>
 <body>
-<div>
+<div id="bg">
+    <div id="outer">
+        <jsp:include page="../../base/header.jsp"/>
 
+        <div class="in_main mgOauto">
+            <div class="disInBlk">
+                <div class="hd_box01 xxgk_box01 mgl10 fr RightSide">
+                    <div class="newsbox pd10 song">
+                        <p class="Pos clearfix">
+                            <span class="tit fl">当前位置：
+                            <a href="#" title="文件电报">文件电报</a> >> <a href="#" title="总公司文件">总公司文件</a>
+                            </span>
+                        </p>
+                        <div class="RightSide_con">
+                            <div class="info_ser pie">
+                                <ul class="clearfix">
+                                    <li>信息公开查询：</li>
+                                    <input type="hidden" name="chanId" id="chanId" value="3"/>
+                                    <input type="hidden" name="ChanType" id="ChanType" value="1"/>
+                                    <input type="hidden" name="GenreID" id="GenreID" value=""/>
+                                    <input type="hidden" name="typeId" id="typeId" value=""/>
+                                    <li><select style="width:100px;" name="ChannelType" id="ChannelType" onchange="MM_jumpMenu('parent',this,0)">
+                                        <option>当前栏目</option>
+                                    </select>
+                                    </li>
+                                    <li>信息搜索：</li>
+                                    <li><input style="width:128px;" name="KeyWord" id="KeyWord"  type="text" />
+                                        <select style="width:100px;" name="KeyWordType" id="KeyWordType" onchange="MM_jumpMenu('parent',this,0)">
+                                            <option selected="selected" value="1">按标题</option>
+                                        </select>
+                                    </li>
+                                    <li><input class="btn03" name="" type="button" id="inputSearch"  /></li>
+                                </ul>
+                            </div>
 
+                            <table class="xxgk_tab" width="100%" border="1" style="border-collapse:collapse;" bordercolor="#cccccc" cellpadding="0" cellspacing="0" id="doclist">
+                                <tr><th width="12%">序号</th><th width="50%" class="sp1">标题</th><th width="25%">发布机构</th><th width="13%">发布日期</th></tr>
+                                <tr><td>1</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
+                                <tr><td>2</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
+                                <tr><td>3</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
+                                <tr><td>4</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
+                                <tr><td>5</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
 
+                            </table>
+                            <div class="w100 fl mgt20 mgb20 text-center fenyebig">
+                                <div id="fenye" class="fenye disInBlk font12 grey song" style="width:652px">
+                                    <p><a disabled="disabled" class="abutton">首页</a><a disabled="disabled" class="abutton">上一页</a><a class="num cur01" href="#">1</a><a class="num" href="javascript:void(0)" onclick="dataSeD.loadData(2,20,1,'','','7','','');">2</a><a class="num" href="javascript:void(0)" onclick="dataSeD.loadData(3,20,1,'','','7','','');">3</a><a class="num" href="javascript:void(0)" onclick="dataSeD.loadData(4,20,1,'','','7','','');">4</a><a href="javascript:void(0)" onclick="dataSeD.loadData(2,20,1,'','','7','','');">下一页</a>&nbsp;<a href="javascript:void(0)" onclick="dataSeD.loadData(4,20,1,'','','7','','');">尾页</a><select onchange="dataSeD.loadData(this.options[this.selectedIndex].value,20,1,'','','7','','');"><option value="1" selected="selected">第1页</option><option value="2">第2页</option><option value="3">第3页</option><option value="4">第4页</option></select>
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box_lstd fl xxgk_box02 xxgk_display">
+                    <div class="title w100">
+                        <h3 class="fl font14">文件电报</h3>
+                    </div>
+                    <div class="pd10 grey LeftSide_con " id="accordion">
+                        <dl>
+                            <dt class="cur " id="open"><a href="#">安全文电</a></dt>
+                            <dd class="launch_con" >
+                                <div >
+                                    <ul>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="background-color: #267cb2;color: white;">总公司文件</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">总公司电报</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局文件</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局通话记录</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局通知</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">特派办通知</a></li>
+                                    </ul>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="#" title="其他文电">其他文电</a></dt>
+                            <dd class="launch_con" >
+                                <div>
+                                    <ul>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">领导讲话</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">其他</a></li>
+                                    </ul>
+                                </div>
+                            </dd>
+                        </dl>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <jsp:include page="../../base/copyright.jsp"/>
+
+</div>
 </body>
 <script type="text/javascript">
     $(function(){

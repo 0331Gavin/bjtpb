@@ -39,6 +39,15 @@ public class ArticleManageService {
         TArticleManage articleManage = articleManageRepository.findByIdAndStatus(Integer.valueOf(id));
         return articleManage;
     }
+    public TArticleManage findArticleByCode(String code,String status){
+        TArticleManage articleManage = articleManageRepository.findByCategorycodeAndStatus(code,status);
+        return articleManage;
+    }
+
+    public List<TArticleManage> findArticleByParentId(String parentId,String status){
+        List<TArticleManage> articleManages = articleManageRepository.findByParentidAndStatusOrderByArticleorder(parentId,status);
+        return articleManages;
+    }
 
     public TArticleManage save(TArticleManage articleManage) throws Exception {
         return articleManageRepository.save(articleManage);

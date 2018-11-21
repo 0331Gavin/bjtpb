@@ -171,7 +171,7 @@
     <div id="outer">
         <jsp:include page="../base/header.jsp"/>
 
-        <div class="main" id="main-three-columns">
+        <div class="main" id="main-three-columns" >
 
             <div class="left" id="main-left">
 
@@ -582,7 +582,7 @@
             <div class="clearer">&nbsp;</div>
 
         </div>
-
+        <div style="height: 12px;"></div>
     </div>
     <jsp:include page="../base/copyright.jsp"/>
 
