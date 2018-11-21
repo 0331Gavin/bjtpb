@@ -32,11 +32,26 @@ public class OrgController {
     @Autowired
     private OrgService orgService;
 
+    /**
+     * 部门树
+     * @param orgId
+     * @param isAll
+     * @return
+     */
     @PostMapping("/listOrgs")
     public List<TSysOrg> listOrgs(@RequestParam(name="orgCode",required=false,defaultValue = "0") long orgId, boolean isAll){
         List<TSysOrg> orgs = orgService.findChildOrgById(orgId,isAll);
         return orgs;
     }
+
+    /**
+     * 部门管理列表
+     * @param orgName 部门名称
+     * @param sjorgname 上级部门名称
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @PostMapping(value = "/findPageData")
     public ApiPageResponse findPageData(@RequestParam(value = "orgName",required = false) String orgName , @RequestParam(value = "sjorgname",required = false) String sjorgname,
                                         @RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize){
@@ -94,7 +109,7 @@ public class OrgController {
     }
 
     /**
-     * 删除部门
+     * 根据id删除部门
      * @param id（部门seq）
      * @return
      */

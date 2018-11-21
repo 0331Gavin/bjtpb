@@ -31,12 +31,25 @@ public class SjzdController {
     @Autowired
     private SjzdService sjzdService;
 
-
+    /**
+     * 数据字典首页列表
+     * @param sjbm
+     * @param sjmc
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @PostMapping(value = "/findPageData")
     public ApiPageResponse findPageData(@RequestParam(value = "sjbm",required = false) String sjbm , @RequestParam(value = "sjmc",required = false) String sjmc,
                                         @RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize){
         return sjzdService.findPageData(pageSize,pageNumber,sjbm,sjmc);
     }
+
+    /**
+     * 数据字典保存
+     * @param sjzdAddData
+     * @return
+     */
     @PostMapping(value = "/save")
     public ApiResponse save(SjzdAddData sjzdAddData){
 
@@ -57,6 +70,12 @@ public class SjzdController {
         }
         return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
     }
+
+    /**
+     * 根据id删除数据字典中某条数据
+     * @param id
+     * @return
+     */
     @PostMapping(value = "/del")
     public ApiResponse del(String id){
         try{
