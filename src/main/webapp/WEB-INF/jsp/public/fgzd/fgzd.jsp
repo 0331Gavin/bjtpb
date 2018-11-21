@@ -408,36 +408,28 @@
                 </div>
                 <div class="box_lstd fl xxgk_box02 xxgk_display">
                     <div class="title w100">
-                        <h3 class="fl font14">文件电报</h3>
+                        <h3 class="fl font14">法规制度</h3>
                     </div>
                     <div class="pd10 grey LeftSide_con " id="accordion">
                         <dl>
-                            <dt class="cur " id="open"><a href="#">安全文电</a></dt>
-                            <dd class="launch_con" >
-                                <div >
-                                    <ul>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="background-color: #267cb2;color: white;">总公司文件</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">总公司电报</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局文件</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局通话记录</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">安监局通知</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">特派办通知</a></li>
-                                    </ul>
-                                </div>
-                            </dd>
+                            <dt class="cur " id="open"><a href="#">法律法规</a></dt>
+
                         </dl>
                         <dl>
-                            <dt><a href="#" title="其他文电">其他文电</a></dt>
+                            <dt><a href="#" title="其他文电">基本规章</a></dt>
+
+                        </dl>
+                        <dl>
+                            <dt><a href="#" title="其他文电">专业规章</a></dt>
                             <dd class="launch_con" >
                                 <div>
                                     <ul>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">领导讲话</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">其他</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
+                                        <li><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
                                     </ul>
                                 </div>
                             </dd>
                         </dl>
-
                     </div>
                 </div>
             </div>
