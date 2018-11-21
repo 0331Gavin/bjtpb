@@ -18,7 +18,7 @@
             <li><a href="<%=appPath%>/">首页</a></li>
             <li><a href="<%=appPath%>/public/bmjj">部门简介</a>
             </li>
-            <li><a href="<%=appPath%>/public/wjdb">文件电报</a>
+            <li><a href="<%=appPath%>/public/wjdb/zgswj">文件电报</a>
                 <ul>
                     <li><a href="<%=appPath%>/public/wjdb/zgswj" title="">总公司文件</a></li>
                     <li><a href="<%=appPath%>/public/wjdb/zgsdb" title="">总公司电报</a></li>
