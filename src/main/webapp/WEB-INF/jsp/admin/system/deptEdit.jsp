@@ -25,11 +25,11 @@
                 </tr>
                 <tr>
                     <td>顺序:</td>
-                    <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options="required:true"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options=""></input></td>
                 </tr>
                 <tr>
                     <td>备注:</td>
-                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options="required:true"></input></td>
+                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options=""></input></td>
                 </tr>
 
                 <tr>
