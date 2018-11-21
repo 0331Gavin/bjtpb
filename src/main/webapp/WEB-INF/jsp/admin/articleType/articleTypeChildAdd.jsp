@@ -46,7 +46,7 @@
 <script>
     function save() {
         $('#xzzx').form('submit', {
-            url:"/admin/article/save",
+            url:"/admin/article/saveArticle",
             onSubmit: function(){
                 return $(this).form('enableValidation').form('validate');
             },

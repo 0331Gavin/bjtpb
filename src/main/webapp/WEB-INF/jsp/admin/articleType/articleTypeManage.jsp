@@ -40,7 +40,7 @@
         $.messager.confirm('系统提示','是否确认删除?',function(r){
             if (r){
                 $.ajax({
-                    url : "/admin/article/del?id="+id,
+                    url : "/admin/article/delArticle?id="+id,
                     type : "POST",
                     contentType: "application/json;charset=utf-8",
                     dataType : "json",

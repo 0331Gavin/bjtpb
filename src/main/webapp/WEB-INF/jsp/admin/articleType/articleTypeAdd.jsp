@@ -49,7 +49,7 @@
 <script>
     function save() {
         $('#xzzx').form('submit', {
-            url:"/admin/article/save",
+            url:"/admin/article/saveArticle",
             onSubmit: function(){
                 return $(this).form('enableValidation').form('validate');
             },
@@ -58,7 +58,6 @@
                 message(data.message)
                 if (data.code == saveSuccessCode) {
                     $("input[type='text']").val("");
-                    //$("input[type='text']").val("");
                 }
             }
         });
