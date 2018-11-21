@@ -16,7 +16,7 @@
                     <input id="pass" class="easyui-passwordbox" prompt="新密码" name="xmm" iconWidth="28" style="width:100%;height:34px;padding:10px"data-options="required:true,validType:'length[4,20]'">
                 </div>
                 <div style="margin-bottom:20px">
-                    <input class="easyui-passwordbox" prompt="确认密码" iconWidth="28" validType="confirmPass['#pass']" style="width:100%;height:34px;padding:10px">
+                    <input class="easyui-passwordbox" prompt="确认密码" iconWidth="28" validType="confirmPass['#pass']" style="width:100%;height:34px;padding:10px"data-options="required:true">
                 </div>
                 <div data-options="region:'south',border:false" style="text-align:center;padding:8px 0 0;">
                     <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:save()" style="width:80px">保存</a>
