@@ -369,6 +369,12 @@
         width: 96%;
     }
 
+    .launch_con li a:hover /*鼠标经过时*/
+    {
+        background-color:#267cb2; /* 改变背景色*/
+        color:#ffffff; /* 改变文字颜色*/
+    }
+
 </style>
 <body>
 <div id="bg">
