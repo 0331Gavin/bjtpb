@@ -346,7 +346,28 @@
 
     }
 
+    .zygzulli{
+        float: left;
+        width: 48%;
+        text-align: center;
 
+        margin-left: 2%;
+
+    }
+    .a_btn{
+        font-size: 14px;
+        height: 32px;
+        line-height: 32px;
+        padding: 0px;
+        margin-bottom: 9px;
+        color: #585858;
+        overflow: hidden;
+        background-color: #ffffff;
+        border: 1px solid #e6e6e6;
+        border-radius: 4px;
+        display: block;
+        width: 96%;
+    }
 
 </style>
 <body>
@@ -421,13 +442,25 @@
                         </dl>
                         <dl>
                             <dt><a href="#" title="其他文电">专业规章</a></dt>
-                            <dd class="launch_con" >
+                            <dd class="launch_con" style="border: 1px solid blue ;" >
                                 <div>
                                     <ul>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
-                                        <li><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">客运</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">货运</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">车务</a></li>
+                                        <li class="zygzulli"><a class="a_btn" href="javascript:void(0);" style="">电务</a></li>
+
                                     </ul>
                                 </div>
+
                             </dd>
                         </dl>
                     </div>
@@ -451,6 +484,16 @@
             alert($(target).attr("id"));
 
             });
+    });
+
+
+
+</script>
+<script type="text/javascript">
+    $(function(){
+
+
+
     });
 
 
