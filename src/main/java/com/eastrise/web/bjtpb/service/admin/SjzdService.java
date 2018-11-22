@@ -45,7 +45,6 @@ public class SjzdService {
         }
         if(Strings.isNotEmpty(sjmc)){
             sjmc=sjmc.trim();
-            long pardeptid =Long.valueOf(sjmc);
             sql.append(" and t.sjmc like '"+sjmc+"'");
         }
         if(Strings.isNotEmpty(sjlx)){
