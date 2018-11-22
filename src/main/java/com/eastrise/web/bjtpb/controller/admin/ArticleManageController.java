@@ -2,6 +2,7 @@ package com.eastrise.web.bjtpb.controller.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.web.base.ApiResponse;
+import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
@@ -101,6 +102,13 @@ public class ArticleManageController {
         request.setAttribute("articleTag",articleTag);
         return "/admin/article/articleAdd.jsp";
     }
+
+    @PostMapping(value = "/saveArticleContent",produces = "text/html;charset:utf-8")
+    @ResponseBody
+    public ApiResponse saveArticleContent(HttpServletRequest request,ArticleContentForm articleContentForm){
+        return ApiResponse.ofStatus(ApiResponse.Status.SAVE_SUCCESS);
+    }
+
 
     @PostMapping("/listArticles")
     @ResponseBody

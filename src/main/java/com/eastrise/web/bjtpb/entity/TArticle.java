@@ -1,6 +1,7 @@
 package com.eastrise.web.bjtpb.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -17,8 +18,9 @@ public class TArticle {
      * ID
      */
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "id")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GeneratedValue(generator = "system-uuid")
+    @Column(name = "ID",insertable = true, updatable = true, nullable = false, length=50)
     private long id;
     /*
      * 文章类别ID
