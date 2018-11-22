@@ -29,9 +29,14 @@ public class PublicController {
         List result = articleManageService.getCategorySeqListById(articleTypeId);
         return result;
     }
+    @PostMapping("/getChannelType")
+    public List getChannelType(String articleTypeId){
+        return articleManageService.findArticleByParentId(articleTypeId,"1");
+    }
 
     @PostMapping("/articlePageList")
-    public JSONObject articlePageList(@RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize){
+    public JSONObject articlePageList(@RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize,
+                    String ChannelType,String KeyWord,String KeyWordType){
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", 0);
         jsonObject.put("msg", "");

@@ -72,13 +72,13 @@
 
                             </span>
                         </p>
-                        <div class="RightSide_con">
+                        <div class="RightSide_con font12">
                             <div class="info_ser pie">
                                 <ul class="clearfix">
                                     <li>信息查询：</li>
                                     <input type="hidden" name="articleTypeId" id="articleTypeId" value="${id}"/>
                                     <li><select style="width:100px;" name="ChannelType" id="ChannelType" onchange="">
-                                        <option>当前栏目</option>
+                                        <option value="">当前栏目</option>
                                     </select>
                                     </li>
                                     <li>信息搜索：</li>
@@ -145,12 +145,15 @@
                 elem: '#table_id'
                 ,url:'<%=appPath%>/public/articlePageList'
                 ,method:'POST'
-                ,where:{page: curnum, rows: limitcount}
+                ,where:{page: curnum, rows: limitcount
+                        ,ChannelType:$("#ChannelType").val()
+                        ,KeyWord:$("#KeyWord").val()
+                        ,KeyWordType:$("#KeyWordType").val()}
                 ,cols: [[
                     {field:'id', width:'10%', title: '序号',type:'numbers'}
-                    ,{field:'title', width:'50%', title: '标题'}
+                    ,{field:'title', width:'52%', title: '标题', templet: '#titleTpl'}
                     ,{field:'deptName', width:'20%', title: '发布机构'}
-                    ,{field:'time', width:'20%', title: '发布日期'}
+                    ,{field:'time', width:'18%', title: '发布日期'}
                 ]]
                 ,page:false
                 ,done: function(res, curr, count){
@@ -183,11 +186,12 @@
 
 <script type="text/javascript">
     $(function(){
-        var limitcount = 10;
+        var limitcount = 15;
         var curnum = 1;
         dataSearch(curnum,limitcount);
 
         initRout();
+        initChannelType();
 
         $(".accordion").on("click",function(e){
 
@@ -216,7 +220,21 @@
             }
         })
     }
-
-
+    function initChannelType() {
+        $.ajax({
+            url : "<%=appPath%>/public/getChannelType?articleTypeId=${id}",
+            type : "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType : "json",
+            success : function(data) {
+                for(var i=0;i<data.length;i++){
+                    $("#ChannelType").append("<option value='"+data[i].id+"'>"+data[i].text+"</option>");
+                }
+            }
+        })
+    }
+</script>
+<script type="text/html" id="titleTpl">
+    <a href="<%=appPath%>/public/content/{{d.id}}" class="layui-table-link" target="_blank"  title='{{ d.title }}'>{{ d.title }}</a>
 </script>
 </html>
