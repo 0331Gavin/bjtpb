@@ -80,7 +80,9 @@ public class AdminRoutController {
         return "/admin/system/xgMa.jsp";
     }
     @GetMapping("/system/sjZd")
-    public String sjZd(){
+    public String sjZd(HttpServletRequest request) throws Exception {
+        List<Map<String, Object>> list =sjzdService.findsjlx();
+        request.setAttribute("list",list);
         return "/admin/system/sjZd.jsp";
     }
 

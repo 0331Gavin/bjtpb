@@ -34,7 +34,7 @@ public class SjzdService {
     /**
      * 系统管理/部门管理列表
      */
-    public ApiPageResponse findPageData(int pageSize, int pageNumber, String sjbm, String sjmc) {
+    public ApiPageResponse findPageData(int pageSize, int pageNumber, String sjbm, String sjmc,String sjlx) {
 
 
         StringBuilder sql = new StringBuilder("select t.* from t_sys_sjzd t where 1=1");
@@ -45,6 +45,9 @@ public class SjzdService {
         if(Strings.isNotEmpty(sjmc)){
             long pardeptid =Long.valueOf(sjmc);
             sql.append(" and t.sjmc like '"+sjmc+"'");
+        }
+        if(Strings.isNotEmpty(sjlx)){
+            sql.append(" and t.sjlx = '"+sjlx+"'");
         }
         sql.append("order by t.xssx");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
@@ -68,4 +71,11 @@ public class SjzdService {
     public void del(String id) throws Exception{
         sjzdRepository.deleteById(id);
     }
+    public List<Map<String, Object>> findsjlx() throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select distinct t.sjlx from t_sys_sjzd t");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
+
 }

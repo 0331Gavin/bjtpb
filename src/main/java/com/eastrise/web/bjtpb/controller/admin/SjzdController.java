@@ -40,9 +40,9 @@ public class SjzdController {
      * @return
      */
     @PostMapping(value = "/findPageData")
-    public ApiPageResponse findPageData(@RequestParam(value = "sjbm",required = false) String sjbm , @RequestParam(value = "sjmc",required = false) String sjmc,
+    public ApiPageResponse findPageData(@RequestParam(value = "sjbm",required = false) String sjbm , @RequestParam(value = "sjmc",required = false) String sjmc,@RequestParam(value = "sjlx",required = false) String sjlx,
                                         @RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize){
-        return sjzdService.findPageData(pageSize,pageNumber,sjbm,sjmc);
+        return sjzdService.findPageData(pageSize,pageNumber,sjbm,sjmc,sjlx);
     }
 
     /**
