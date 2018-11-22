@@ -78,7 +78,7 @@
                                     <li>信息查询：</li>
                                     <input type="hidden" name="articleTypeId" id="articleTypeId" value="${id}"/>
                                     <li><select style="width:100px;" name="ChannelType" id="ChannelType" onchange="">
-                                        <option value="">当前栏目</option>
+                                        <option value="${id}">当前栏目</option>
                                     </select>
                                     </li>
                                     <li>信息搜索：</li>

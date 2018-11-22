@@ -40,10 +40,11 @@ public class UserService {
      * @param userName
      * @return
      */
-    public ApiPageResponse findPageData(int pageSize, int pageNumber, String loginName, String userName) {
-        StringBuilder sql = new StringBuilder("select t.* from t_sys_user t where 1=1 ");
+    public ApiPageResponse findPageData(int pageSize, int pageNumber, String loginName, String userName, String deptId) {
+        StringBuilder sql = new StringBuilder("select t.*,o.org_name from t_sys_user t,t_sys_org o where 1=1  and t.dept_id = o.id ");
         if(Strings.isNotEmpty(loginName)) sql.append(" and t.login_name like '%"+loginName+"%'");
         if(Strings.isNotEmpty(userName)) sql.append(" and t.user_name like '%"+userName+"%'");
+        if(Strings.isNotEmpty(deptId)) sql.append(" and t.dept_Id = '"+deptId+"'");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
 

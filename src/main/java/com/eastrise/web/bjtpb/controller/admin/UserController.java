@@ -38,9 +38,9 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping(value = "/findPageData")
-    public ApiPageResponse findPageData(@RequestParam(value = "loginName",required = false) String loginName ,@RequestParam(value = "userName",required = false) String userName,
+    public ApiPageResponse findPageData(@RequestParam(value = "loginName",required = false) String loginName ,@RequestParam(value = "userName",required = false) String userName,@RequestParam(value = "deptId",required = false) String deptId,
                                         @RequestParam(value = "page")int pageNumber,@RequestParam(value = "rows") int pageSize){
-        return userService.findPageData(pageSize,pageNumber,loginName,userName);
+        return userService.findPageData(pageSize,pageNumber,loginName,userName,deptId);
     }
 
     @PostMapping(value = "/save")

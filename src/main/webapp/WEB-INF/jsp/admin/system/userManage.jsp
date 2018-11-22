@@ -11,9 +11,9 @@
             <th data-options="field:'id',width:80,hidden:true">用户ID</th>
             <th data-options="field:'userName',width:100,align:'center'">用户名</th>
             <th data-options="field:'loginName',width:80,align:'center'">登录名</th>
-            <th data-options="field:'deptName',width:80,align:'center'">所属部门</th>
-            <th data-options="field:'roles',width:240,align:'left'">用户角色</th>
-            <th data-options="field:'status',width:60,align:'center'">状态</th>
+            <th data-options="field:'orgName',width:150,align:'center'">所属部门</th>
+            <th data-options="field:'roleIds',width:180,align:'left',formatter:formatRole">用户角色</th>
+            <th data-options="field:'status',width:60,align:'center',formatter:formatStatus">状态</th>
             <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
         </tr>
         </thead>
@@ -23,6 +23,7 @@
         <div>
             用户名: <input class="easyui-textbox" id="userName"/>
             登录名: <input class="easyui-textbox" id="loginName"/>
+            所属部门: <input class="easyui-combotree" name="deptId" id="deptId"  value="" data-options="url:'/admin/org/listOrgs',method:'post'" >
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
         </div>
     </div>
@@ -47,10 +48,27 @@
         $('#dg').datagrid('load',{
             loginName: $('#loginName').val(),
             userName: $('#userName').val()
+            ,deptId:$('#deptId').val()
         });
     }
     function formatOper(val,row,index) {
         val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        return val;
+    }
+    function formatRole(val,row,index) {
+        if(val=="ROLE_ADMIN"){
+            val="系统管理员";
+        }else if(val =="ROLE_RECORDER"){
+            val="文章录入员";
+        }
+        return val;
+    }
+    function formatStatus(val,row,index) {
+        if(val=="0"){
+            val="无效";
+        }else if(val =="1"){
+            val="有效";
+        }
         return val;
     }
     function edit(id) {
