@@ -84,7 +84,9 @@
                                     <li>信息搜索：</li>
                                     <li><input style="width:128px;" name="KeyWord" id="KeyWord"  type="text" />
                                         <select style="width:100px;" name="KeyWordType" id="KeyWordType" onchange="">
-                                            <option selected="selected" value="1">按标题</option>
+                                            <c:forEach items="${sstj}" var="list">
+                                                <option value="${list.sjbm}">${list.sjlx}</option>
+                                            </c:forEach>
                                         </select>
                                     </li>
                                     <li><input class="btn03" name="" type="button" id="inputSearch" onclick="dataSearch(1,15);" /></li>
@@ -110,7 +112,7 @@
                         <c:forEach items="${result}" var="item">
                             <dl>
                                 <dt <c:if test="${item.check == true}">class="cur "</c:if>><a href="${item.value}" title="${item.name}">${item.name}</a></dt>
-
+                                <c:if test="${not empty item.sons}">
                                     <dd class="launch_con" >
                                         <div >
                                             <ul>
@@ -120,7 +122,7 @@
                                             </ul>
                                         </div>
                                     </dd>
-
+                                </c:if>
                             </dl>
                         </c:forEach>
 

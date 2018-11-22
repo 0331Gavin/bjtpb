@@ -78,14 +78,14 @@
                                     <li>信息查询：</li>
                                     <input type="hidden" name="articleTypeId" id="articleTypeId" value="${id}"/>
                                     <li><select style="width:100px;" name="ChannelType" id="ChannelType" onchange="">
-                                        <option value="">当前栏目</option>
+                                        <option value="${id}">当前栏目</option>
                                     </select>
                                     </li>
                                     <li>信息搜索：</li>
                                     <li><input style="width:128px;" name="KeyWord" id="KeyWord"  type="text" />
                                         <select style="width:100px;" name="KeyWordType" id="KeyWordType" onchange="">
                                             <c:forEach items="${sstj}" var="list">
-                                                <option selected="selected" value="${list.sjbm}">${list.sjlx}</option>
+                                                <option value="${list.sjbm}">${list.sjlx}</option>
                                             </c:forEach>
                                         </select>
                                     </li>
@@ -112,17 +112,17 @@
                         <c:forEach items="${result}" var="item">
                             <dl>
                                 <dt <c:if test="${item.check == true}">class="cur "</c:if>><a href="${item.value}" title="${item.name}">${item.name}</a></dt>
-
-                                <dd class="launch_con" >
-                                    <div >
-                                        <ul>
-                                            <c:forEach items="${item.sons}" var="son">
-                                                <li><a href="${son.categorycode}" <c:if test="${son.id == id}">style="background-color: #267cb2;color: white;"</c:if>>${son.categoryname}</a></li>
-                                            </c:forEach>
-                                        </ul>
-                                    </div>
-                                </dd>
-
+                                    <c:if test="${not empty item.sons}">
+                                    <dd class="launch_con" >
+                                        <div >
+                                            <ul>
+                                                <c:forEach items="${item.sons}" var="son">
+                                                    <li><a href="${son.categorycode}" <c:if test="${son.id == id}">style="background-color: #267cb2;color: white;"</c:if>>${son.categoryname}</a></li>
+                                                </c:forEach>
+                                            </ul>
+                                        </div>
+                                    </dd>
+                                    </c:if>
                             </dl>
                         </c:forEach>
 
