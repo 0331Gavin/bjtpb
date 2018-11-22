@@ -15,15 +15,15 @@
     </table>
 </div>
 <table id="Twznr" class="easyui-datagrid"  style="width:100%;height:92%;"
-       data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'get'" pagination="true">
+       data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'get',rownumbers:'true'" pagination="true">
     <thead>
     <tr>
-        <th data-options="field:'ID',width:50,align:'center'">ID</th>
-        <th data-options="field:'productid',width:130,align:'center'">文章编号</th>
-        <th data-options="field:'TITLE',width:360,align:'center'">文章标题</th>
-        <th data-options="field:'unitcost',width:260,align:'center'">文章文号</th>
-        <th data-options="field:'PUBLISH_DEPT_ID',width:250,align:'center'">起草部门</th>
-        <th data-options="field:'_operate',width:140,align:'center',formatter:formatOper">操作</th>
+        <th data-options="field:'TITLE',width:300,align:'center'">文章标题</th>
+        <th data-options="field:'PUBLISH_DEPT_NAME',width:200,align:'center'">起草部门</th>
+           <th data-options="field:'PUBLISH_TIME',width:200,align:'center'">发布时间</th>
+           <th data-options="field:'productid',width:130,align:'center'">文章编号</th>
+           <th data-options="field:'unitcost',width:190,align:'center'">文章文号</th>
+           <th data-options="field:'_operate',width:140,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
 </table>
@@ -33,17 +33,33 @@
 <script>
 
     function formatOper(val,row,index){
-        return '<a class="easyui-linkbutton" href="#" onclick="edit('+index+')"><u>修改</u></a>&nbsp;&nbsp;&nbsp;&nbsp;<a class="easyui-linkbutton" href="#" onclick="del('+index+')"><u>删除</u></a>';
+        val = "<a href='#' onclick='edit(\""+row.ID+"\")'>修改</a>|<a href='#' onclick='del(\""+row.ID+"\")'>删除</a>";
+        return val;
     }
     
     function addArticleCont(tag) {
         opennrWindow("新增文章内容","/admin/article/toAddArticleContent?articleTag="+tag);
     }
     function edit(id) {
-        opennrWindow("修改文章内容","/admin/article/toArticleaddChild?id="+id);
+       opennrWindow("修改文章内容","/admin/article/toUpdateArticleCont?id="+id);
     }
     function del(id) {
-        alert(id)
+        $.messager.confirm('系统提示','是否确认删除?',function(r){
+            if (r){
+                $.ajax({
+                    url : "/admin/article/delArticleCont?id="+id,
+                    type : "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType : "json",
+                    success : function(data) {
+                        message(data.message);
+                        if(data.code==delSuccessCode){
+                            doload();
+                        }
+                    }
+                })
+            }
+        })
     }
     function doload() {
         $('#Twznr').datagrid('reload');

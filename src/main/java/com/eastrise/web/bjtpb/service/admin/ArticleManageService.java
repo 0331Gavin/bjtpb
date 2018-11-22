@@ -2,7 +2,10 @@ package com.eastrise.web.bjtpb.service.admin;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.web.base.CommonQueryRepository;
+import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
+import com.eastrise.web.bjtpb.entity.TArticle;
+import com.eastrise.web.bjtpb.repository.ArticleContentRepository;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
@@ -23,6 +26,8 @@ public class ArticleManageService {
     private CommonQueryRepository commonQueryRepository;
     @Autowired
     private ArticleManageRepository articleManageRepository;
+    @Autowired
+    private ArticleContentRepository articleContentRepository;
 
     public List<Map<String, Object>> getArticleGateGory() throws Exception {
         String sql = "select t.* from T_SYS_ARTICLEMANAGE t where t.status <>0 order by t.article_order";
@@ -57,15 +62,15 @@ public class ArticleManageService {
         return articleManages;
     }
 
-    public TArticleManage save(TArticleManage articleManage) throws Exception {
+    public TArticleManage savearticleManage(TArticleManage articleManage) throws Exception {
         return articleManageRepository.save(articleManage);
     }
 
-    public void del(String id) {
+    public void delArticle(String id) {
         articleManageRepository.deleteById(Integer.valueOf(id));
     }
 
-    public boolean isExist(ArticleTypeForm articleTypeForm) throws Exception {
+    public boolean isArticleExist(ArticleTypeForm articleTypeForm) throws Exception {
         String sql = " select t.* from T_SYS_ARTICLEMANAGE t where 1=1 and t.category_name='" + articleTypeForm.getCategoryname() + "'";
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
         if (result.size() > 0) {
@@ -73,10 +78,17 @@ public class ArticleManageService {
         }
         return true;
     }
-
+    public boolean isArticleContentExist(ArticleContentForm articleContentForm) throws Exception {
+        String sql = " select t.* from T_ARTICLE t where 1=1 and t.title='" + articleContentForm.getTiltle() + "'";
+        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
+        if (result.size() > 0) {
+            return false;
+        }
+        return true;
+    }
     public JSONObject getArticleContent() throws Exception {
         JSONObject json = new JSONObject();
-        String sql = "select t.* from T_ARTICLE t where t.status <>0";
+        String sql = "select t.* from T_ARTICLE t";
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
         json.put("rows", result);
         json.put("total", result.size());
@@ -99,7 +111,6 @@ public class ArticleManageService {
                 return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
             }
         };
-
         return (List<TArticleManage>) articleManageRepository.findAll(specification);
     }
 
@@ -108,16 +119,29 @@ public class ArticleManageService {
      * @param id
      * @return
      */
-    public List<TArticleManage> getCategorySeqListById(String id){
+    public List<TArticleManage> getCategorySeqListById(String id) {
         List<TArticleManage> articleManageList = Lists.newArrayList();
         TArticleManage articleManage = findArticle(id);
-        if(StringUtils.isNotEmpty(articleManage.getCategoryseq())){
+        if (StringUtils.isNotEmpty(articleManage.getCategoryseq())) {
             String[] ids = articleManage.getCategoryseq().split("\\.");
-            for(String s:ids){
+            for (String s : ids) {
                 articleManage = findArticle(s);
                 articleManageList.add(articleManage);
             }
         }
         return articleManageList;
+    }
+
+    public TArticle saveArticleContent(TArticle tArticle)throws Exception {
+        return articleContentRepository.save(tArticle);
+    }
+
+    public TArticle findArticleContByid(String id) {
+        TArticle TArticle = articleContentRepository.findByIdAndStatus(id);
+        return TArticle;
+    }
+
+    public void delArticleCont(String id) {
+        articleContentRepository.deleteById(id);
     }
 }

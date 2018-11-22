@@ -2,9 +2,9 @@ package com.eastrise.web.bjtpb.controller.admin.form;
 
 public class ArticleContentForm {
 
-    private int id;
+    private String id;
 
-    private long articleTypeId;
+    private String articleTypeId;
 
     private String tiltle;
 
@@ -16,19 +16,29 @@ public class ArticleContentForm {
 
     private String publishDept;
 
-    public int getId() {
+    public String getArticleTag() {
+        return articleTag;
+    }
+
+    public void setArticleTag(String articleTag) {
+        this.articleTag = articleTag;
+    }
+
+    private String articleTag;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public long getArticleTypeId() {
+    public String getArticleTypeId() {
         return articleTypeId;
     }
 
-    public void setArticleTypeId(long articleTypeId) {
+    public void setArticleTypeId(String articleTypeId) {
         this.articleTypeId = articleTypeId;
     }
 

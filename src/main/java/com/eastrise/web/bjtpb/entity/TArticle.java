@@ -21,12 +21,12 @@ public class TArticle {
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
     @GeneratedValue(generator = "system-uuid")
     @Column(name = "ID",insertable = true, updatable = true, nullable = false, length=50)
-    private long id;
+    private String id;
     /*
      * 文章类别ID
      */
     @Column(name = "ARTICLE_TYPE_ID", length=1000)
-    private long articleTypeId;
+    private String articleTypeId;
     /*
      * 文章标题
      */
@@ -86,19 +86,19 @@ public class TArticle {
     public void setArticleTag(String articleTag) {
         this.articleTag = articleTag;
     }
-    public long getArticleTypeId() {
+    public String getArticleTypeId() {
         return articleTypeId;
     }
 
-    public void setArticleTypeId(long articleTypeId) {
+    public void setArticleTypeId(String articleTypeId) {
         this.articleTypeId = articleTypeId;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
