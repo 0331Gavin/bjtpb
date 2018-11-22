@@ -22,6 +22,8 @@
     <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/inner.css" />
     <link rel="stylesheet" type="text/css" href="<%=appPath%>/css/public/base.css" />
     <script type="text/javascript" src="<%=appPath%>/js/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="<%=appPath%>/js/layui2.2.6/css/layui.css"  media="all">
+    <script src="<%=appPath%>/js/layui2.2.6/layui.js" charset="utf-8"></script>
 </head>
 <style>
 
@@ -63,50 +65,37 @@
 
         <div class="in_main mgOauto" >
             <div class="disInBlk">
-                <div class="hd_box01 xxgk_box01 mgl10 fr RightSide">
+                <div class="hd_box01 xxgk_box01 mgl10 fr RightSide ">
                     <div class="newsbox pd10 song" >
                         <p class="Pos clearfix">
-                            <span class="tit fl">当前位置：
-                            <a href="#" title="文件电报">文件电报</a> >> <a href="#" title="总公司文件">总公司文件</a>
+                            <span class="tit fl" id="dqwz">
+
                             </span>
                         </p>
                         <div class="RightSide_con">
                             <div class="info_ser pie">
                                 <ul class="clearfix">
-                                    <li>信息公开查询：</li>
-                                    <input type="hidden" name="chanId" id="chanId" value="3"/>
-                                    <input type="hidden" name="ChanType" id="ChanType" value="1"/>
-                                    <input type="hidden" name="GenreID" id="GenreID" value=""/>
-                                    <input type="hidden" name="typeId" id="typeId" value=""/>
-                                    <li><select style="width:100px;" name="ChannelType" id="ChannelType" onchange="MM_jumpMenu('parent',this,0)">
+                                    <li>信息查询：</li>
+                                    <input type="hidden" name="articleTypeId" id="articleTypeId" value="${id}"/>
+                                    <li><select style="width:100px;" name="ChannelType" id="ChannelType" onchange="">
                                         <option>当前栏目</option>
                                     </select>
                                     </li>
                                     <li>信息搜索：</li>
                                     <li><input style="width:128px;" name="KeyWord" id="KeyWord"  type="text" />
-                                        <select style="width:100px;" name="KeyWordType" id="KeyWordType" onchange="MM_jumpMenu('parent',this,0)">
+                                        <select style="width:100px;" name="KeyWordType" id="KeyWordType" onchange="">
                                             <option selected="selected" value="1">按标题</option>
                                         </select>
                                     </li>
-                                    <li><input class="btn03" name="" type="button" id="inputSearch"  /></li>
+                                    <li><input class="btn03" name="" type="button" id="inputSearch" onclick="searchData();" /></li>
                                 </ul>
                             </div>
 
-                            <table class="xxgk_tab" width="100%" border="1" style="border-collapse:collapse;" bordercolor="#cccccc" cellpadding="0" cellspacing="0" id="doclist">
-                                <tr><th width="12%">序号</th><th width="50%" class="sp1">标题</th><th width="25%">发布机构</th><th width="13%">发布日期</th></tr>
-                                <tr><td>1</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
-                                <tr><td>2</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
-                                <tr><td>3</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
-                                <tr><td>4</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
-                                <tr><td>5</td><td class="sp1"><a href="/doc/2018/09/30/681881.shtml" target="_blank" title="复兴号“京湘专用车厢”精彩亮相">复兴号“京湘专用车厢”精彩亮相</a></td><td>安监局</td><td>2018-09-30</td></tr>
 
-                            </table>
-                            <div class="w100 fl mgt20 mgb20 text-center fenyebig">
-                                <div id="fenye" class="fenye disInBlk font12 grey song" style="width:652px">
-                                    <p><a disabled="disabled" class="abutton">首页</a><a disabled="disabled" class="abutton">上一页</a><a class="num cur01" href="#">1</a><a class="num" href="javascript:void(0)" onclick="dataSeD.loadData(2,20,1,'','','7','','');">2</a><a class="num" href="javascript:void(0)" onclick="dataSeD.loadData(3,20,1,'','','7','','');">3</a><a class="num" href="javascript:void(0)" onclick="dataSeD.loadData(4,20,1,'','','7','','');">4</a><a href="javascript:void(0)" onclick="dataSeD.loadData(2,20,1,'','','7','','');">下一页</a>&nbsp;<a href="javascript:void(0)" onclick="dataSeD.loadData(4,20,1,'','','7','','');">尾页</a><select onchange="dataSeD.loadData(this.options[this.selectedIndex].value,20,1,'','','7','','');"><option value="1" selected="selected">第1页</option><option value="2">第2页</option><option value="3">第3页</option><option value="4">第4页</option></select>
-                                    </p>
+                            <table class="layui-table" id="table_id"  lay-filter="test"></table>
+                            <div class="w100 fl  mgb20 text-center fenyebig">
+                                <div id="table_page"></div>
 
-                                </div>
                             </div>
 
                         </div>
@@ -145,9 +134,60 @@
 
 </div>
 </body>
+<script>
+
+    function dataSearch(curnum,limitcount){
+        layui.use(['table','laypage','laydate'], function(){
+            var table = layui.table,
+                laydate=layui.laydate,
+                laypage = layui.laypage;
+            table.render({
+                elem: '#table_id'
+                ,url:'<%=appPath%>/public/articlePageList'
+                ,method:'POST'
+                ,where:{page: curnum, rows: limitcount}
+                ,cols: [[
+                    {field:'id', width:'10%', title: '序号',type:'numbers'}
+                    ,{field:'title', width:'50%', title: '标题'}
+                    ,{field:'deptName', width:'20%', title: '发布机构'}
+                    ,{field:'time', width:'20%', title: '发布日期'}
+                ]]
+                ,page:false
+                ,done: function(res, curr, count){
+                    //如果是异步请求数据方式，res即为你接口返回的信息。
+                    //如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+                    laypage.render({
+                        elem:'table_page'
+                        ,count:count
+                        ,curr:curnum
+                        ,limit:limitcount
+                        ,theme: '#267cb2'
+                        ,layout: ['prev', 'page', 'next', 'skip']
+                        ,jump:function (obj,first) {
+                            if(!first){
+                                curnum = obj.curr;
+                                limitcount = obj.limit;
+                                dataSearch(curnum,limitcount);
+                            }
+                        }
+                    })
+                }
+
+            });
+
+        });
+    }
+
+
+</script>
+
 <script type="text/javascript">
     $(function(){
+        var limitcount = 10;
+        var curnum = 1;
+        dataSearch(curnum,limitcount);
 
+        initRout();
 
         $(".accordion").on("click",function(e){
 
@@ -158,6 +198,24 @@
             });
     });
 
+    function initRout() {
+        $.ajax({
+            url : "<%=appPath%>/public/getRoutByArticleTypeId?articleTypeId=${id}",
+            type : "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType : "json",
+            success : function(data) {
+               var rout = "当前位置：";
+                for(var i=0;i<data.length;i++){
+                    rout+="<a href=\""+(data[i].categorycode==null?"#":("<%=appPath%>/public/wjdb/"+data[i].categorycode))+"\" title=\""+data[i].text+"\">"+data[i].text+"</a>";
+                    if(i!=data.length-1){
+                        rout+=" >> ";
+                    }
+                }
+               $("#dqwz").html(rout);
+            }
+        })
+    }
 
 
 </script>

@@ -5,6 +5,7 @@ import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
 import org.apache.commons.lang.StringUtils;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -100,5 +101,23 @@ public class ArticleManageService {
         };
 
         return (List<TArticleManage>) articleManageRepository.findAll(specification);
+    }
+
+    /**
+     * 获得seq 文章类别集合
+     * @param id
+     * @return
+     */
+    public List<TArticleManage> getCategorySeqListById(String id){
+        List<TArticleManage> articleManageList = Lists.newArrayList();
+        TArticleManage articleManage = findArticle(id);
+        if(StringUtils.isNotEmpty(articleManage.getCategoryseq())){
+            String[] ids = articleManage.getCategoryseq().split("\\.");
+            for(String s:ids){
+                articleManage = findArticle(s);
+                articleManageList.add(articleManage);
+            }
+        }
+        return articleManageList;
     }
 }

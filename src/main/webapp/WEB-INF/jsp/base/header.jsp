@@ -28,7 +28,7 @@
                     <li><a href="<%=appPath%>/public/wjdb/wjdb_ajjtz" title="">安监局通知</a></li>
                     <li><a href="<%=appPath%>/public/wjdb/wjdb_tpbtz" title="">特派办通知</a></li>
                     <li><a href="<%=appPath%>/public/wjdb/wjdb_ldjh" title="">领导讲话</a></li>
-                    <li><a href="<%=appPath%>/public/wjdb/wjdb_qtwd" title="">其他文电</a></li>
+                    <li><a href="<%=appPath%>/public/wjdb/wjdb_qt" title="">其他</a></li>
 
                 </ul>
                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->

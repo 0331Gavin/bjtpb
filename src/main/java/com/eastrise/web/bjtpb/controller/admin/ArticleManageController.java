@@ -114,6 +114,7 @@ public class ArticleManageController {
     @ResponseBody
     public List<TArticleManage> listArticles(){
         List<TArticleManage> articles = manageService.findChildArticleById();
+        System.out.println(JSONObject.toJSONString(articles));
         return articles;
     }
 

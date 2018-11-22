@@ -1,4 +1,5 @@
 package com.eastrise.web.bjtpb.controller;
+import com.alibaba.fastjson.JSONObject;
 import com.eastrise.base.TSysUser;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,7 @@ public class PublicRoutController {
 
 
 
-    @GetMapping("/wjdb/{value}")
+    @GetMapping("/wjdb/{code}")
     public String wjdbmx(@PathVariable String code,HttpServletRequest request){
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];
@@ -65,5 +67,7 @@ public class PublicRoutController {
 
         return "/public/fgzd/fgzd.jsp";
     }
+
+
 
 }
