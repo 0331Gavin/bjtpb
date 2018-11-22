@@ -22,8 +22,8 @@
 <div id="tb" style="padding:5px;height:auto">
 
     <div>
-        部门名称: <input class="easyui-combotree" name="orgName" id="orgName"   data-options="url:'/admin/org/listOrgs',method:'post'" >
-        上级部门: <input class="easyui-combotree" name="sjorgname" id="sjorgname"   data-options="url:'/admin/org/listOrgs',method:'post'" >
+        部门名称: <input class="easyui-combotree" name="orgName" id="orgNameQ"   data-options="url:'/admin/org/listOrgs',method:'post'" >
+        上级部门: <input class="easyui-combotree" name="sjorgname" id="sjorgnameQ"   data-options="url:'/admin/org/listOrgs',method:'post'" >
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
 </div>
@@ -49,8 +49,8 @@
     function doSearch() {
 
         $('#dg').datagrid('load',{
-            orgName: $('#orgName').val(),
-            sjorgname: $('#sjorgname').val()
+            orgName: $('#orgNameQ').val(),
+            sjorgname: $('#sjorgnameQ').val()
         });
     }
     function formatOper(val,row,index) {

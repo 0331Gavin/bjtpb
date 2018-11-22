@@ -1,9 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <%@ include file="../common.jsp" %>
-</head>
-<body style="overflow:hidden;">
 <div class="easyui-layout" data-options="fit:true">
 
     <div data-options="region:'center'" style="padding:10px;border: 0px;" data-link="/admin/articleManage">
@@ -91,7 +86,3 @@
     }
 
 
-</script>
-</body>
-
-</html>
