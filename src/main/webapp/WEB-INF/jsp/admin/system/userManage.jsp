@@ -21,9 +21,9 @@
     <div id="tb" style="padding:5px;height:auto">
 
         <div>
-            用户名: <input class="easyui-textbox" id="userName"/>
-            登录名: <input class="easyui-textbox" id="loginName"/>
-            所属部门: <input class="easyui-combotree" name="deptId" id="deptId"  value="" data-options="url:'/admin/org/listOrgs',method:'post'" >
+            用户名: <input class="easyui-textbox" id="userNameQ"/>
+            登录名: <input class="easyui-textbox" id="loginNameQ"/>
+            所属部门: <input class="easyui-combotree" name="deptId" id="deptIdQ"  value="" data-options="url:'/admin/org/listOrgs',method:'post'" >
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
         </div>
     </div>
@@ -46,9 +46,9 @@
 
     function doSearch() {
         $('#dg').datagrid('load',{
-            loginName: $('#loginName').val(),
-            userName: $('#userName').val()
-            ,deptId:$('#deptId').val()
+            loginName: $('#loginNameQ').val(),
+            userName: $('#userNameQ').val()
+            ,deptId:$('#deptIdQ').val()
         });
     }
     function formatOper(val,row,index) {

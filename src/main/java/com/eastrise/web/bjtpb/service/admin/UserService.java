@@ -99,7 +99,7 @@ public class UserService {
     public boolean checkUserIsExist(UserAddData userAddData) {
         StringBuilder sql = new StringBuilder("select t.id from T_SYS_USER t where t.login_name = '"+userAddData.getLoginName()+"'");
         if(StringUtils.isNotEmpty(userAddData.getId())){
-            sql.append(" t.id !='"+userAddData.getId()+"'");
+            sql.append(" AND t.id !='"+userAddData.getId()+"'");
         }
         int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
         return i>0?true:false;
