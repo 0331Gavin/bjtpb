@@ -23,7 +23,7 @@
         <div>
             用户名: <input class="easyui-textbox" id="userNameQ"/>
             登录名: <input class="easyui-textbox" id="loginNameQ"/>
-            所属部门: <input class="easyui-combotree" name="deptId" id="deptIdQ"  value="" data-options="url:'/admin/org/listOrgs',method:'post'" >
+            所属部门: <input class="easyui-combotree" name="deptIdQ" id="deptIdQ"  value="" data-options="url:'/admin/org/listOrgs',method:'post'" >
             <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
         </div>
     </div>
