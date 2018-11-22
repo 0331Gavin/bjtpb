@@ -2,6 +2,7 @@ package com.eastrise.web.bjtpb.service.admin;
 import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.bjtpb.controller.admin.form.OrgAddData;
+import com.eastrise.web.bjtpb.controller.admin.form.SjzdAddData;
 import com.eastrise.web.bjtpb.entity.TSysOrg;
 import com.eastrise.web.bjtpb.entity.TSysSjzd;
 import com.eastrise.web.bjtpb.repository.IOrgRepository;
@@ -83,5 +84,11 @@ public class SjzdService {
         StringBuffer sql = new StringBuffer();
         sql.append("select distinct t.* from t_sys_sjzd t where t.sjmc='信息搜索' and t.status='1' order by t.xssx " );
         return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
+    public boolean isExist(SjzdAddData sjzdAddData) {
+        StringBuilder sql = new StringBuilder("select t.sjbm from t_sys_sjzd t where t.sjbm = '"+sjzdAddData.getSjbm()+"'");
+
+        int i = commonQueryRepository.findCountBySqlQuery(sql.toString());
+        return i>0?true:false;
     }
 }

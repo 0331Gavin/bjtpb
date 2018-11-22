@@ -57,10 +57,16 @@ public class SjzdController {
 
         try{
             if(StringUtils.isNotEmpty(sjzdAddData.getId())){
+                if(sjzdService.isExist(sjzdAddData)){
+                    return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"数据编码已存在，不能重复添加");
+                }
                 TSysSjzd tSysSjzd = new TSysSjzd();
                 BeanUtils.copyProperties(sjzdAddData,tSysSjzd);
                 sjzdService.save(tSysSjzd);
             }else{
+                if(sjzdService.isExist(sjzdAddData)){
+                    return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"数据编码已存在，不能重复添加");
+                }
                 TSysSjzd tSysSjzd = new TSysSjzd();
                 BeanUtils.copyProperties(sjzdAddData,tSysSjzd);
                 sjzdService.save(tSysSjzd);
