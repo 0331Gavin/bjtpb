@@ -63,11 +63,11 @@ public class OrgController {
      * @param orgAddData
      * @return
      */
-    @PostMapping(value = "/savea")
+    @PostMapping(value = "/savea" )
     public ApiResponse savea(OrgAddData orgAddData){
 
         long l1 =Long.valueOf(orgAddData.getParentId());
-        long deptid =Long.valueOf(orgAddData.getId());
+
         String parentid=orgAddData.getParentId();
 
 
@@ -80,16 +80,14 @@ public class OrgController {
 
             }
             if(StringUtils.isNotEmpty(orgAddData.getId())){
-
+                long deptid =Long.valueOf(orgAddData.getId());
                 TSysOrg tSysOrg = orgService.findOrgInfo(deptid);
                 BeanUtils.copyProperties(orgAddData,tSysOrg);
                 tSysOrg.setParentId(l1);
 
                 orgService.save(tSysOrg);
             }else{
-
                 TSysOrg tSysOrg = new TSysOrg();
-
                 BeanUtils.copyProperties(orgAddData,tSysOrg);
                 tSysOrg.setParentId(l1);
                 TSysOrg i=  orgService.save(tSysOrg);

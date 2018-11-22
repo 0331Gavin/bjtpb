@@ -33,19 +33,14 @@
                 </ul>
                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
             </li>
-            <li><a href="<%=appPath%>/public/fgzd">法规制度<!--[if IE 7]><!--></a><!--<![endif]-->
+            <li><a href="<%=appPath%>/public/fgzd/fgzd_flfg">法规制度<!--[if IE 7]><!--></a><!--<![endif]-->
                 <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
-                    <li><a href="" title="">Lorem ipsum dolor sit amet</a></li>
+                    <li><a href="<%=appPath%>/public/wjdb/fgzd_flfg" title="">法律法规</a></li>
+                    <li><a href="<%=appPath%>/public/wjdb/fgzd_jbgz" title="">基本规章</a></li>
+                    <li><a href="<%=appPath%>/public/wjdb/fgzd_zygz" title="">专业规章</a></li>
+                    <li><a href="<%=appPath%>/public/wjdb/fgzd_tpbzd" title="">特派办制度</a></li>
+                    <li><a href="<%=appPath%>/public/wjdb/fgzd_qt" title="">其他</a></li>
                 </ul>
                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
             </li>

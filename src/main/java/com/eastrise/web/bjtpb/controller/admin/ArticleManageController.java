@@ -67,9 +67,9 @@ public class ArticleManageController {
             manageService.save(tArticleManage);
         }else{
             //验重
-            if(!manageService.isExist(articleTypeForm)){
-                return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该文章类别已存在，不能重复添加");
-            }
+           /* if(!manageService.isExist(articleTypeForm)){
+              return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该文章类别已存在，不能重复添加");
+            }*/
             TArticleManage tArticleManage=new TArticleManage();
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
             tArticleManage= manageService.save(tArticleManage);
