@@ -23,9 +23,9 @@
 <div id="tb" style="padding:5px;height:auto">
 
     <div>
-        数据编码: <input class="easyui-textbox" id="sjbm"/>
-        数据名称: <input class="easyui-textbox" id="sjmc"/>
-        数据类型: <select class="easyui-combobox" name="sjlx" id="sjlx"  style="width:10%">
+        数据编码: <input class="easyui-textbox" id="sjbmQ"/>
+        数据名称: <input class="easyui-textbox" id="sjmcQ"/>
+        数据类型: <select class="easyui-combobox" name="sjlx" id="sjlxQ"  style="width:10%">
                     <option value="">请选择</option>
                      <c:forEach var="obj" items="${list}" >
                          <option value="${obj.sjlx}">${obj.sjlx}</option>
@@ -56,9 +56,9 @@
     function doSearch() {
 
         $('#dg').datagrid('load',{
-            sjbm: $('#sjbm').val(),
-            sjmc: $('#sjmc').val(),
-            sjlx: $('#sjlx').val()
+            sjbm: $('#sjbmQ').val(),
+            sjmc: $('#sjmcQ').val(),
+            sjlx: $('#sjlxQ').val()
         });
     }
     function formatOper(val,row,index) {
