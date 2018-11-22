@@ -42,6 +42,7 @@ public class SjzdController {
     @PostMapping(value = "/findPageData")
     public ApiPageResponse findPageData(@RequestParam(value = "sjbm",required = false) String sjbm , @RequestParam(value = "sjmc",required = false) String sjmc,@RequestParam(value = "sjlx",required = false) String sjlx,
                                         @RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize){
+
         return sjzdService.findPageData(pageSize,pageNumber,sjbm,sjmc,sjlx);
     }
 
