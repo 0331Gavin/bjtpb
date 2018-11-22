@@ -13,7 +13,6 @@
 <head>
 
     <%@ include file="../../base/common.jsp" %>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>中国铁路总公司北京特派办</title>
 

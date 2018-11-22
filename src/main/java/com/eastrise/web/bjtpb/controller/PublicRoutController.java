@@ -4,6 +4,7 @@ import com.eastrise.base.TSysUser;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
 import com.eastrise.web.bjtpb.service.admin.OrgService;
+import com.eastrise.web.bjtpb.service.admin.SjzdService;
 import com.eastrise.web.bjtpb.service.admin.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
@@ -29,6 +30,8 @@ public class PublicRoutController {
 
     @Autowired
     private ArticleManageService articleManageService;
+    @Autowired
+    private SjzdService sjzdService;
 
     @GetMapping("/bmjj")
     public String bmjj(){
@@ -63,8 +66,29 @@ public class PublicRoutController {
         return "/public/wjdb/wjdb.jsp";
     }
     @GetMapping("/fgzd/{code}")
-    public String fgzd(@PathVariable String code,HttpServletRequest request){
+    public String fgzd(@PathVariable String code,HttpServletRequest request) throws Exception{
+        TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
+        String parentId = articleManage.getCategoryseq().split("\\.")[0];
+        List<TArticleManage> articleManageList = articleManageService.findArticleByParentId(parentId,"1");
 
+        List<Map<String,Object>> result = Lists.newArrayList();
+        Map mm = new HashMap();
+        for(TArticleManage a:articleManageList){
+            mm = new HashMap();
+            mm.put("name",a.getCategoryname());
+            mm.put("value",a.getCategorycode());
+            if(articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
+                mm.put("check",true);
+            }else{
+                mm.put("check",false);
+            }
+            List<TArticleManage> articleManages = articleManageService.findArticleByParentId(a.getId()+"","1");
+            mm.put("sons",articleManages);
+            result.add(mm);
+        }
+        request.setAttribute("sstj",sjzdService.findsstj());
+        request.setAttribute("id",articleManage.getId());
+        request.setAttribute("result",result);
         return "/public/fgzd/fgzd.jsp";
     }
 

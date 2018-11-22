@@ -78,5 +78,10 @@ public class SjzdService {
         sql.append("select distinct t.sjlx from t_sys_sjzd t");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
-
+    public List<Map<String, Object>> findsstj() throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select distinct t.* from t_sys_sjzd t where t.sjmc='信息搜索' and t.status='1' order by t.xssx " );
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
 }
