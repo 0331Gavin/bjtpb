@@ -87,7 +87,7 @@
                                             <option selected="selected" value="1">按标题</option>
                                         </select>
                                     </li>
-                                    <li><input class="btn03" name="" type="button" id="inputSearch" onclick="searchData();" /></li>
+                                    <li><input class="btn03" name="" type="button" id="inputSearch" onclick="dataSearch(1,15);" /></li>
                                 </ul>
                             </div>
 
@@ -135,7 +135,8 @@
 </div>
 </body>
 <script>
-
+    var limitcount = 15;
+    var curnum = 1;
     function dataSearch(curnum,limitcount){
         layui.use(['table','laypage','laydate'], function(){
             var table = layui.table,
@@ -186,8 +187,7 @@
 
 <script type="text/javascript">
     $(function(){
-        var limitcount = 15;
-        var curnum = 1;
+
         dataSearch(curnum,limitcount);
 
         initRout();
