@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -24,6 +25,12 @@
     <div>
         数据编码: <input class="easyui-textbox" id="sjbm"/>
         数据名称: <input class="easyui-textbox" id="sjmc"/>
+        数据类型: <select class="easyui-combobox" name="sjlx" id="sjlx"  style="width:10%">
+                    <option value="">请选择</option>
+                     <c:forEach var="obj" items="${list}" >
+                         <option value="${obj.sjlx}">${obj.sjlx}</option>
+                     </c:forEach>
+                    </select>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
 </div>
@@ -50,7 +57,8 @@
 
         $('#dg').datagrid('load',{
             sjbm: $('#sjbm').val(),
-            sjmc: $('#sjmc').val()
+            sjmc: $('#sjmc').val(),
+            sjlx: $('#sjlx').val()
         });
     }
     function formatOper(val,row,index) {
