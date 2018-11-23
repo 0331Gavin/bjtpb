@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <td>上级部门名称:</td>
-                    <td> <input class="easyui-combotree" name="parentId" id="parentId"  value="${dept.PARENT_ID }" data-options="url:'/admin/org/listOrgs',method:'post',required:true" >
+                    <td> <input class="easyui-textbox" name="parentId" id="parentId"  value="${dept.PARENT_ID }" readonly>
                     </td>
                 </tr>
                 <tr>

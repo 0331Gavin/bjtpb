@@ -15,7 +15,7 @@
         <th data-options="field:'sjmc',width:130,align:'center'">数据名称</th>
         <th data-options="field:'xssx',width:80,align:'center',hidden:true">显示顺序</th>
         <th data-options="field:'sjlx',width:80,align:'center'">数据类型</th>
-        <th data-options="field:'status',width:80,align:'center'">状态</th>
+        <th data-options="field:'status',width:80,align:'center',formatter:formatStatus">状态</th>
         <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
@@ -67,6 +67,14 @@
     }
     function edit(id) {
         openWindow("修改数据字典","/admin/system/sjzdEdit?id="+id)
+    }
+    function formatStatus(val,row,index) {
+        if(val=="0"){
+            val="无效";
+        }else if(val =="1"){
+            val="有效";
+        }
+        return val;
     }
     function del(id) {
         $.messager.confirm('系统提示','是否确认删除?',function(r){
