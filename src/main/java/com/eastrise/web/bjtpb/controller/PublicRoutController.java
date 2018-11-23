@@ -2,10 +2,7 @@ package com.eastrise.web.bjtpb.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.base.TSysUser;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
-import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
-import com.eastrise.web.bjtpb.service.admin.OrgService;
-import com.eastrise.web.bjtpb.service.admin.SjzdService;
-import com.eastrise.web.bjtpb.service.admin.UserService;
+import com.eastrise.web.bjtpb.service.admin.*;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +29,8 @@ public class PublicRoutController {
     private ArticleManageService articleManageService;
     @Autowired
     private SjzdService sjzdService;
-
+    @Autowired
+    private ArticleService articleService;
     @GetMapping("/bmjj")
     public String bmjj(){
         return "/public/bmjj/bmjj.jsp";
@@ -93,6 +91,13 @@ public class PublicRoutController {
         return "/public/fgzd/fgzd.jsp";
     }
 
+    @GetMapping("/content/{id}")
+    public String toWzView(@PathVariable String id, HttpServletRequest request) throws Exception {
+        if(id!=null){
 
+            Map<String, Object> list =articleService.findById(id).get(0);
+            request.setAttribute("wz",list);}
+        return "/public/wznr/wznr.jsp";
+    }
 
 }

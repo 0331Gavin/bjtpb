@@ -19,9 +19,9 @@
 
 </body>
 <script>
-    function initRout() {
+    function initRout(id) {
         $.ajax({
-            url : "<%=appPath%>/public/getRoutByArticleTypeId?articleTypeId=${id}",
+            url : "<%=appPath%>/public/getRoutByArticleTypeId?articleTypeId="+id,
             type : "POST",
             contentType: "application/json;charset=utf-8",
             dataType : "json",

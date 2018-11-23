@@ -2,14 +2,13 @@ package com.eastrise.web.bjtpb.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
+import com.eastrise.web.bjtpb.service.admin.ArticleService;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +42,7 @@ public class PublicController {
         jsonObject.put("count", 50);
         List<Map> data = Lists.newArrayList();
         Map m= new HashMap();
-        m.put("id","aaaaaaaaa");
+        m.put("id","40289ffa673a331f01673a33f9820000");
         m.put("title","复兴号“京湘专用车厢”精彩亮相,复兴号“京湘专用车厢”精彩亮相，复兴号“京湘专用车厢”精彩亮相");
         m.put("deptName","安监局");
         m.put("time","2018-09-30");
@@ -54,6 +53,7 @@ public class PublicController {
 
         return jsonObject;
     }
+
 
 
 }
