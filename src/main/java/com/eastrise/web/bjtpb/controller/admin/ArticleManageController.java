@@ -201,9 +201,12 @@ public class ArticleManageController {
     @PostMapping(value = "/delArticleCont")
     @ResponseBody
     public ApiResponse delArticleCont(String id){
-        TAttachment tAttachment =manageService.findTAttachmentByBuzId(id);
-        manageService.delAttachment(tAttachment.getId());
-        OperationFileUtil.deleteFile(tAttachment.getAttachmentPath());
+        TArticle tArticle = manageService.findArticleContByid(id);
+        if(tArticle.getArticleTag().equals("fj")){
+            TAttachment tAttachment =manageService.findTAttachmentByBuzId(id);
+            manageService.delAttachment(tAttachment.getId());
+            OperationFileUtil.deleteFile(tAttachment.getAttachmentPath());
+        }
         manageService.delArticleCont(id);
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
