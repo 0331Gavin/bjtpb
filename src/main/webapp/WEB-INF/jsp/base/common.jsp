@@ -10,7 +10,11 @@
     <title>中国铁路总公司北京特派办</title>
 
 </head>
+<style>
 
+    .layui-table-tips-main{display:none}
+    .layui-table-tips-c{display:none}
+</style>
 <body>
 
 </body>
