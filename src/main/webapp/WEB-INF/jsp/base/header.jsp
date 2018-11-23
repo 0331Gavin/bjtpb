@@ -18,7 +18,7 @@
             <li><a href="<%=appPath%>/">首页</a></li>
             <li><a href="<%=appPath%>/public/bmjj">部门简介</a>
             </li>
-            <li><a href="<%=appPath%>/public/wjdb/wjdb_aqwd">文件电报</a>
+            <li><a href="<%=appPath%>/public/wjdb/wjdb">文件电报</a>
                 <ul>
                     <li><a href="<%=appPath%>/public/wjdb/wjdb_zgswj" title="">总公司文件</a></li>
                     <li><a href="<%=appPath%>/public/wjdb/wjdb_zgsdb" title="">总公司电报</a></li>
@@ -33,7 +33,7 @@
                 </ul>
                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
             </li>
-            <li><a href="<%=appPath%>/public/fgzd/fgzd_flfg">法规制度<!--[if IE 7]><!--></a><!--<![endif]-->
+            <li><a href="<%=appPath%>/public/fgzd/fgzd">法规制度<!--[if IE 7]><!--></a><!--<![endif]-->
                 <!--[if lte IE 6]><table><tr><td><![endif]-->
                 <ul>
                     <li><a href="<%=appPath%>/public/wjdb/fgzd_flfg" title="">法律法规</a></li>

@@ -116,7 +116,12 @@ public class PublicRoutController {
         List<TArticleManage> result = articleManageService.getCategorySeqListById(articleTypeId);
         String rout="当前位置：";
         for(int i=0;i<result.size();i++){
-            rout+="<a href=\""+(result.get(i).getUrl()==null?"#":("../"+result.get(i).getUrl()))+"\" title=\""+result.get(i).getCategoryname()+"\">"+result.get(i).getCategoryname()+"</a>";
+            rout+="<a href=\""+((result.get(i).getUrl()==null||articleTypeId.equals(new String(""+result.get(i).getId())))?"#":("../"+result.get(i).getUrl()))+"\"  ";
+            if(result.get(i).getUrl()==null||articleTypeId.equals(""+result.get(i).getId())){
+            }else{
+                rout+="  target=\"_blank\" ";
+            }
+            rout+="title=\""+result.get(i).getCategoryname()+"\">"+result.get(i).getCategoryname()+"</a>";
             if(i!=result.size()-1){
                 rout+=" >> ";
             }else{

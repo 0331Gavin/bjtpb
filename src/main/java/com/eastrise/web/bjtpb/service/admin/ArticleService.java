@@ -36,7 +36,7 @@ public class ArticleService {
 
     public ApiPageResponse findPublicPageData(int pageSize, int pageNumber, String articleTypeId, String KeyWord, String KeyWordType) {
        StringBuilder sql = new StringBuilder("select t.id,t.title,t.publish_dept_name deptName,t.publish_time time, type.category_name article_type,t.article_tag from T_ARTICLE t,T_SYS_ARTICLEMANAGE type where t.article_type_id = type.id  ");
-        if(StringUtils.isNotEmpty(articleTypeId)) sql.append(" and type.category_seq like '"+articleTypeId+".%' ");
+        if(StringUtils.isNotEmpty(articleTypeId)) sql.append(" and ( type.category_seq like '%."+articleTypeId+".%' or type.category_seq like '"+articleTypeId+".%' ) ");
         if(StringUtils.isNotEmpty(KeyWordType)&& Constants.S_BT.equals(KeyWordType)&&StringUtils.isNotEmpty(KeyWord))
             sql.append(" and t.title like '%"+KeyWord+"%' ");
         if(StringUtils.isNotEmpty(KeyWordType)&& Constants.S_FBJG.equals(KeyWordType)&&StringUtils.isNotEmpty(KeyWord))
