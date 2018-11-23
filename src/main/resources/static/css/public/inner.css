@@ -222,11 +222,23 @@
 }
 .RightSide_con {
     padding: 18px 18px 0;
+    min-height: 250px;
 }
 /*-----新闻中心-----*/
 .newsbox{
-    background:url(../images/inner_images/dh_bg01.gif) top left repeat-x
+    background:url(../images/inner_images/dh_bg01.gif) top left repeat-x;
+    min-height:200px
 }
+.list_con{
+    background:none
+}
+.list_con01{
+    width:100%
+}
+.list_con01 li{
+    border-bottom:1px dashed #d2d2d2
+}
+
 .picbox{
     width:240px
 }

@@ -35,12 +35,20 @@ public class PublicRoutController {
     public String bmjj(){
         return "/public/bmjj/bmjj.jsp";
     }
+    @GetMapping("/more/{code}")
+    public String more(@PathVariable String code,HttpServletRequest request){
+        TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
+        getRoutByArticleTypeId(request,articleManage.getId()+"");
+        request.setAttribute("id",articleManage.getId());
+        return "/public/more/more.jsp";
+    }
 
 
 
     @GetMapping("/wjdb/{code}")
     public String wjdbmx(@PathVariable String code,HttpServletRequest request) throws Exception{
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
+        getRoutByArticleTypeId(request,articleManage.getId()+"");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];
         List<TArticleManage> articleManageList = articleManageService.findArticleByParentId(parentId,"1");
 
@@ -50,7 +58,8 @@ public class PublicRoutController {
             m = new HashMap();
             m.put("name",a.getCategoryname());
             m.put("value",a.getCategorycode());
-            if(articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
+            m.put("url",a.getUrl());
+            if(articleManage.getCategoryseq().split("\\.").length>1&&articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
                 m.put("check",true);
             }else{
                 m.put("check",false);
@@ -67,6 +76,7 @@ public class PublicRoutController {
     @GetMapping("/fgzd/{code}")
     public String fgzd(@PathVariable String code,HttpServletRequest request) throws Exception{
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
+        getRoutByArticleTypeId(request,articleManage.getId()+"");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];
         List<TArticleManage> articleManageList = articleManageService.findArticleByParentId(parentId,"1");
 
@@ -76,7 +86,8 @@ public class PublicRoutController {
             mm = new HashMap();
             mm.put("name",a.getCategoryname());
             mm.put("value",a.getCategorycode());
-            if(articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
+            mm.put("url",a.getUrl());
+            if(articleManage.getCategoryseq().split("\\.").length>1&&articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
                 mm.put("check",true);
             }else{
                 mm.put("check",false);
@@ -96,8 +107,25 @@ public class PublicRoutController {
         if(id!=null){
 
             Map<String, Object> list =articleService.findById(id).get(0);
+            getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
             request.setAttribute("wz",list);}
         return "/public/wznr/wznr.jsp";
+    }
+
+    public void getRoutByArticleTypeId(HttpServletRequest request,String articleTypeId){
+        List<TArticleManage> result = articleManageService.getCategorySeqListById(articleTypeId);
+        String rout="当前位置：";
+        for(int i=0;i<result.size();i++){
+            rout+="<a href=\""+(result.get(i).getUrl()==null?"#":("../"+result.get(i).getUrl()))+"\" title=\""+result.get(i).getCategoryname()+"\">"+result.get(i).getCategoryname()+"</a>";
+            if(i!=result.size()-1){
+                rout+=" >> ";
+            }else{
+
+            }
+        }
+        request.setAttribute("titRout",result.size()>0?result.get(result.size()-1).getCategoryname():"");
+        request.setAttribute("rout",rout);
+
     }
 
 }

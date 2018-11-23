@@ -35,6 +35,8 @@ public class TArticleManage {
 
     @Column(name = "status", length=500)
     private String status;
+    @Column(name = "URL", length=100)
+    private String url;
 
     /*
      *下级信息
@@ -114,5 +116,13 @@ public class TArticleManage {
 
     public void setCategorycode(String categorycode) {
         this.categorycode = categorycode;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

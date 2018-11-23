@@ -31,7 +31,7 @@
         <div class="in_main mgOauto">
             <div class="in_box01 song">
                 <div class="title w100 disInBlk">
-                    <h3 class="fl mgl20 font14" >${wz.category_name} </h3><div class="fl mgl10 font12 grey" id="dqwz"></div>
+                    <h3 class="fl mgl20 font14" >${wz.category_name} </h3><div class="fl mgl10 font12 grey" id="dqwz">${rout}</div>
                 </div>
                 <div class="pd20 news_con">
                     <h3 class="text-center yahei font18 font-w">${wz.TITLE}</h3>
@@ -41,7 +41,7 @@
                         <span><a href="#" onclick="docClick(621523)">全文下载</a></span></p>
 
                 </div>
-                <div id="zoom" class="pd20">
+                <div id="zoom" class="pd20" >
                    ${wz.CONTENT}
                 </div>
                 <div>
@@ -64,7 +64,6 @@
     <script type="text/javascript">
         $(function(){
 
-            initRout("${wz.ARTICLE_TYPE_ID}");
 
         });
 

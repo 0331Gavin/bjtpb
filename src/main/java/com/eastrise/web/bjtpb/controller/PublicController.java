@@ -1,6 +1,7 @@
 package com.eastrise.web.bjtpb.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
 import com.eastrise.web.bjtpb.service.admin.ArticleService;
 import org.assertj.core.util.Lists;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Key;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,8 @@ public class PublicController {
 
     @Autowired
     private ArticleManageService articleManageService;
+    @Autowired
+    private ArticleService articleService;
 
     @PostMapping("/getRoutByArticleTypeId")
     public List getRoutByArticleTypeId(String articleTypeId){
@@ -36,21 +40,12 @@ public class PublicController {
     @PostMapping("/articlePageList")
     public JSONObject articlePageList(@RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize,
                     String ChannelType,String KeyWord,String KeyWordType){
+        ApiPageResponse response = articleService.findPublicPageData(pageSize,pageNumber,ChannelType,KeyWord, KeyWordType);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code", 0);
         jsonObject.put("msg", "");
-        jsonObject.put("count", 50);
-        List<Map> data = Lists.newArrayList();
-        Map m= new HashMap();
-        m.put("id","40289ffa673a331f01673a33f9820000");
-        m.put("title","复兴号“京湘专用车厢”精彩亮相,复兴号“京湘专用车厢”精彩亮相，复兴号“京湘专用车厢”精彩亮相");
-        m.put("deptName","安监局");
-        m.put("time","2018-09-30");
-        for(int i=0;i<pageSize;i++){
-            data.add(m);
-        }
-        jsonObject.put("data", data);
-
+        jsonObject.put("count", response.getTotal());
+        jsonObject.put("data", response.getRows());
         return jsonObject;
     }
 

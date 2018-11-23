@@ -69,7 +69,7 @@
                     <div class="newsbox pd10 song" >
                         <p class="Pos clearfix">
                             <span class="tit fl" id="dqwz">
-
+                            ${rout}
                             </span>
                         </p>
                         <div class="RightSide_con font12">
@@ -111,13 +111,13 @@
 
                         <c:forEach items="${result}" var="item">
                             <dl>
-                                <dt <c:if test="${item.check == true}">class="cur "</c:if>><a href="${item.value}" title="${item.name}">${item.name}</a></dt>
+                                <dt <c:if test="${item.check == true}">class="cur "</c:if>><a href="../${item.url}" title="${item.name}">${item.name}</a></dt>
                                     <c:if test="${not empty item.sons}">
                                     <dd class="launch_con" >
                                         <div >
                                             <ul>
                                                 <c:forEach items="${item.sons}" var="son">
-                                                    <li><a href="${son.categorycode}" <c:if test="${son.id == id}">style="background-color: #267cb2;color: white;"</c:if>>${son.categoryname}</a></li>
+                                                    <li><a href="../${son.url}" <c:if test="${son.id == id}">style="background-color: #267cb2;color: white;"</c:if>>${son.categoryname}</a></li>
                                                 </c:forEach>
                                             </ul>
                                         </div>
@@ -192,7 +192,6 @@
         var curnum = 1;
         dataSearch(curnum,limitcount);
 
-        initRout(${id});
         initChannelType();
 
         $(".accordion").on("click",function(e){
