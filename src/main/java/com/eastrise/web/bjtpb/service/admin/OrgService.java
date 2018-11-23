@@ -92,7 +92,7 @@ public class OrgService {
     public ApiPageResponse findPageData(int pageSize, int pageNumber, String orgName, String sjorgname) {
 
 
-        StringBuilder sql = new StringBuilder("select dept.* from (select   g.*,bm.sjorgname   from   t_sys_org g  left      join   (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where dept.status='1' ");
+        StringBuilder sql = new StringBuilder("select dept.* from (select   g.*,bm.sjorgname   from   t_sys_org g  left      join   (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where 1=1 ");
         if(Strings.isNotEmpty(orgName)) {
             long deptid =Long.valueOf(orgName);
             sql.append(" and dept.id='"+deptid+"'");
