@@ -5,8 +5,10 @@ import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.entity.TArticle;
+import com.eastrise.web.bjtpb.entity.TAttachment;
 import com.eastrise.web.bjtpb.repository.ArticleContentRepository;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
+import com.eastrise.web.bjtpb.repository.IAttachmentRepository;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ public class ArticleManageService {
     private ArticleManageRepository articleManageRepository;
     @Autowired
     private ArticleContentRepository articleContentRepository;
+    @Autowired
+    private IAttachmentRepository attachmentRepository;
 
     public List<Map<String, Object>> getArticleGateGory() throws Exception {
         String sql = "select t.* from T_SYS_ARTICLEMANAGE t where t.status <>0 order by t.article_order";
@@ -143,5 +147,16 @@ public class ArticleManageService {
 
     public void delArticleCont(String id) {
         articleContentRepository.deleteById(id);
+    }
+
+
+    public TAttachment saveAttachment(TAttachment tAttachment){
+       return attachmentRepository.save(tAttachment);
+    }
+    public TAttachment findTAttachmentByBuzId(String id){
+        return attachmentRepository.findByBuzId(id);
+    }
+    public void delAttachment(String id) {
+        attachmentRepository.deleteById(id);
     }
 }

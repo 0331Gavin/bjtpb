@@ -21,9 +21,19 @@
                 <input type="hidden" id="articleTag" name="articleTag" value="${articleTag}">
             </table>
             <table id="tab">
+                <tr id="fwb" style="display: none"><td valign='top'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章内容:</td><td><div id='editor' style='height:300px;width: 850px;margin-left: 8px' >
+                </div></td></tr>
+                <tr id="scfj" style="display: none">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传附件:</td>
+                    <td>&nbsp;<input  id="file1" class="easyui-filebox" name="file1" data-options="prompt:'请选择上传的文件...',buttonText:'选择'" style="width:470px;">
+                    </td>
+                </tr>
             </table>
             <input type="hidden" id="id" name="id" value="${id}">
             <input type="hidden" id="cont" name="cont" value="${articles.content}">
+            <input type="hidden" id="attachmentId" name="attachmentId" value="${tAttachment.id}">
+            <input type="hidden" id="attachmentPath" name="attachmentPath" value="${tAttachment.attachmentPath}">
+            <input type="hidden" id="attachmentName" name="attachmentName" value="${tAttachment.attachmentName}">
         </form>
     </div>
     <div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 0;">
@@ -34,7 +44,7 @@
 <script>
     $(function(){
         if($("#articleTag").val()=="tw"){
-            $("#tab").append("<tr><td valign='top'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章内容:</td><td><div id='editor' style='height:300px;width: 850px;margin-left: 8px' ></div></td></tr>");
+            $("#fwb").attr("style","display: block");
             var ue = UE.getEditor('editor', {
                 toolbars: [
                     ['fullscreen', 'source', 'undo', 'redo', 'bold','attachment','preview','fontfamily','fontsize','paragraph','simpleupload','edittable','searchreplace','justifyleft','justifyright','justifycenter', 'justifyjustify']
@@ -48,11 +58,13 @@
                 });
             }
         }else if($("#articleTag").val()=="fj"){
-            $("#tab").append("<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上传附件:</td><td>&nbsp;<input  id=\"file1\" class=\"easyui-filebox\" name=\"file1\" data-options=\"prompt:'请选择上传的文件...',buttonText:'选择'\" style=\"width:470px;\"></td></tr>");
+            $("#scfj").attr("style","display: block");
+            if($("#attachmentId").val()!=""){
+                $('#file1').filebox({prompt:$("#attachmentName").val()});
+            }
         }
     })
     function save() {
-
         $('#xzzx').form('submit', {
             url:"/admin/article/saveArticleContent",
             type: 'post',
@@ -62,11 +74,16 @@
                         param.contentHtml=getAllHtml();
                         param.content=getContent();
                     }
+                    param.isAttachmentupdate=false;
                 }else if($("#articleTag").val()=="fj"){
-                    alert($("#file1").filebox('getValue'))
+                    if($("#file1").filebox('getValue')==""){
+                        param.isAttachmentupdate=false;
+                    }else{
+                        param.isAttachmentupdate=true;
+                    }
                 }
-                return isWzlb($("#articleTypeId").val());
-                return $(this).form('enableValidation').form('validate');
+               /* return isWzlb($("#articleTypeId").val());*/
+               /* return $(this).form('enableValidation').form('validate');*/
             },
             success:function(data){
                 var data = eval('(' + data + ')'); // change the JSON string to javascript object
