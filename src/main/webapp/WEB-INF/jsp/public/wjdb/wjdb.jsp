@@ -192,14 +192,13 @@
 
         dataSearch(curnum,limitcount);
 
-        initRout();
+        initRout("${id}");
         initChannelType();
 
         $(".accordion").on("click",function(e){
 
             var target = e.target;
 
-            alert($(target).attr("id"));
 
             });
     });
