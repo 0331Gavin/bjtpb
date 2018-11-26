@@ -30,6 +30,10 @@ public class AdminRoutController {
     public String home(){
         return "/admin/adminHome.jsp";
     }
+    @GetMapping("/test")
+    public String test(){
+        return "/admin/test.jsp";
+    }
     @GetMapping("/articleAdd")
     public String articleAdd(){
         return "/admin/article/articleAdd.jsp";
