@@ -52,6 +52,7 @@
             }
         });
         if($("#articleTag").val()=="tw"){
+            $('#file1').filebox({required:false});
             $("#fwb").attr("style","display: block");
             var ue = UE.getEditor('editor', {
                 toolbars: [
