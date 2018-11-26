@@ -47,10 +47,10 @@
             <li><a href="">检查安排及总结 </a></li>
             <li><a href="">事故故障调查</a></li>
             <li><a href="">检查调研</a></li>
-            <li><a href="contact.html">党群工作</a></li>
-            <li><a href="contact.html">季度考核</a></li>
-            <li><a href="contact.html">学习天地</a></li>
-            <li><a href="contact.html">邮箱</a></li>
+            <li><a href="">党群工作</a></li>
+            <li><a href="">季度考核</a></li>
+            <li><a href="">学习天地</a></li>
+            <li><a href="">邮箱</a></li>
         </ul>
 
     </div>

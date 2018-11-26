@@ -79,9 +79,14 @@
                 }else if(i==0){
                     arr.push("<ul class='newslist list_con01 fl '>");
                 }
-                arr.push("<li>");
-                arr.push("<b>["+data.data[i].articleType+"]</b><a href=\"../content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a><span class=\"fr\">"+data.data[i].time+"</span>");
-                arr.push("</li>");
+                arr.push("<li><b>["+data.data[i].articleType+"]</b>");
+                if(data.data[i].articleTag=="fj"){
+                    arr.push("<img src=\"../../images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../file/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                }else{
+                    arr.push("<a href=\"../content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                }
+
+                arr.push("<span class=\"fr\">"+data.data[i].time+"</span></li>");
                 if(((i+1)%5==0)&&(i!=0)){
                     arr.push("</ul>");
                 }
