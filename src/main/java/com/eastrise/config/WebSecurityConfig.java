@@ -49,8 +49,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/","index","index.html").permitAll()
                 .antMatchers("/public/**").permitAll()
-                .antMatchers("/anonymous/**").hasRole("ANONYMOUS")
-                .anyRequest().authenticated()
+                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/")
                 .loginProcessingUrl("/login")
                 .failureHandler(loginAuthFailHandler()).permitAll()
@@ -64,16 +63,6 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                     .rememberMeCookieName("workspace"); //cookies的名字，登陆后可以通过浏览器查看cookies名字;
     }
 
-    @Bean
-    public AnonymousAuthenticationFilter anonymousAuthFilter(){
-        AnonymousAuthenticationFilter anonymousAuthenticationFilter = new AnonymousAuthenticationFilter("foobar");
-        return anonymousAuthenticationFilter;
-    }
-
-    @Bean
-    public AnonymousAuthenticationProvider anonymousAuthenticationProvider(){
-        return new AnonymousAuthenticationProvider("foobar");
-    }
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
