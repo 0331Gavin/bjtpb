@@ -1,6 +1,5 @@
 package com.eastrise;
 
-import com.baidu.ueditor.ActionEnter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
