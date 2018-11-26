@@ -38,6 +38,11 @@
 <!-- begin of sidebar -->
 <div class="wu-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'">
 	<div class="easyui-accordion" data-options="border:false,fit:true">
+		<div title="开发" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
+			<ul class="easyui-tree wu-side-tree">
+				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/test" iframe="1">功能测试</a></li>
+			</ul>
+		</div>
 		<div title="文章管理" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
 				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleAdd" iframe="1">添加文章内容</a></li>
