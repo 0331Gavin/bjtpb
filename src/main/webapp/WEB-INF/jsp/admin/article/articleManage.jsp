@@ -31,6 +31,14 @@
 
 </div>
 <script>
+    /*$(function () {
+        $('#Twznr').datagrid({
+            //单击事件
+            onClickRow: function (rowIndex, rowData) {
+                alert("单击");
+            }
+        })
+    });*/
 
     function formatOper(val,row,index){
         val = "<a href='#' onclick='edit(\""+row.ID+"\")'>修改</a>|<a href='#' onclick='del(\""+row.ID+"\")'>删除</a>";

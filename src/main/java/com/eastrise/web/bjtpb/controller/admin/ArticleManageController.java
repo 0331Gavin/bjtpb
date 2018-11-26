@@ -22,6 +22,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -187,7 +188,7 @@ public class ArticleManageController {
             LocalUserDetails localUserDetails =userService.findUserDetails();
             TAttachment tAttachment =new TAttachment();
             tAttachment.setAttachmentName(fileNames);
-            tAttachment.setAttachmentPath(filePath+"/"+fileNames);
+            tAttachment.setAttachmentPath(filePath);
             tAttachment.setAttachmentType(prefix);
             tAttachment.setBuzId(buzid);
             tAttachment.setBuzTable("T_ARTICLE");
@@ -208,12 +209,21 @@ public class ArticleManageController {
         TArticle tArticle = manageService.findArticleContByid(id);
         if(tArticle.getArticleTag().equals("fj")){
             TAttachment tAttachment =manageService.findTAttachmentByBuzId(id);
-            manageService.delAttachment(tAttachment.getId());
-            OperationFileUtil.deleteFile(tAttachment.getAttachmentPath());
+            if(tAttachment!=null){
+                manageService.delAttachment(tAttachment.getId());
+                OperationFileUtil.deleteFile(tAttachment.getAttachmentPath());
+            }
         }
         manageService.delArticleCont(id);
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
+
+
+    @GetMapping(value = "/downloadFile")
+    public void downloadFile(HttpServletResponse response,String id){
+
+    }
+
 
     @PostMapping("/listArticles")
     @ResponseBody
