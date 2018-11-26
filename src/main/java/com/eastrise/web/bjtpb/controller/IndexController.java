@@ -1,5 +1,11 @@
 package com.eastrise.web.bjtpb.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.eastrise.web.base.ApiPageResponse;
+import com.eastrise.web.bjtpb.entity.TArticleManage;
+import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
+import com.eastrise.web.bjtpb.service.admin.ArticleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -19,14 +25,23 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class IndexController {
 
+    @Autowired
+    private ArticleService articleService;
+    @Autowired
+    private ArticleManageService articleManageService;
+
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
-
+        getArticleList(request,"wjdb");
+        getArticleList(request,"fgzd");
         return "public/index.jsp";
     }
 
     @RequestMapping(value = {"/", "/index.html", "/index"}, method = RequestMethod.GET)
     public String index(HttpServletRequest request) {
+        getArticleList(request,"wjdb");
+        getArticleList(request,"fgzd");
+
         //如果已经登陆跳转到个人首页
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
@@ -49,5 +64,10 @@ public class IndexController {
         return "admin/index.jsp";
     }
 
+    private void getArticleList(HttpServletRequest request,String code){
 
+        TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
+        ApiPageResponse response = articleService.findPublicPageData(10,1,articleManage.getId()+"",null, null);
+        request.setAttribute(code+"",response.getRows());
+    }
 }

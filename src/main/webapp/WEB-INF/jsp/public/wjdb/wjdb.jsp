@@ -186,8 +186,7 @@
                             var tltle = $(this).find("div").html();
                             var articleTag= $("[data-field='articleTag']").eq(index).find("div").html();
                             if(articleTag=="fj"){
-
-                            $(this).find("div").html("<a href=\"<%=appPath%>/public/articlefile/"+id+"\" class=\"layui-table-link\" target=\"_blank\"  title='"+tltle+"'>"+tltle+"</a>")}
+                                $(this).find("div").html("<img src=\"<%=appPath%>/images/public/icon-file.png\"  alt='文件' /><a href=\"<%=appPath%>/public/articlefile/"+id+"\" class=\"layui-table-link\" target=\"_blank\"  title='"+tltle+"'>"+tltle+"</a>")}
                             else {
                                 $(this).find("div").html("<a href=\"<%=appPath%>/public/content/"+id+"\" class=\"layui-table-link\" target=\"_blank\"  title='"+tltle+"'>"+tltle+"</a>")
                             }

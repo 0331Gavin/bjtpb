@@ -65,11 +65,11 @@
         list-style: none;
         border-top: 1px solid #EEE;
         padding: 1px 0;
-        width: 330px;
+
         font-family: Georgia, serif;
     }
     ul.nice-list li .left{
-        width: 268px;word-break: keep-all;overflow:hidden;text-overflow: ellipsis;
+        width: 248px;word-break: keep-all;overflow:hidden;text-overflow: ellipsis;
     }
 
     ul.nice-list li:first-child {border-top: none;}
@@ -103,6 +103,7 @@
         background: #22325f;
         margin-top: 8px;
     }
+    .nice-list {min-height: 100px;width: 330px;}
     .content a {text-decoration: none;font-size: 12px;}
     .content a:hover {text-decoration: underline;}
 
@@ -188,51 +189,21 @@
 
                     <div class="content">
                         <ul class="nice-list">
-                            <li>
-                                <div class="left"><a href="#" title="中国铁路总公路总公路总公路总公路总公路总公路总公路总公司关于印发">中国铁路总公路总公路总公路总公路总公路总公路总公路总公司关于印发</a></div>
-                                <div class="right">20.49</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">20:40</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">19:56</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发Accumsan condimentum</a></div>
-                                <div class="right">19:15</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                <div class="right">19:06</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                <div class="right">18:51</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                <div class="right">19:06</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                <div class="right">18:51</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                <div class="right">18:51</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
+                            <c:forEach items="${wjdb}" var="item">
+                                <li>
+                                    <div class="left">
+                                        <c:if test="${item.articleTag=='fj'}">
+                                            <img src="images/public/icon-file.png"  alt="文件" />
+                                            <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                        </c:if>
+                                        <c:if test="${item.articleTag=='tw'}">
+                                            <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                        </c:if>
+                                    </div>
+                                    <div class="right">${item.time}</div>
+                                    <div class="clearer">&nbsp;</div>
+                                </li>
+                            </c:forEach>
                         </ul>
 
                     </div>
@@ -251,36 +222,7 @@
                             </div>
                             <div class="content">
                                 <ul class="nice-list">
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                        <div class="right">20.49</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                        <div class="right">20:40</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                        <div class="right">19:56</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发Accumsan condimentum</a></div>
-                                        <div class="right">19:15</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                        <div class="right">19:06</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                        <div class="right">18:51</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
+
                                 </ul>
 
                             </div>
@@ -299,36 +241,7 @@
                             </div>
                             <div class="content">
                                 <ul class="nice-list">
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                        <div class="right">20.49</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                        <div class="right">20:40</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                        <div class="right">19:56</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发Accumsan condimentum</a></div>
-                                        <div class="right">19:15</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                        <div class="right">19:06</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
-                                    <li>
-                                        <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                        <div class="right">18:51</div>
-                                        <div class="clearer">&nbsp;</div>
-                                    </li>
+
                                 </ul>
 
                             </div>
@@ -364,36 +277,21 @@
                     </div>
                     <div class="content">
                         <ul class="nice-list">
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于总公司关于总公司关于总公司关于印发</a></div>
-                                <div class="right">20.49</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">20:40</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">19:56</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发Accumsan condimentum</a></div>
-                                <div class="right">19:15</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                <div class="right">19:06</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                <div class="right">18:51</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
+                            <c:forEach items="${fgzd}" var="item">
+                                <li>
+                                    <div class="left">
+                                        <c:if test="${item.articleTag=='fj'}">
+                                            <img src="images/public/icon-file.png"  alt="文件" />
+                                            <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                        </c:if>
+                                        <c:if test="${item.articleTag=='tw'}">
+                                            <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                        </c:if>
+                                    </div>
+                                    <div class="right">${item.time}</div>
+                                    <div class="clearer">&nbsp;</div>
+                                </li>
+                            </c:forEach>
                         </ul>
 
                     </div>
@@ -410,36 +308,7 @@
 
                     <div class="content">
                         <ul class="nice-list">
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">20.49</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">20:40</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">19:56</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发Accumsan condimentum</a></div>
-                                <div class="right">19:15</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                <div class="right">19:06</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                <div class="right">18:51</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
+
                         </ul>
 
                     </div>
@@ -457,36 +326,7 @@
 
                     <div class="content">
                         <ul class="nice-list">
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">20.49</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">20:40</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                                <div class="right">19:56</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发Accumsan condimentum</a></div>
-                                <div class="right">19:15</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发bibendum</a></div>
-                                <div class="right">19:06</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">Mauri国铁路总公司关于s euismod justo</a></div>
-                                <div class="right">18:51</div>
-                                <div class="clearer">&nbsp;</div>
-                            </li>
+
                         </ul>
 
                     </div>
