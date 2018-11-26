@@ -171,6 +171,10 @@ public class ArticleManageController {
         if(!file.isEmpty()){
             TArticleManage tArticleManage=manageService.findArticle(articleContentForm.getArticleTypeId());
             String fileNames = file.getOriginalFilename();
+            if(fileNames.contains("\\")){
+                String[] Str1Array = fileNames.split("\\\\");
+                fileNames = Str1Array[Str1Array.length-1];
+            }
             String prefix = fileNames.substring(fileNames.lastIndexOf(".") + 1);
             String filePath=path+articleContentForm.getPublishTime().substring(0,4)+"/"+tArticleManage.getCategoryseq().replace(".","/");
             try {
