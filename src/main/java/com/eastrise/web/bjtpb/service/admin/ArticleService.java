@@ -46,5 +46,10 @@ public class ArticleService {
        sql.append(" order by t.publish_time desc ");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
-
+    public List<Map<String, Object>> getFilebyId(String id) throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select t.* from T_ATTACHMENT t  where t.buz_id='"+id+"'");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
 }

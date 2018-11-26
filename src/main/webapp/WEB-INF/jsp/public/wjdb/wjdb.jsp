@@ -152,9 +152,11 @@
                         ,KeyWord:$("#KeyWord").val()
                         ,KeyWordType:$("#KeyWordType").val()}
                 ,cols: [[
-                    {field:'id', width:'10%', title: '序号',type:'numbers'}
-                    ,{field:'title', width:'52%', title: '标题', templet: '#titleTpl'}
+                     {field:'ida', width:'10%', title: '序号',type:'numbers'}
+                    ,{field:'id', width:'10%', title: 'id'}
+                    ,{field:'title', width:'52%', title: '标题',}
                     ,{field:'deptName', width:'20%', title: '发布机构'}
+                    ,{field:'articleTag', width:'20%', title: '类型'}
                     ,{field:'time', width:'18%', title: '发布日期'}
                 ]]
                 ,page:false
@@ -176,6 +178,28 @@
                             }
                         }
                     })
+                    $(".layui-table-box").find("[data-field='id']").css("display","none");
+                    $(".layui-table-box").find("[data-field='articleTag']").css("display","none");
+                    $("[data-field='title']").each(function (index) {
+                        if (index) {
+                            var id= $("[data-field='id']").eq(index).find("div").html();
+                            var tltle = $(this).find("div").html();
+                            var articleTag= $("[data-field='articleTag']").eq(index).find("div").html();
+                            if(articleTag=="fj"){
+
+                            $(this).find("div").html("<a href=\"<%=appPath%>/public/articlefile/"+id+"\" class=\"layui-table-link\" target=\"_blank\"  title='"+tltle+"'>"+tltle+"</a>")}
+                            else {
+                                $(this).find("div").html("<a href=\"<%=appPath%>/public/content/"+id+"\" class=\"layui-table-link\" target=\"_blank\"  title='"+tltle+"'>"+tltle+"</a>")
+                            }
+
+
+
+                        }
+                    });
+
+
+
+
                 }
 
             });
