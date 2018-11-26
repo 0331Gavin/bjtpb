@@ -59,7 +59,7 @@ public class OperationFileUtil {
      */
     public String downloadFile(HttpServletResponse response,String fileName,String filePath){
         if (fileName != null) {
-            File file = new File(filePath);
+            File file = new File(filePath+"/"+fileName);
             if (file.exists()) {
                 response.setContentType("application/force-download");
                 response.addHeader("Content-Disposition","attachment;fileName=" +  fileName);
