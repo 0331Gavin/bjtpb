@@ -58,14 +58,15 @@ public class PublicRoutController {
         request.setAttribute("sstj",sjzdService.findsstj());
         request.setAttribute("id",articleManage.getId());
         request.setAttribute("result",result);
-        return "/public/"+code+"/"+code+".jsp";
+        return "/public/wjdb/wjdb.jsp";
     }
 
 
 
 
-    @GetMapping("/wjdb/{code}")
-    public String wjdbmx(@PathVariable String code,HttpServletRequest request) throws Exception{
+    @GetMapping("/{type}/{code}")
+    public String wjdbmx(@PathVariable String type,@PathVariable String code,HttpServletRequest request) throws Exception{
+
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         getRoutByArticleTypeId(request,articleManage.getId()+"");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];

@@ -105,7 +105,7 @@
                 </div>
                 <div class="box_lstd fl xxgk_box02 xxgk_display">
                     <div class="title w100">
-                        <h3 class="fl font14">文件电报</h3>
+                        <h3 class="fl font14">${titLeftRout}</h3>
                     </div>
                     <div class="pd10 grey LeftSide_con " id="accordion">
 

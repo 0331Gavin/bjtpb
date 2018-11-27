@@ -44,13 +44,12 @@
                 </ul>
                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
             </li>
-            <li><a href="">检查安排及总结 </a></li>
-            <li><a href="">事故故障调查</a></li>
-            <li><a href="">检查调研</a></li>
-            <li><a href="">党群工作</a></li>
-            <li><a href="">季度考核</a></li>
-            <li><a href="">学习天地</a></li>
-            <li><a href="">邮箱</a></li>
+            <li><a href="<%=appPath%>/public/jcapjzj">检查安排及总结 </a></li>
+            <li><a href="<%=appPath%>/public/sggzdc">事故故障调查</a></li>
+            <li><a href="<%=appPath%>/public/jcdy">检查调研</a></li>
+            <li><a href="<%=appPath%>/public/dqgz">党群工作</a></li>
+            <li><a href="<%=appPath%>/public/jdkh">季度考核</a></li>
+            <li><a href="<%=appPath%>/public/xxyd">学习园地</a></li>
         </ul>
 
     </div>
