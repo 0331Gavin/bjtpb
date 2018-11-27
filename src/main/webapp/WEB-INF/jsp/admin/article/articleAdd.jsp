@@ -61,17 +61,7 @@
                 autoHeightEnabled: true,
                 autoFloatEnabled: true
             });
-            UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-            UE.Editor.prototype.getActionUrl = function(action) {
-                //判断路径   这里是config.json 中设置执行上传的action名称
-                if (action == 'uploadfile') {
-                    return '/ueditor/upload';
-                } else if (action == 'uploadimage') {
-                    return '/ueditor/upload';
-                } else {
-                    return this._bkGetActionUrl.call(this, action);
-                }
-            }
+
             if($("#id").val()!=""){
                 ue.ready(function (){
                     ue.setContent($("#cont").val()==""?"":$("#cont").val())
@@ -120,7 +110,7 @@
     }
     function qx() {
         $('#nr').window('close');
-        UE.delEditor('editor');//关闭弹出窗的时候先关闭编辑框
+        //UE.delEditor('editor');//关闭弹出窗的时候先关闭编辑框
         doload();
     }
 
