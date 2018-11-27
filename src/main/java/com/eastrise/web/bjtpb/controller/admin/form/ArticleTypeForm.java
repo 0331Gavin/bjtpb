@@ -13,6 +13,7 @@ public class ArticleTypeForm {
     private String memo;
 
     private String parentid;
+    private String categorycode;
 
     public String getParentid() {
         return parentid;
@@ -62,5 +63,13 @@ public class ArticleTypeForm {
 
     public void setMemo(String memo) {
         this.memo = memo;
+    }
+
+    public String getCategorycode() {
+        return categorycode;
+    }
+
+    public void setCategorycode(String categorycode) {
+        this.categorycode = categorycode;
     }
 }

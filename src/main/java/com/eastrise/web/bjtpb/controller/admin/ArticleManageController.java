@@ -80,16 +80,21 @@ public class ArticleManageController {
             manageService.savearticleManage(tArticleManage);
         }else{
             //验重
-            /*if(!manageService.isArticleExist(articleTypeForm)){
-                return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该文章类别已存在，不能重复添加");
-            }*/
+            if(!manageService.isArticleCodeExist(articleTypeForm)){
+                return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该文章编码已存在，不能重复添加");
+            }
             TArticleManage tArticleManage=new TArticleManage();
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
             tArticleManage= manageService.savearticleManage(tArticleManage);
             if(articleTypeForm.getParentid().equals("0")){
                 tArticleManage.setCategoryseq(tArticleManage.getId()+"");
+                tArticleManage.setUrl("public/"+articleTypeForm.getCategorycode());
             }else{
                 TArticleManage prticleManage = manageService.findArticle(articleTypeForm.getParentid());
+
+                String[] a=prticleManage.getCategoryseq().split("\\.");
+                TArticleManage tArticleManage1=manageService.findArticle(a[0]);
+                tArticleManage.setUrl("public/"+tArticleManage1.getCategorycode()+"/"+articleTypeForm.getCategorycode());
                 tArticleManage.setCategoryseq(prticleManage.getCategoryseq()+"."+tArticleManage.getId());
             }
             manageService.savearticleManage(tArticleManage);

@@ -9,6 +9,10 @@
         <form id="xzzx" method="post" data-options="novalidate:true">
             <table id="tj" cellpadding="5">
                 <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;类别编码:</td>
+                    <td><input type="text" class="easyui-textbox" type="text" name="categorycode" id="categorycode" value="" data-options="required:true,validType:'length[4,20]'"></input></td>
+                </tr>
+                <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;类别名称:</td>
                     <td><input type="text" class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="" data-options="required:true,validType:'length[4,20]'"></input></td>
                 </tr>

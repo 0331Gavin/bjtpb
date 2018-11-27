@@ -4,6 +4,10 @@
         <form id="xzzx" method="post" data-options="novalidate:true">
             <table cellpadding="5">
                 <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;类别编码:</td>
+                    <td><input class="easyui-textbox" type="text" name="categorycode" id="categorycode" value="${articleManage.categorycode}" data-options="required:true,validType:'length[1,20]'"></input></td>
+                </tr>
+                <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;类别名称:</td>
                     <td><input class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="${articleManage.categoryname}" data-options="required:true,validType:'length[1,20]'"></input></td>
                 </tr>
@@ -61,4 +65,11 @@
         });
     }
 
+</script>
+<script>
+    $(document).ready(function(){
+        if("${articleManage.categorycode}"!=""){
+       $("#categorycode").attr("readOnly","true");
+   }
+    })
 </script>

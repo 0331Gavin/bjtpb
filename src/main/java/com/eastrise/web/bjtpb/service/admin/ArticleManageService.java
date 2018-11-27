@@ -82,6 +82,21 @@ public class ArticleManageService {
         }
         return true;
     }
+
+    /**
+     * 验证文章编码是否重复
+     * @param articleTypeForm
+     * @return
+     * @throws Exception
+     */
+    public boolean isArticleCodeExist(ArticleTypeForm articleTypeForm) throws Exception {
+        String sql = " select t.* from T_SYS_ARTICLEMANAGE t where 1=1 and t.category_code='" + articleTypeForm.getCategorycode() + "'";
+        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
+        if (result.size() > 0) {
+            return false;
+        }
+        return true;
+    }
     public boolean isArticleContentExist(ArticleContentForm articleContentForm) throws Exception {
         String sql = " select t.* from T_ARTICLE t where 1=1 and t.title='" + articleContentForm.getTiltle() + "'";
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
