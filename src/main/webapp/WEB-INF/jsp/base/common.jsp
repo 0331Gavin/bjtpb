@@ -1,8 +1,29 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="com.eastrise.web.bjtpb.entity.TArticleManage" %>
 <!DOCTYPE HTML>
 <%
     String appPath = request.getContextPath();
-    String rout = request.getParameter("rout");
+    List<TArticleManage> result = (List<TArticleManage>)request.getAttribute("routList");
+    String rout = "当前位置：";
+    if(result!=null) {
+        for (int i = 0; i < result.size(); i++) {
+            rout += "<a  ";
+            if (result.get(i).getUrl() == null) {
+                rout += "href = '#'";
+            } else {
+                rout += "href = '"+appPath + "/" + result.get(i).getUrl() +"'";
+                rout += "  target=\"_blank\" ";
+            }
+            rout += "title=\"" + result.get(i).getCategoryname() + "\">" + result.get(i).getCategoryname() + "</a>";
+            if (i != result.size() - 1) {
+                rout += " >> ";
+            }
+        }
+        String titRout = result.size() > 0 ? result.get(result.size() - 1).getCategoryname() : "";
+        request.setAttribute("rout",rout);
+        request.setAttribute("titRout",titRout);
+    }
 %>
 <html>
 <head>

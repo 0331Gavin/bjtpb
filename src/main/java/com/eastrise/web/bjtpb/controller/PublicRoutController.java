@@ -31,17 +31,36 @@ public class PublicRoutController {
     private SjzdService sjzdService;
     @Autowired
     private ArticleService articleService;
-    @GetMapping("/bmjj")
-    public String bmjj(){
-        return "/public/bmjj/bmjj.jsp";
-    }
-    @GetMapping("/more/{code}")
-    public String more(@PathVariable String code,HttpServletRequest request){
+
+    @GetMapping("/{code}")
+    public String bmjj(@PathVariable String code,HttpServletRequest request) throws Exception{
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         getRoutByArticleTypeId(request,articleManage.getId()+"");
+        String parentId = articleManage.getCategoryseq().split("\\.")[0];
+        List<TArticleManage> articleManageList = articleManageService.findArticleByParentId(parentId,"1");
+
+        List<Map<String,Object>> result = Lists.newArrayList();
+        Map m = new HashMap();
+        for(TArticleManage a:articleManageList){
+            m = new HashMap();
+            m.put("name",a.getCategoryname());
+            m.put("value",a.getCategorycode());
+            m.put("url",a.getUrl());
+            if(articleManage.getCategoryseq().split("\\.").length>1&&articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
+                m.put("check",true);
+            }else{
+                m.put("check",false);
+            }
+            List<TArticleManage> articleManages = articleManageService.findArticleByParentId(a.getId()+"","1");
+            m.put("sons",articleManages);
+            result.add(m);
+        }
+        request.setAttribute("sstj",sjzdService.findsstj());
         request.setAttribute("id",articleManage.getId());
-        return "/public/more/more.jsp";
+        request.setAttribute("result",result);
+        return "/public/"+code+"/"+code+".jsp";
     }
+
 
 
 
@@ -102,6 +121,14 @@ public class PublicRoutController {
         return "/public/fgzd/fgzd.jsp";
     }
 
+    @GetMapping("/more/{code}")
+    public String more(@PathVariable String code,HttpServletRequest request){
+        TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
+        getRoutByArticleTypeId(request,articleManage.getId()+"");
+        request.setAttribute("id",articleManage.getId());
+        return "/public/more/more.jsp";
+    }
+
     @GetMapping("/content/{id}")
     public String toWzView(@PathVariable String id, HttpServletRequest request) throws Exception {
         if(id!=null){
@@ -128,8 +155,7 @@ public class PublicRoutController {
 
             }
         }
-        request.setAttribute("titRout",result.size()>0?result.get(result.size()-1).getCategoryname():"");
-        request.setAttribute("rout",rout);
+        request.setAttribute("routList",result);
 
     }
 
