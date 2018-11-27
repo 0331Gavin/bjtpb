@@ -30,6 +30,9 @@
 <div id="nr" class="easyui-window" data-options="title:' ',inline:true," style="width:100%;height:100%;padding:10px" closed="true">
 
 </div>
+<%--<iframe src ="" id="ifr1" name="ifr1" scrolling="yes">
+    <p>Your browser does not support iframes.</p>
+</iframe>--%>
 <script>
     /*$(function () {
         $('#Twznr').datagrid({
@@ -44,9 +47,23 @@
         val = "<a href='#' onclick='edit(\""+row.ID+"\")'>修改</a>|<a href='#' onclick='del(\""+row.ID+"\")'>删除</a>";
         return val;
     }
-    
+    var isFirst = true;
     function addArticleCont(tag) {
-        opennrWindow("新增文章内容","/admin/article/toAddArticleContent?articleTag="+tag);
+       opennrWindow("新增文章内容","/admin/article/toAddArticleContent?articleTag="+tag);
+        if(isFirst){
+            UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+            UE.Editor.prototype.getActionUrl = function(action) {
+                if (action == 'uploadfile') {
+                    return '/ueditor/uploadFile';
+                } else if (action == 'uploadimage') {
+                    return '/ueditor/uploadImg';
+                } else {
+                    return this._bkGetActionUrl.call(this, action);
+                }
+            }
+            isFirst=false;
+        }
+
     }
     function edit(id) {
        opennrWindow("修改文章内容","/admin/article/toUpdateArticleCont?id="+id);

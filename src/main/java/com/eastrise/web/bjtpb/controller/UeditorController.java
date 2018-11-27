@@ -4,13 +4,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.baidu.ueditor.ActionEnter;
 import com.eastrise.utils.DateHelper;
 import com.eastrise.utils.OperationFileUtil;
+import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -22,12 +26,13 @@ import java.util.Map;
 @Controller
 @RequestMapping("/ueditor")
 public class UeditorController {
+    @Value("${file-service-path}")
+    private String path;
 
-    @RequestMapping("ueditorJson")
+    @RequestMapping("/ueditorJson")
     @ResponseBody
     public JSONObject Ueditor(){
-       String json="/* 前后端通信相关的配置,注释只允许使用多行方式 */\n" +
-               "{\n" +
+       String json="{\n" +
                "    /* 上传图片配置项 */\n" +
                "    \"imageActionName\": \"uploadimage\", /* 执行上传图片的action名称 */\n" +
                "    \"imageFieldName\": \"upfile\", /* 提交的图片表单名称 */\n" +
@@ -122,38 +127,70 @@ public class UeditorController {
                "}";
        return JSONObject.parseObject(json);
     }
-    @RequestMapping("/upload")
+
+    @RequestMapping("/uploadFile")
     @ResponseBody
-    public Map<String,String> uploadImage(@RequestParam("upfile") MultipartFile upfile, HttpServletRequest request) throws Exception{
-
-        //文件原名称
-
+    public Map<String,String> uploadFile(@RequestParam("upfile") MultipartFile upfile, HttpServletRequest request) throws Exception{
         String fileName=upfile.getOriginalFilename();
-
-        //为了避免重复简单处理
-
         String nowName= DateHelper.getDate()+"_" + fileName;
-
+        String path0="";
         if(!upfile.isEmpty()){
-            //上传位置路径
-            String path0 = "D:/eclipseworkspace";
-            //按照路径新建文件
+             path0 = path+"/file";
             OperationFileUtil.uploadFile(upfile,path0,nowName);
         }
-        //返回结果信息(UEditor需要)
+       return this.getUeditorMap(nowName,fileName,fileName.substring(upfile.getOriginalFilename().lastIndexOf(".")),"/ueditor/download?fileName="+nowName+"&filePath="+path0,upfile.getSize()+"");
+    }
+
+    @RequestMapping("/uploadImg")
+    @ResponseBody
+    public Map<String,String> returnImgUrl(@RequestParam("upfile") MultipartFile upfile, HttpServletRequest request)throws Exception{
+        String fileName=upfile.getOriginalFilename();
+        String nowName= DateHelper.getDate()+"_" + fileName;
+        String path0="";
+        if(!upfile.isEmpty()){
+            path0 = path+"/img";
+            OperationFileUtil.uploadFile(upfile,path0,nowName);
+        }
+       return this.getUeditorMap(nowName,fileName,fileName.substring(upfile.getOriginalFilename().lastIndexOf(".")),"/ueditor/"+nowName+"/getImage",upfile.getSize()+"");
+    }
+
+    @RequestMapping("/download")
+    public String download(HttpServletResponse response,String fileName,String filePath){
+        File file = new File(filePath+"/"+fileName);
+        OperationFileUtil.prototypeDownload(file,fileName,response);
+        return null;
+    }
+
+    @RequestMapping("{imgName}/getImage")
+    public void readImg(@PathVariable("imgName") String imgName, HttpServletResponse response)  throws Exception {
+        response.setContentType("image/*");
+        String imgPath=path+"/img/"+imgName;
+        File image = new File(imgPath);
+        if (!image.exists()) {
+            return;
+        }
+        response.getOutputStream().write(FileUtils.readFileToByteArray(image));
+        response.getOutputStream().flush();
+        response.getOutputStream().close();
+    }
+
+    /**
+     * 返回结果信息(UEditor需要)
+     * @param title  现在文件名称
+     * @param original 文件原名称
+     * @param type 文件类型 .+后缀名
+     * @param url 文件路径
+     * @param size 文件大小（字节数）
+     * @return
+     */
+    public Map<String,String> getUeditorMap(String title,String original,String type,String url,String size){
         Map<String,String> map = new HashMap<String, String>();
-        //是否上传成功
         map.put("state", "SUCCESS");
-        //现在文件名称
-        map.put("title", nowName);
-        //文件原名称
-        map.put("original", fileName);
-        //文件类型 .+后缀名
-        map.put("type", fileName.substring(upfile.getOriginalFilename().lastIndexOf(".")));
-        //文件路径
-        map.put("url", "/"+nowName+"/getImage.do");
-        //文件大小（字节数）
-        map.put("size", upfile.getSize()+"");
+        map.put("title", title);
+        map.put("original", original);
+        map.put("type", type);
+        map.put("url",url);
+        map.put("size", size);
         return map;
     }
 }

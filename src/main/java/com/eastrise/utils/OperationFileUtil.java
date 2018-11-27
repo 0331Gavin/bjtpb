@@ -2,6 +2,7 @@ package com.eastrise.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
@@ -57,45 +58,53 @@ public class OperationFileUtil {
      * @param filePath  下载文件路径（斜杠请用反斜杠“/”）
      * @return
      */
-    public String downloadFile(HttpServletResponse response,String fileName,String filePath){
-        if (fileName != null) {
-            File file = new File(filePath+"/"+fileName);
-            if (file.exists()) {
-                response.setContentType("application/force-download");
-                response.addHeader("Content-Disposition","attachment;fileName=" +  fileName);
-                byte[] buffer = new byte[1024];
-                FileInputStream fis = null;
-                BufferedInputStream bis = null;
-                try {
-                    fis = new FileInputStream(file);
-                    bis = new BufferedInputStream(fis);
-                    OutputStream os = response.getOutputStream();
-                    int i = bis.read(buffer);
-                    while (i != -1) {
-                        os.write(buffer, 0, i);
-                        i = bis.read(buffer);
-                    }
-                    System.out.println("success");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    if (bis != null) {
-                        try {
-                            bis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    if (fis != null) {
-                        try {
-                            fis.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+    public static void prototypeDownload(File file, String returnName, HttpServletResponse response){
+        // 下载文件
+        FileInputStream inputStream = null;
+        ServletOutputStream outputStream = null;
+        try {
+            if(!file.exists()) return;
+            response.reset();
+            //设置响应类型	PDF文件为"application/pdf"，WORD文件为："application/msword"， EXCEL文件为："application/vnd.ms-excel"。
+            response.setContentType("application/octet-stream;charset=utf-8");
+
+            //设置响应的文件名称,并转换成中文编码
+            //returnName = URLEncoder.encode(returnName,"UTF-8");
+            returnName = response.encodeURL(new String(returnName.getBytes(),"iso8859-1"));	//保存的文件名,必须和页面编码一致,否则乱码
+
+            //attachment作为附件下载；inline客户端机器有安装匹配程序，则直接打开；注意改变配置，清除缓存，否则可能不能看到效果
+            response.addHeader("Content-Disposition",   "attachment;filename="+returnName);
+
+            //将文件读入响应流
+            inputStream = new FileInputStream(file);
+            outputStream = response.getOutputStream();
+            int length = 1024;
+            int readLength=0;
+            byte buf[] = new byte[1024];
+            readLength = inputStream.read(buf, 0, length);
+            while (readLength != -1) {
+                outputStream.write(buf, 0, readLength);
+                readLength = inputStream.read(buf, 0, length);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        return null;
     }
+
 }
