@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/ueditor")
@@ -39,7 +40,7 @@ public class UeditorController {
                "    \"imageMaxSize\": 2048000, /* 上传大小限制，单位B */\n" +
                "    \"imageAllowFiles\": [\".png\", \".jpg\", \".jpeg\", \".gif\", \".bmp\"], /* 上传图片格式显示 */\n" +
                "    \"imageCompressEnable\": true, /* 是否压缩图片,默认是true */\n" +
-               "    \"imageCompressBorder\": 1600, /* 图片压缩最长边限制 */\n" +
+               "    \"imageCompressBorder\": 600, /* 图片压缩最长边限制 */\n" +
                "    \"imageInsertAlign\": \"none\", /* 插入的图片浮动方式 */\n" +
                "    \"imageUrlPrefix\": \"\", /* 图片访问路径前缀 */\n" +
                "    \"imagePathFormat\": \"/uedit1.4.3.3/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}\", /* 上传保存路径,可以自定义保存路径和文件名格式 */\n" +
@@ -132,26 +133,35 @@ public class UeditorController {
     @ResponseBody
     public Map<String,String> uploadFile(@RequestParam("upfile") MultipartFile upfile, HttpServletRequest request) throws Exception{
         String fileName=upfile.getOriginalFilename();
-        String nowName= DateHelper.getDate()+"_" + fileName;
+        if(fileName.contains("\\")){
+            String[] Str1Array = fileName.split("\\\\");
+            fileName = Str1Array[Str1Array.length-1];
+        }
+        Random random =new Random();
+        String nowName= System.currentTimeMillis()+random.nextInt()+ fileName;
         String path0="";
         if(!upfile.isEmpty()){
              path0 = path+"/file";
             OperationFileUtil.uploadFile(upfile,path0,nowName);
         }
-       return this.getUeditorMap(nowName,fileName,fileName.substring(upfile.getOriginalFilename().lastIndexOf(".")),"/ueditor/download?fileName="+nowName+"&filePath="+path0,upfile.getSize()+"");
+       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/ueditor/download?fileName="+nowName+"&filePath="+path0,upfile.getSize()+"");
     }
 
-    @RequestMapping("/uploadImg")
+    @RequestMapping(value = "/uploadImg" ,produces = "text/html;charset:utf-8")
     @ResponseBody
     public Map<String,String> returnImgUrl(@RequestParam("upfile") MultipartFile upfile, HttpServletRequest request)throws Exception{
         String fileName=upfile.getOriginalFilename();
-        String nowName= DateHelper.getDate()+"_" + fileName;
-        String path0="";
-        if(!upfile.isEmpty()){
-            path0 = path+"/img";
-            OperationFileUtil.uploadFile(upfile,path0,nowName);
+        String imgPath=request.getSession().getServletContext().getRealPath("/uploadImg/img");
+        if(fileName.contains("\\")){
+            String[] Str1Array = fileName.split("\\\\");
+            fileName = Str1Array[Str1Array.length-1];
         }
-       return this.getUeditorMap(nowName,fileName,fileName.substring(upfile.getOriginalFilename().lastIndexOf(".")),"/ueditor/"+nowName+"/getImage",upfile.getSize()+"");
+        Random random =new Random();
+        String nowName= DateHelper.getDate()+random.nextInt()+"_" + fileName;
+        if(!upfile.isEmpty()){
+            OperationFileUtil.uploadFile(upfile,imgPath,nowName);
+        }
+       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/uploadImg/img/"+nowName,upfile.getSize()+"");
     }
 
     @RequestMapping("/download")
