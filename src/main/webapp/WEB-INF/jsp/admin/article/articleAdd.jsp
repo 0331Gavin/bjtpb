@@ -30,7 +30,6 @@
                 </tr>
             </table>
             <input type="hidden" id="id" name="id" value="${id}">
-            <input type="hidden" id="cont" name="cont" value="${articles.content}">
             <input type="hidden" id="attachmentId" name="attachmentId" value="${tAttachment.id}">
             <input type="hidden" id="attachmentPath" name="attachmentPath" value="${tAttachment.attachmentPath}">
             <input type="hidden" id="attachmentName" name="attachmentName" value="${tAttachment.attachmentName}">
@@ -41,7 +40,8 @@
         <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:qx()" style="width:80px">取消</a>
     </div>
 </div>
-<script>
+<script type="text/javascript">
+    var con='${articles.content}';
     $(function(){
         $.extend($.fn.validatebox.defaults.rules, {
             articleType: {
@@ -61,10 +61,9 @@
                 autoHeightEnabled: true,
                 autoFloatEnabled: true
             });
-
             if($("#id").val()!=""){
                 ue.ready(function (){
-                    ue.setContent($("#cont").val()==""?"":$("#cont").val())
+                   ue.setContent(con==""?"":con);
                 });
             }
         }else if($("#articleTag").val()=="fj"){

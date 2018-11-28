@@ -109,10 +109,10 @@ public class ArticleManageController {
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
 
-    @GetMapping("/getArticleContent")
+    @PostMapping("/getArticleContent")
     @ResponseBody
-    public String getArticleContent()throws Exception{
-        return manageService.getArticleContent().toString();
+    public String getArticleContent(ArticleContentForm articleContentForm)throws Exception{
+        return manageService.getArticleContent(articleContentForm).toString();
     }
 
     @GetMapping("/toAddArticleContent")
@@ -222,13 +222,6 @@ public class ArticleManageController {
         manageService.delArticleCont(id);
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
-
-
-    @GetMapping(value = "/downloadFile")
-    public void downloadFile(HttpServletResponse response,String id){
-
-    }
-
 
     @PostMapping("/listArticles")
     @ResponseBody

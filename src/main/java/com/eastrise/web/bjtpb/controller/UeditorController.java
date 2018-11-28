@@ -4,7 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 
 import com.eastrise.utils.DateHelper;
 import com.eastrise.utils.OperationFileUtil;
+import com.eastrise.web.bjtpb.entity.LocalUserDetails;
+import com.eastrise.web.bjtpb.entity.TAttachment;
+import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
+import com.eastrise.web.bjtpb.service.admin.UserService;
+import com.sun.xml.internal.ws.api.message.Attachment;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -27,8 +33,13 @@ import java.util.Random;
 @Controller
 @RequestMapping("/ueditor")
 public class UeditorController {
+
     @Value("${file-service-path}")
     private String path;
+    @Autowired
+    private ArticleManageService manageService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/ueditorJson")
     @ResponseBody
@@ -144,7 +155,21 @@ public class UeditorController {
              path0 = path+"/file";
             OperationFileUtil.uploadFile(upfile,path0,nowName);
         }
-       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/ueditor/download?fileName="+nowName+"&filePath="+path0,upfile.getSize()+"");
+        LocalUserDetails localUserDetails =userService.findUserDetails();
+        TAttachment tAttachment =new TAttachment();
+        tAttachment.setAttachmentName(nowName);
+        tAttachment.setAttachmentPath(path0);
+        tAttachment.setAttachmentType("");
+        tAttachment.setBuzId("");
+        tAttachment.setBuzTable("");
+        tAttachment.setFileType("");
+        tAttachment.setUploadDeptId(localUserDetails.getDeptId()+"");
+        tAttachment.setUploadDeptName(localUserDetails.getDeptName());
+        tAttachment.setUploadTime(DateHelper.getDateTime());
+        tAttachment.setUploadUserId(localUserDetails.getId());
+        tAttachment.setUploadUserName(localUserDetails.getUserName());
+        tAttachment= manageService.saveAttachment(tAttachment);
+       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/ueditor/download?id="+tAttachment.getId(),upfile.getSize()+"");
     }
 
     @RequestMapping(value = "/uploadImg" ,produces = "text/html;charset:utf-8")
@@ -165,9 +190,10 @@ public class UeditorController {
     }
 
     @RequestMapping("/download")
-    public String download(HttpServletResponse response,String fileName,String filePath){
-        File file = new File(filePath+"/"+fileName);
-        OperationFileUtil.prototypeDownload(file,fileName,response);
+    public String download(HttpServletResponse response,String id){
+        TAttachment tAttachment= manageService.findAttachmentById(id);
+        File file = new File(tAttachment.getAttachmentPath()+"/"+tAttachment.getAttachmentName());
+        OperationFileUtil.prototypeDownload(file,tAttachment.getAttachmentName(),response);
         return null;
     }
 
