@@ -65,6 +65,12 @@
 				<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="1">系统日志</a></li>
 			</ul>
 		</div>
+		<div title="友情链接管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
+			<ul class="easyui-tree wu-side-tree">
+				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/system/yqLj" iframe="1">友情链接</a></li>
+
+			</ul>
+		</div>
 	</div>
 </div>
 <!-- end of sidebar -->
