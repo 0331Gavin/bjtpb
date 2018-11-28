@@ -20,7 +20,7 @@
 <div id="tb" style="padding:5px;height:auto">
 
     <div>
-        连接名称: <input class="easyui-textbox" id="ljmcq"/>
+        链接名称: <input class="easyui-textbox" id="ljmcq"/>
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
 </div>

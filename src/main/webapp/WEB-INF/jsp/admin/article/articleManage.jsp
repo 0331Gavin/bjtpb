@@ -5,16 +5,8 @@
 </head>
 <body>
 <div style="padding:0px;background:#fafafa;width:100%;border:0px solid #ccc">
-    <table>
-        <tr>
-            <td><div style="margin-left: 5px"><a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addArticleCont('tw')">添加文章<b>(图文)</b></a></div>
-            </td>
-            <td><div style="margin-left: 5px"><a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="addArticleCont('fj')">添加文章<b>(附件)</b></a></div>
-            </td>
-        </tr>
-    </table>
 </div>
-<table id="Twznr" class="easyui-datagrid"  style="width:100%;height:92%;"
+<table id="Twznr" class="easyui-datagrid"  style="width:100%;height:100%;"
        data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'post',toolbar:'#tb',rownumbers:'true'" pagination="true">
     <thead>
     <tr>
@@ -40,6 +32,25 @@
 
 </div>
 <script>
+    $(function(){
+        var pager = $('#Twznr').datagrid().datagrid('getPager');	// get the pager of datagrid
+        pager.pagination({
+            buttons:[{
+                iconCls:'icon-add',
+                text:'新增用户(图文)',
+                handler:function(){
+                    addArticleCont('tw')
+                }
+            },{
+            iconCls:'icon-add',
+                text:'新增用户(附件)',
+                handler:function(){
+                    addArticleCont('fj')
+            }
+        }]
+        });
+
+    })
     /*$(function () {
         $('#Twznr').datagrid({
             //单击事件
