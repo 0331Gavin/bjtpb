@@ -404,17 +404,11 @@
                 <div class="section-content">
                     <div class="content">
                         <ul class="frient-link">
+                            <c:forEach items="${yqlj}" var="list">
                             <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
+                                <div class=""><a href="${list.ljurl}">${list.ljmc}</a></div>
                             </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-                            </li>
-                            <li>
-                                <div class="left"><a href="#">中国铁路总公司关于印发</a></div>
-
-                            </li>
-
+                            </c:forEach>
                         </ul>
 
                     </div>

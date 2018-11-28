@@ -51,6 +51,12 @@ public class YqljService {
         sql.append("select t.* from t_sys_yqlj t where t.id='"+id+"'");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
+    public List<Map<String, Object>> findAll() throws Exception {
+        //定义 用于查询的SQL
+        StringBuffer sql = new StringBuffer();
+        sql.append("select t.* from t_sys_yqlj t ");
+        return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
 
     public void del(String id) throws Exception{
         yqljRepository.deleteById(id);

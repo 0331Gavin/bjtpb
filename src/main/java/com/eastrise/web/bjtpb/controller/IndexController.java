@@ -5,6 +5,7 @@ import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
 import com.eastrise.web.bjtpb.service.admin.ArticleService;
+import com.eastrise.web.bjtpb.service.admin.YqljService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,18 +30,25 @@ public class IndexController {
     @Autowired
     private ArticleService articleService;
     @Autowired
+    private YqljService yqljService;
+    @Autowired
     private ArticleManageService articleManageService;
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public String login(HttpServletRequest request) {
+    public String login(HttpServletRequest request) throws  Exception{
+        request.setAttribute("yqlj",yqljService.findAll());
         getArticleList(request,"wjdb");
         getArticleList(request,"fgzd");
+
+
+
         getMenuList(request);
         return "public/index.jsp";
     }
 
     @RequestMapping(value = {"/", "/index.html", "/index"}, method = RequestMethod.GET)
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request) throws Exception {
+        request.setAttribute("yqlj",yqljService.findAll());
         getArticleList(request,"wjdb");
         getArticleList(request,"fgzd");
         getMenuList(request);
