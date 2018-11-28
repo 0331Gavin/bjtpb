@@ -140,7 +140,9 @@ public class ArticleManageService {
                 int rootId=0;
                 predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
                 predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
-                return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+                criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get("articleorder")));
+                return criteriaQuery.getRestriction();
             }
         };
         return (List<TArticleManage>) articleManageRepository.findAll(specification);
