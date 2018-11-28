@@ -10,4 +10,8 @@ public class Constants {
     public static final String S_BT = "S_BT";
     public static final String S_FBRQ = "S_FBRQ";
     public static final String S_FBJG = "S_FBJG";
+
+    public static final String CKMS_LBMS = "CKMS_LBMS";
+    public static final String CKMS_TWMS = "CKMS_TWMS";
+    public static final String CKMS_SSLB = "CKMS_SSLB";
 }

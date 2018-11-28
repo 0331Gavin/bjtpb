@@ -1,6 +1,8 @@
 package com.eastrise.web.bjtpb.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.base.TSysUser;
+import com.eastrise.web.base.Constants;
+import com.eastrise.web.bjtpb.entity.TArticle;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
 import com.eastrise.web.bjtpb.service.admin.*;
 import org.apache.commons.lang.StringUtils;
@@ -59,7 +61,17 @@ public class PublicRoutController {
         request.setAttribute("sstj",sjzdService.findsstj());
         request.setAttribute("id",articleManage.getId());
         request.setAttribute("result",result);
-        return "/public/wjdb/wjdb.jsp";
+        if(Constants.CKMS_LBMS.equals(articleManage.getViewModel())){
+            return "/public/wjdb/wjdb_lbms.jsp";
+        }else if(Constants.CKMS_TWMS.equals(articleManage.getViewModel())){
+            List<TArticle> articles = articleService.getArticleListByArticleTypeId(articleManage.getId()+"");
+            request.setAttribute("article",articles.size()>0?articles.get(0):null);
+            return "/public/wjdb/wjdb_twms.jsp";
+        }else if(Constants.CKMS_SSLB.equals(articleManage.getViewModel())){
+            return "/public/wjdb/wjdb_sslb.jsp";
+        }else{
+            return "/public/wjdb/wjdb_sslb.jsp";
+        }
     }
 
 
@@ -92,7 +104,17 @@ public class PublicRoutController {
         request.setAttribute("sstj",sjzdService.findsstj());
         request.setAttribute("id",articleManage.getId());
         request.setAttribute("result",result);
-        return "/public/wjdb/wjdb.jsp";
+        if(Constants.CKMS_LBMS.equals(articleManage.getViewModel())){
+            return "/public/wjdb/wjdb_lbms.jsp";
+        }else if(Constants.CKMS_TWMS.equals(articleManage.getViewModel())){
+            List<TArticle> articles = articleService.getArticleListByArticleTypeId(articleManage.getId()+"");
+            request.setAttribute("article",articles.size()>0?articles.get(0):null);
+            return "/public/wjdb/wjdb_twms.jsp";
+        }else if(Constants.CKMS_SSLB.equals(articleManage.getViewModel())){
+            return "/public/wjdb/wjdb_sslb.jsp";
+        }else{
+            return "/public/wjdb/wjdb_sslb.jsp";
+        }
     }
 
     @GetMapping("/more/{code}")
