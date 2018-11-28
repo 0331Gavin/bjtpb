@@ -46,22 +46,22 @@ public class OrgService {
                 if(orgId>0){
                     if(isAll){
                         TSysOrg tmpOrg=findOrgById(orgId);
-                        predicates.add(criteriaBuilder.like(root.get("org_seq"), tmpOrg.getOrgSeq()+".%" ));
+                        predicates.add(criteriaBuilder.like(root.get("orgSeq"), tmpOrg.getOrgSeq()+".%" ));
                     }else{
-                        predicates.add(criteriaBuilder.equal(root.get("parent_id"), orgId ));
+                        predicates.add(criteriaBuilder.equal(root.get("parentId"), orgId ));
                     }
                 }else{
                     Long rootId=Long.parseLong("1");
                     if(isAll){
                         TSysOrg tmpOrg=findOrgById(rootId);
-                        predicates.add(criteriaBuilder.like(root.get("org_seq"), tmpOrg.getOrgSeq()+"%" ));
+                        predicates.add(criteriaBuilder.like(root.get("orgSeq"), tmpOrg.getOrgSeq()+"%" ));
                     }else{
                         predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
                     }
                 }
                 predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
                 criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
-                criteriaQuery.orderBy(criteriaBuilder.asc(root.get("org_order")));
+                criteriaQuery.orderBy(criteriaBuilder.asc(root.get("orgOrder")));
                 return criteriaQuery.getRestriction();
             }
         };
@@ -103,6 +103,7 @@ public class OrgService {
             long pardeptid =Long.valueOf(sjorgname);
             sql.append(" and dept.parent_id like '%"+pardeptid+"%'");
         }
+        sql.append(" and dept.status>'-1' ");
         sql.append("order by dept.org_order");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }

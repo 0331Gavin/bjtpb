@@ -217,7 +217,7 @@
 
                         <div class="post">
                             <div class="title">
-                                <h3>检查安排及总结<a href="/public/more/jcapzj" target="_blank" class="more"></a></h3>
+                                <h3>检查安排及总结<a href="/public/more/jcapjzj" target="_blank" class="more"></a></h3>
                                 <div class="line"></div>
                             </div>
                             <div class="content">
@@ -236,7 +236,7 @@
 
                         <div class="post">
                             <div class="title">
-                                <h3>检查调研<a href="/subject/4.html" target="_blank" class="more"></a></h3>
+                                <h3>检查调研<a href="/public/more/jcdy" target="_blank" class="more"></a></h3>
                                 <div class="line"></div>
                             </div>
                             <div class="content">
@@ -302,7 +302,7 @@
 
                 <div class="post">
                     <div class="title">
-                        <h3>事故故障调查<a href="/subject/4.html" class="more"></a></h3>
+                        <h3>事故故障调查<a href="/public/more/sggzdc" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
 
@@ -320,7 +320,7 @@
                 <div class="post">
 
                     <div class="title">
-                        <h3>党群工作<a href="/subject/4.html" class="more"></a></h3>
+                        <h3>党群工作<a href="/public/more/dcgz" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
 
@@ -384,7 +384,7 @@
 
                                             <div class="form_row"><label class="left">用户名: </label><input type='text'  class="form_input" name='username' value='admin'  placeholder="输入帐号"></div>
                                             <div class="form_row"><label class="left">密&nbsp;&nbsp;&nbsp;&nbsp;码: </label><input  type='password'  class="form_input" name='password' value='666666' placeholder="输入密码"/></div>
-                                        <div class="form_row"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;一周内记住我</label></div>
+                                        <div class="form_row"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;记住我</label></div>
                                             <div class="form_row"> <input type="submit" value="登&nbsp;&nbsp;录"/></div>
                                     </div>
                                 </form>

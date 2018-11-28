@@ -1,4 +1,7 @@
-﻿<!--_meta 作为公共模版分离出去-->
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!--_meta 作为公共模版分离出去-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -30,8 +33,9 @@
 		<h1>中国铁路总公司北京特派办-后台管理</h1>
 	</div>
 	<div class="wu-header-right">
-		<p><strong class="easyui-tooltip" title="2条未读消息">admin</strong>，欢迎您！</p>
-		<p><a href="/">网站首页</a>|<a href="/help">帮助中心</a>|<a href="/logout">注销</a></p>
+		<sec:authentication property="name" var="username"/>
+		<p><strong class="easyui-tooltip" title="">${username}</strong>，欢迎您！</p>
+		<p><a href="/">网站首页</a>|<a href="#">帮助中心</a>|<a href="/logout">注销</a></p>
 	</div>
 </div>
 <!-- end of header -->

@@ -1,7 +1,6 @@
 package com.eastrise.web.bjtpb.entity;
 
 
-import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Where;
 
@@ -64,6 +63,7 @@ public class TSysOrg {
     @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id",insertable = false, updatable = false)
     @Where(clause="status=1")
+    @org.hibernate.annotations.OrderBy(clause="orgOrder asc")
     private List<TSysOrg> children;
 
     public long getId() {
