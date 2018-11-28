@@ -21,8 +21,10 @@
             }
         }
         String titRout = result.size() > 0 ? result.get(result.size() - 1).getCategoryname() : "";
+        String titLeftRout = result.size() > 0 ? result.get(0).getCategoryname() : "";
         request.setAttribute("rout",rout);
         request.setAttribute("titRout",titRout);
+        request.setAttribute("titLeftRout",titLeftRout);
     }
 %>
 <html>

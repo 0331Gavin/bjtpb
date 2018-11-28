@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * create by gzq on 2018/10/30 15:08
@@ -34,6 +35,7 @@ public class IndexController {
     public String login(HttpServletRequest request) {
         getArticleList(request,"wjdb");
         getArticleList(request,"fgzd");
+        getMenuList(request);
         return "public/index.jsp";
     }
 
@@ -41,7 +43,7 @@ public class IndexController {
     public String index(HttpServletRequest request) {
         getArticleList(request,"wjdb");
         getArticleList(request,"fgzd");
-
+        getMenuList(request);
         //如果已经登陆跳转到个人首页
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
@@ -69,5 +71,11 @@ public class IndexController {
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         ApiPageResponse response = articleService.findPublicPageData(10,1,articleManage.getId()+"",null, null);
         request.setAttribute(code+"",response.getRows());
+    }
+
+    public void getMenuList(HttpServletRequest request){
+        List<TArticleManage> articleManageList = articleManageService.findArticleByParentId("0","1");
+        System.out.println(JSONObject.toJSONString(articleManageList));
+        request.setAttribute("menuList",articleManageList);
     }
 }
