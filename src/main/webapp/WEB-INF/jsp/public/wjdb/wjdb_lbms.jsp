@@ -144,9 +144,9 @@
                 }
                 arr.push("<li><b>["+data.data[i].articleType+"]</b>");
                 if(data.data[i].articleTag=="fj"){
-                    arr.push("<img src=\"../../images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                    arr.push("<img src=\"<%=appPath%>/images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
                 }else{
-                    arr.push("<a href=\"../content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                    arr.push("<a href=\"<%=appPath%>/public/content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
                 }
 
                 arr.push("<span class=\"fr\">"+data.data[i].time+"</span></li>");

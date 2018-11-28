@@ -49,6 +49,7 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/","index","index.html").permitAll()
                 .antMatchers("/public/**").permitAll()
+                .antMatchers("/uedit1.4.3.3/**","/uploadImg/**").permitAll()
                  .anyRequest().authenticated()
                 .and().formLogin().loginPage("/")
                 .loginProcessingUrl("/login")

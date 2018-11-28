@@ -60,7 +60,9 @@ public class OrgService {
                     }
                 }
                 predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
-                return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();
+                criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
+                criteriaQuery.orderBy(criteriaBuilder.desc(root.get("org_order")));
+                return criteriaQuery.getRestriction();
             }
         };
 

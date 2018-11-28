@@ -38,14 +38,13 @@
 <!-- begin of sidebar -->
 <div class="wu-sidebar" data-options="region:'west',split:true,border:true,title:'导航菜单'">
 	<div class="easyui-accordion" data-options="border:false,fit:true">
-		<div title="开发" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
-			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/test" iframe="1">功能测试</a></li>
-			</ul>
-		</div>
+		<%--<div title="开发" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">--%>
+			<%--<ul class="easyui-tree wu-side-tree">--%>
+				<%--<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/test" iframe="1">功能测试</a></li>--%>
+			<%--</ul>--%>
+		<%--</div>--%>
 		<div title="文章管理" data-options="iconCls:'icon-application-cascade'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleAdd" iframe="1">添加文章内容</a></li>
 				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleManage" iframe="1">文章内容管理</a></li>
 			</ul>
 		</div>
@@ -55,7 +54,11 @@
 				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleTypeManage" iframe="1">文章类别管理</a></li>
 			</ul>
 		</div>
-
+			<div title="友情链接管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
+				<ul class="easyui-tree wu-side-tree">
+					<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/system/yqLj" iframe="1">友情链接</a></li>
+				</ul>
+			</div>
 		<div title="系统管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
 				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/system/xgMa" iframe="1">修改密码</a></li>
@@ -65,12 +68,7 @@
 				<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="1">系统日志</a></li>
 			</ul>
 		</div>
-		<div title="友情链接管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
-			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/system/yqLj" iframe="1">友情链接</a></li>
 
-			</ul>
-		</div>
 	</div>
 </div>
 <!-- end of sidebar -->
