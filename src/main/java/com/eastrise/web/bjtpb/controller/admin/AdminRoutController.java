@@ -4,6 +4,7 @@ import com.eastrise.base.TSysUser;
 import com.eastrise.web.bjtpb.service.admin.OrgService;
 import com.eastrise.web.bjtpb.service.admin.SjzdService;
 import com.eastrise.web.bjtpb.service.admin.UserService;
+import com.eastrise.web.bjtpb.service.admin.YqljService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,8 @@ public class AdminRoutController {
     private SjzdService sjzdService;
     @Autowired
     private OrgService orgService;
+    @Autowired
+    private YqljService yqljService;
     @GetMapping("/home")
     public String home(){
         return "/admin/adminHome.jsp";
@@ -79,9 +82,20 @@ public class AdminRoutController {
             request.setAttribute("sjzd",list);}
         return "/admin/system/sjzdEdit.jsp";
     }
+    @GetMapping("/system/yqljEdit")
+    public String yqljEdit(String id, HttpServletRequest request) throws Exception {
+        if(id!=null){
+            Map<String, Object> list =yqljService.findById(id).get(0);
+            request.setAttribute("yqlj",list);}
+        return "/admin/system/yqljEdit.jsp";
+    }
     @GetMapping("/system/xgMa")
     public String xgMa(){
         return "/admin/system/xgMa.jsp";
+    }
+    @GetMapping("/system/yqLj")
+    public String yqLj(){
+        return "/admin/system/yqljManage.jsp";
     }
     @GetMapping("/system/sjZd")
     public String sjZd(HttpServletRequest request) throws Exception {

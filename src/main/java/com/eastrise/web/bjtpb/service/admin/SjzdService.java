@@ -41,11 +41,11 @@ public class SjzdService {
         StringBuilder sql = new StringBuilder("select t.* from t_sys_sjzd t where 1=1");
         if(Strings.isNotEmpty(sjbm)) {
             sjbm=sjbm.trim();
-            sql.append(" and t.sjbm like'"+sjbm+"'");
+            sql.append(" and t.sjbm like '%"+sjbm+"%'");
         }
         if(Strings.isNotEmpty(sjmc)){
             sjmc=sjmc.trim();
-            sql.append(" and t.sjmc like '"+sjmc+"'");
+            sql.append(" and t.sjmc like '%"+sjmc+"%'");
         }
         if(Strings.isNotEmpty(sjlx)){
             sql.append(" and t.sjlx = '"+sjlx+"'");

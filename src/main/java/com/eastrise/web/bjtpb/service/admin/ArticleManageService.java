@@ -105,10 +105,23 @@ public class ArticleManageService {
         }
         return true;
     }
-    public JSONObject getArticleContent() throws Exception {
+
+    public JSONObject getArticleContent(ArticleContentForm articleContentForm) throws Exception {
         JSONObject json = new JSONObject();
-        String sql = "select t.* from T_ARTICLE t";
-        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
+        StringBuilder sb =new StringBuilder("select t.* from T_ARTICLE t where 1=1 ");
+        if(StringUtils.isNotEmpty(articleContentForm.getTiltle())){
+            sb.append(" and t.TITLE like '%"+articleContentForm.getTiltle()+"%'");
+        }
+        if(StringUtils.isNotEmpty(articleContentForm.getPublishDept())){
+            sb.append(" and t.PUBLISH_DEPT_NAME like '%"+articleContentForm.getPublishDept()+"%'");
+        }
+        if(StringUtils.isNotEmpty(articleContentForm.getKssj())){
+            sb.append(" and t.PUBLISH_TIME >="+articleContentForm.getKssj());
+        }
+        if(StringUtils.isNotEmpty(articleContentForm.getJssj())){
+            sb.append(" and t.PUBLISH_TIME <="+articleContentForm.getJssj());
+        }
+        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sb.toString());
         json.put("rows", result);
         json.put("total", result.size());
         return json;
@@ -170,6 +183,9 @@ public class ArticleManageService {
     }
     public TAttachment findTAttachmentByBuzId(String id){
         return attachmentRepository.findByBuzId(id);
+    }
+    public TAttachment findAttachmentById(String id){
+        return attachmentRepository.findByIdAndStatus(id);
     }
     public void delAttachment(String id) {
         attachmentRepository.deleteById(id);
