@@ -11,18 +11,18 @@
     <thead>
     <tr>
         <th data-options="field:'TITLE',width:300,align:'center'">文章标题</th>
-        <th data-options="field:'PUBLISH_DEPT_NAME',width:200,align:'center'">起草部门</th>
-           <th data-options="field:'PUBLISH_TIME',width:200,align:'center'">发布时间</th>
-           <th data-options="field:'productid',width:130,align:'center'">文章编号</th>
-           <th data-options="field:'unitcost',width:190,align:'center'">文章文号</th>
+        <th data-options="field:'PUBLISH_DEPT_NAME',width:200,align:'center'">发布部门</th>
+           <th data-options="field:'PUBLISH_TIME',width:180,align:'center'">发布时间</th>
+           <th data-options="field:'PUBLISH_DEPT_NAME',width:100,align:'center'">录入人</th>
+           <th data-options="field:'CATEGORY_NAME',width:140,align:'center'">文章类别</th>
            <th data-options="field:'_operate',width:140,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
 </table>
 <div id="tb" style="padding:5px;height:auto">
     <div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章标题: <input class="easyui-textbox" name="aticleTitle" id="aticleTitle"   >
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起草部门: <input class="easyui-textbox" name="orgName" id="orgName"  >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章标题: <input class="easyui-textbox" name="aticleTitle" id="aticleTitle"  style="width: 180px" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章类别: <input id="articleTypeId" name="articleTypeId" value="" class="easyui-combotree" data-options="validType:'articleType',url:'/admin/article/listArticles',method:'post'" style="width:180px;"></input>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布时间: <input class="easyui-datebox" name="kssj" id="kssj"  >
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 至: <input class="easyui-datebox" name="jssj" id="jssj"  >
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doload()">查询</a>
@@ -104,7 +104,7 @@
     function doload() {
         $('#Twznr').datagrid('load',{
             tiltle:$("#aticleTitle").val(),
-            publishDept:$("#orgName").val(),
+            articleTypeId:$("#articleTypeId").val()=="文章类别"?"":$("#articleTypeId").val(),
             kssj:$("#kssj").val(),
             jssj:$("#jssj").val()
         });

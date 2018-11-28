@@ -108,7 +108,7 @@ public class ArticleManageService {
 
     public JSONObject getArticleContent(ArticleContentForm articleContentForm) throws Exception {
         JSONObject json = new JSONObject();
-        StringBuilder sb =new StringBuilder("select t.* from T_ARTICLE t where 1=1 ");
+        StringBuilder sb =new StringBuilder("select t.*,a.category_name from T_ARTICLE t  left join T_SYS_ARTICLEMANAGE a on t.article_type_id =a.id where 1=1 ");
         if(StringUtils.isNotEmpty(articleContentForm.getTiltle())){
             sb.append(" and t.TITLE like '%"+articleContentForm.getTiltle()+"%'");
         }
@@ -116,10 +116,13 @@ public class ArticleManageService {
             sb.append(" and t.PUBLISH_DEPT_NAME like '%"+articleContentForm.getPublishDept()+"%'");
         }
         if(StringUtils.isNotEmpty(articleContentForm.getKssj())){
-            sb.append(" and t.PUBLISH_TIME >="+articleContentForm.getKssj());
+            sb.append(" and t.PUBLISH_TIME >='"+articleContentForm.getKssj()+"'");
         }
         if(StringUtils.isNotEmpty(articleContentForm.getJssj())){
-            sb.append(" and t.PUBLISH_TIME <="+articleContentForm.getJssj());
+            sb.append(" and t.PUBLISH_TIME <='"+articleContentForm.getJssj()+"'");
+        }
+        if(StringUtils.isNotEmpty(articleContentForm.getArticleTypeId())){
+            sb.append(" and t.ARTICLE_TYPE_ID ='"+articleContentForm.getArticleTypeId()+"'");
         }
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sb.toString());
         json.put("rows", result);
@@ -141,7 +144,7 @@ public class ArticleManageService {
                 predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
                 predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
                 criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
-                criteriaQuery.orderBy(criteriaBuilder.desc(root.get("articleorder")));
+                criteriaQuery.orderBy(criteriaBuilder.asc(root.get("articleorder")));
                 return criteriaQuery.getRestriction();
             }
         };

@@ -15,7 +15,7 @@
                 <tr>
                    <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>
                     <td><input id="sj" name="publishTime" value="${articles.publishTime}" type="text" class="easyui-datebox" required="required" style="width:150px;"></td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;起草部门:</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布部门:</td>
                     <td><input class="easyui-textbox" type="text" name="publishDept" id="publishDept" value="${articles.publishDept}" data-options="required:false,validType:'length[1,40]'" style="width:140px;"></input></td>
                 </tr>
                 <input type="hidden" id="articleTag" name="articleTag" value="${articleTag}">
