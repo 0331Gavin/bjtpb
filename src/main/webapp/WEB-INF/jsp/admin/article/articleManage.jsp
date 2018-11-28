@@ -37,13 +37,13 @@
         pager.pagination({
             buttons:[{
                 iconCls:'icon-add',
-                text:'新增用户(图文)',
+                text:'新增文章<font><b>(图文)</b></font>',
                 handler:function(){
                     addArticleCont('tw')
                 }
             },{
             iconCls:'icon-add',
-                text:'新增用户<font>(附件)</fn>',
+                text:'新增文章<font><b>(附件)</b></font>',
                 handler:function(){
                     addArticleCont('fj')
             }
