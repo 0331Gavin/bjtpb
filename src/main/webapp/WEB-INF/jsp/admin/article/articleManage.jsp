@@ -10,11 +10,11 @@
        data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'post',toolbar:'#tb',rownumbers:'true'" pagination="true">
     <thead>
     <tr>
-        <th data-options="field:'TITLE',width:300,align:'center'">文章标题</th>
+        <th data-options="field:'TITLE',width:340,align:'center'">文章标题</th>
+        <th data-options="field:'CATEGORY_NAME',width:140,align:'center'">文章类别</th>
         <th data-options="field:'PUBLISH_DEPT_NAME',width:200,align:'center'">发布部门</th>
            <th data-options="field:'PUBLISH_TIME',width:180,align:'center'">发布时间</th>
-           <th data-options="field:'PUBLISH_DEPT_NAME',width:100,align:'center'">录入人</th>
-           <th data-options="field:'CATEGORY_NAME',width:140,align:'center'">文章类别</th>
+           <th data-options="field:'CREATE_USER_NAME',width:160,align:'center'">录入人</th>
            <th data-options="field:'_operate',width:140,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>

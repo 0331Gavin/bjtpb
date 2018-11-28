@@ -4,7 +4,7 @@
     <%@ include file="../common.jsp" %>
 </head>
 <body>
-<table id="gl" title="类别管理" class="easyui-treegrid" style="width:100%;height:98%"
+<table id="gl" title="类别管理" class="easyui-treegrid" style="width:100%;height:100%"
        data-options="
 				url: '/admin/article/getArticleCategory',
 				method: 'get',
