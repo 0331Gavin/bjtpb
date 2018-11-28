@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.Random;
 
 @Controller
-@RequestMapping("/ueditor")
+@RequestMapping("/public/ueditor")
 public class UeditorController {
 
     @Value("${file-service-path}")
@@ -169,7 +169,7 @@ public class UeditorController {
         tAttachment.setUploadUserId(localUserDetails.getId());
         tAttachment.setUploadUserName(localUserDetails.getUserName());
         tAttachment= manageService.saveAttachment(tAttachment);
-       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/ueditor/download?id="+tAttachment.getId(),upfile.getSize()+"");
+       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/public/ueditor/download?id="+tAttachment.getId(),upfile.getSize()+"");
     }
 
     @RequestMapping(value = "/uploadImg" ,produces = "text/html;charset:utf-8")
