@@ -47,6 +47,7 @@ public class TArticleManage {
     @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id",insertable = false, updatable = false)
     @Where(clause="status=1")
+    @org.hibernate.annotations.OrderBy(clause="articleorder asc")
     private List<TArticleManage> children;
 
     public List<TArticleManage> getChildren() {
