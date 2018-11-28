@@ -223,13 +223,6 @@ public class ArticleManageController {
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
 
-
-    @GetMapping(value = "/downloadFile")
-    public void downloadFile(HttpServletResponse response,String id){
-
-    }
-
-
     @PostMapping("/listArticles")
     @ResponseBody
     public List<TArticleManage> listArticles(){

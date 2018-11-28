@@ -171,6 +171,9 @@ public class ArticleManageService {
     public TAttachment findTAttachmentByBuzId(String id){
         return attachmentRepository.findByBuzId(id);
     }
+    public TAttachment findAttachmentById(String id){
+        return attachmentRepository.findByIdAndStatus(id);
+    }
     public void delAttachment(String id) {
         attachmentRepository.deleteById(id);
     }
