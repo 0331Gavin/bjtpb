@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 后台管理 路由控制类
+ *  路由控制类
  * create by gzq on 2018/11/13 13:34
  */
 @Controller
@@ -34,6 +34,7 @@ public class PublicRoutController {
 
     @GetMapping("/{code}")
     public String bmjj(@PathVariable String code,HttpServletRequest request) throws Exception{
+        getMenuList(request);
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         getRoutByArticleTypeId(request,articleManage.getId()+"");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];
@@ -66,7 +67,7 @@ public class PublicRoutController {
 
     @GetMapping("/{type}/{code}")
     public String wjdbmx(@PathVariable String type,@PathVariable String code,HttpServletRequest request) throws Exception{
-
+        getMenuList(request);
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         getRoutByArticleTypeId(request,articleManage.getId()+"");
         String parentId = articleManage.getCategoryseq().split("\\.")[0];
@@ -93,37 +94,10 @@ public class PublicRoutController {
         request.setAttribute("result",result);
         return "/public/wjdb/wjdb.jsp";
     }
-    @GetMapping("/fgzd/{code}")
-    public String fgzd(@PathVariable String code,HttpServletRequest request) throws Exception{
-        TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
-        getRoutByArticleTypeId(request,articleManage.getId()+"");
-        String parentId = articleManage.getCategoryseq().split("\\.")[0];
-        List<TArticleManage> articleManageList = articleManageService.findArticleByParentId(parentId,"1");
-
-        List<Map<String,Object>> result = Lists.newArrayList();
-        Map mm = new HashMap();
-        for(TArticleManage a:articleManageList){
-            mm = new HashMap();
-            mm.put("name",a.getCategoryname());
-            mm.put("value",a.getCategorycode());
-            mm.put("url",a.getUrl());
-            if(articleManage.getCategoryseq().split("\\.").length>1&&articleManage.getCategoryseq().split("\\.")[1].equals(a.getId()+"")){
-                mm.put("check",true);
-            }else{
-                mm.put("check",false);
-            }
-            List<TArticleManage> articleManages = articleManageService.findArticleByParentId(a.getId()+"","1");
-            mm.put("sons",articleManages);
-            result.add(mm);
-        }
-        request.setAttribute("sstj",sjzdService.findsstj());
-        request.setAttribute("id",articleManage.getId());
-        request.setAttribute("result",result);
-        return "/public/fgzd/fgzd.jsp";
-    }
 
     @GetMapping("/more/{code}")
     public String more(@PathVariable String code,HttpServletRequest request){
+        getMenuList(request);
         TArticleManage articleManage = articleManageService.findArticleByCode(code,"1");
         getRoutByArticleTypeId(request,articleManage.getId()+"");
         request.setAttribute("id",articleManage.getId());
@@ -132,12 +106,19 @@ public class PublicRoutController {
 
     @GetMapping("/content/{id}")
     public String toWzView(@PathVariable String id, HttpServletRequest request) throws Exception {
+        getMenuList(request);
         if(id!=null){
 
             Map<String, Object> list =articleService.findById(id).get(0);
             getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
             request.setAttribute("wz",list);}
         return "/public/wznr/wznr.jsp";
+    }
+
+    public void getMenuList(HttpServletRequest request){
+        List<TArticleManage> articleManageList = articleManageService.findArticleByParentId("0","1");
+        System.out.println(JSONObject.toJSONString(articleManageList));
+        request.setAttribute("menuList",articleManageList);
     }
 
     public void getRoutByArticleTypeId(HttpServletRequest request,String articleTypeId){
@@ -147,7 +128,7 @@ public class PublicRoutController {
             rout+="<a href=\""+((result.get(i).getUrl()==null||articleTypeId.equals(new String(""+result.get(i).getId())))?"#":("../"+result.get(i).getUrl()))+"\"  ";
             if(result.get(i).getUrl()==null||articleTypeId.equals(""+result.get(i).getId())){
             }else{
-                rout+="  target=\"_blank\" ";
+              //  rout+="  target=\"_blank\" ";
             }
             rout+="title=\""+result.get(i).getCategoryname()+"\">"+result.get(i).getCategoryname()+"</a>";
             if(i!=result.size()-1){
