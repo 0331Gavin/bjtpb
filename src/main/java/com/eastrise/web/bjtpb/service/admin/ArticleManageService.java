@@ -6,9 +6,11 @@ import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.entity.TArticle;
 import com.eastrise.web.bjtpb.entity.TAttachment;
+import com.eastrise.web.bjtpb.entity.TSysSjzd;
 import com.eastrise.web.bjtpb.repository.ArticleContentRepository;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
 import com.eastrise.web.bjtpb.repository.IAttachmentRepository;
+import com.eastrise.web.bjtpb.repository.ISjzdRepository;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class ArticleManageService {
     private IAttachmentRepository attachmentRepository;
 
     public List<Map<String, Object>> getArticleGateGory() throws Exception {
-        String sql = "select t.* from T_SYS_ARTICLEMANAGE t where t.status <>0 order by t.article_order";
+        String sql = "select t.*,z.sjmc from T_SYS_ARTICLEMANAGE t left join T_SYS_SJZD z on t.view_model =z.sjbm  where t.status <>0 order by t.article_order";
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
         List<Map<String, Object>> arrayList = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < result.size(); i++) {
@@ -43,6 +45,7 @@ public class ArticleManageService {
                 String parentId = result.get(i).get("PARENT_ID") + "";
                 map.put("id", Integer.valueOf(result.get(i).get("ID") + ""));
                 map.put("categoryName", result.get(i).get("CATEGORY_NAME"));
+                map.put("viewModel", result.get(i).get("SJMC"));
                 if (!parentId.equals("0")) {
                     map.put("_parentId", Integer.valueOf(parentId));
                 }
@@ -151,6 +154,18 @@ public class ArticleManageService {
         return (List<TArticleManage>) articleManageRepository.findAll(specification);
     }
 
+    public List<Map<String, Object>>  findSysSjzdList()throws Exception {
+        String sql="select t.sjbm ,t.sjmc from T_SYS_SJZD t where t.sjlx='查看模式' ";
+        List<Map<String, Object>> resultList=commonQueryRepository.findResultBySqlQuery(sql);
+        List list =new ArrayList();
+        for(int i=0;i<resultList.size();i++){
+            Map<String,Object> map =new HashMap<String, Object>();
+            map.put("id",resultList.get(i).get("sjbm"));
+            map.put("text",resultList.get(i).get("sjmc"));
+            list.add(map);
+        }
+        return list;
+    }
     /**
      * 获得seq 文章类别集合
      * @param id

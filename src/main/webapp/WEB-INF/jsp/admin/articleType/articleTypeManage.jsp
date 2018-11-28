@@ -15,11 +15,12 @@
 			">
     <thead frozen="true">
     <tr>
-        <th field="categoryName" width="80%">类别名称</th>
+        <th field="categoryName" width="60%">类别名称</th>
     </tr>
     </thead>
     <thead>
     <tr>
+        <th data-options="formatter:rowformaterView"  field="view" width="20%" align="center">视图模型</th>
         <th data-options="formatter:rowformater" field="f8" width="20%" align="center">操作选项</th>
     </tr>
     </thead>
@@ -29,6 +30,9 @@
 <script>
     function rowformater(value,row,index) {
         return"<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='updataSet("+row.id+")'><u>修改设置</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='deleteRow("+row.id+")'><u>删除</u></a>";
+    }
+    function rowformaterView(value,row,index) {
+        return "<font>"+row.viewModel+"</font>";
     }
     function addChild(id){
         openxzWindow("新增子项","/admin/article/toArticleaddChild?id="+id);

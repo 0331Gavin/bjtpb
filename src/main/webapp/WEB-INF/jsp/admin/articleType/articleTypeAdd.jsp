@@ -17,6 +17,10 @@
                     <td><input type="text" class="easyui-textbox" type="text" name="categoryname" id="categoryname" value="" data-options="required:true,validType:'length[4,20]'"></input></td>
                 </tr>
                 <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;视图模型:</td>
+                    <td><input class="easyui-combobox"  name="viewModel" id="viewModel" value="" /></td>
+                </tr>
+                <tr>
                     <td>&nbsp;&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
                     <td>
                         <input type="text" class="easyui-combobox" id="status" name="status" value="" editable="false" data-options="required:true,
@@ -51,6 +55,23 @@
 
 </div>
 <script>
+    $(function () {
+        $('#viewModel').combobox({
+            url:'/admin/article/listSysSjzd',
+            required:true,
+            valueField:'id',
+            textField:'text',
+            panelHeight:'auto',
+            onLoadSuccess:function () {
+                var data = $('#viewModel').combobox('getData');
+                //增加默认选中
+                $("#viewModel").combobox('select', data[2].text);
+            }
+        });
+
+
+    })
+
     function save() {
         $('#xzzx').form('submit', {
             url:"/admin/article/saveArticle",

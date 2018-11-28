@@ -12,7 +12,10 @@ public class ArticleTypeForm {
 
     private String memo;
 
+    private String viewModel;
+
     private String parentid;
+
     private String categorycode;
 
     public String getParentid() {
@@ -23,7 +26,13 @@ public class ArticleTypeForm {
         this.parentid = parentid;
     }
 
+    public String getViewModel() {
+        return viewModel;
+    }
 
+    public void setViewModel(String viewModel) {
+        this.viewModel = viewModel;
+    }
 
     public String getId() {
         return id;

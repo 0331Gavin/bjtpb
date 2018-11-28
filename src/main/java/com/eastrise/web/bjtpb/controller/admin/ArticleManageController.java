@@ -7,11 +7,8 @@ import com.eastrise.web.base.ApiResponse;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
 import com.eastrise.web.bjtpb.controller.admin.form.AttachmentForm;
-import com.eastrise.web.bjtpb.entity.LocalUserDetails;
-import com.eastrise.web.bjtpb.entity.TArticle;
-import com.eastrise.web.bjtpb.entity.TAttachment;
+import com.eastrise.web.bjtpb.entity.*;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
-import com.eastrise.web.bjtpb.entity.TArticleManage;
 import com.eastrise.web.bjtpb.service.admin.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -230,5 +227,9 @@ public class ArticleManageController {
         System.out.println(JSONObject.toJSONString(articles));
         return articles;
     }
-
+    @PostMapping(value = "/listSysSjzd",produces = "text/html;charset:utf-8")
+    @ResponseBody
+    public List listSysSjzd()throws Exception{
+        return manageService.findSysSjzdList();
+    }
 }

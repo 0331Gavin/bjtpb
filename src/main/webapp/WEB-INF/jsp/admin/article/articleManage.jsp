@@ -104,7 +104,7 @@
     function doload() {
         $('#Twznr').datagrid('load',{
             tiltle:$("#aticleTitle").val(),
-            articleTypeId:$("#articleTypeId").val()=="文章类别"?"":$("#articleTypeId").val(),
+            articleTypeId:$("#articleTypeId").val()==0?"":$("#articleTypeId").val(),
             kssj:$("#kssj").val(),
             jssj:$("#jssj").val()
         });
