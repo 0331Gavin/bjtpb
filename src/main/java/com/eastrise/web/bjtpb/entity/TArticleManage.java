@@ -38,6 +38,9 @@ public class TArticleManage {
     @Column(name = "URL", length=100)
     private String url;
 
+    @Column(name = "VIEW_MODEL", length=100)
+    private String viewModel;
+
     /*
      *下级信息
      */
@@ -124,5 +127,13 @@ public class TArticleManage {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getViewModel() {
+        return viewModel;
+    }
+
+    public void setViewModel(String viewModel) {
+        this.viewModel = viewModel;
     }
 }

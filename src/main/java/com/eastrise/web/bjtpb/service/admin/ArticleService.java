@@ -5,7 +5,9 @@ import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.base.Constants;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
+import com.eastrise.web.bjtpb.entity.TArticle;
 import com.eastrise.web.bjtpb.entity.TArticleManage;
+import com.eastrise.web.bjtpb.repository.ArticleContentRepository;
 import com.eastrise.web.bjtpb.repository.ArticleManageRepository;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
@@ -27,6 +29,13 @@ import java.util.Map;
 public class ArticleService {
     @Autowired
     private CommonQueryRepository commonQueryRepository;
+    @Autowired
+    private ArticleContentRepository articleContentRepository;
+
+
+    public List<TArticle> getArticleListByArticleTypeId(String articleTypeId){
+        return articleContentRepository.findAllByArticleTypeIdAndStatusOrderByPublishTimeDesc(articleTypeId,"1");
+    }
     public List<Map<String, Object>> findById(String id) throws Exception {
         //定义 用于查询的SQL
         StringBuffer sql = new StringBuffer();

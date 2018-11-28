@@ -13,7 +13,7 @@
                 rout += "href = '#'";
             } else {
                 rout += "href = '"+appPath + "/" + result.get(i).getUrl() +"'";
-                rout += "  target=\"_blank\" ";
+             //   rout += "  target=\"_blank\" ";
             }
             rout += "title=\"" + result.get(i).getCategoryname() + "\">" + result.get(i).getCategoryname() + "</a>";
             if (i != result.size() - 1) {
