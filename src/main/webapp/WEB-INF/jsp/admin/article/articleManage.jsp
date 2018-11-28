@@ -43,13 +43,12 @@
                 }
             },{
             iconCls:'icon-add',
-                text:'新增用户(附件)',
+                text:'新增用户<font>(附件)</fn>',
                 handler:function(){
                     addArticleCont('fj')
             }
         }]
         });
-
     })
     /*$(function () {
         $('#Twznr').datagrid({
