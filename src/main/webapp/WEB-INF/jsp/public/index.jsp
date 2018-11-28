@@ -64,12 +64,12 @@
     ul.nice-list li {
         list-style: none;
         border-top: 1px solid #EEE;
-        padding: 1px 0;
+        padding: 0px 0;
 
-        font-family: Georgia, serif;
+        font-family: serif;
     }
     ul.nice-list li .left{
-        width: 248px;word-break: keep-all;overflow:hidden;text-overflow: ellipsis;
+        width: 258px;word-break: keep-all;overflow:hidden;text-overflow: ellipsis;
     }
 
     ul.nice-list li:first-child {border-top: none;}
@@ -193,9 +193,10 @@
                                 <li>
                                     <div class="left">
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <img src="images/public/icon-file.png"  alt="文件" />
-                                            <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
-                                        </c:if>
+                                            <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                            </nobr>
+                                         </c:if>
                                         <c:if test="${item.articleTag=='tw'}">
                                             <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
