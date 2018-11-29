@@ -159,6 +159,8 @@ public class ArticleManageController {
             LocalUserDetails localUserDetails =userService.findUserDetails();
             tArticle.setCreateUserId(localUserDetails.getId());
             tArticle.setCreateUserName(localUserDetails.getUserName());
+            tArticle.setCreateLoginName(localUserDetails.getLoginName());
+            tArticle.setCreateTime(DateHelper.getDateTime());
             BeanUtils.copyProperties(articleContentForm,tArticle);
             try{
                 tArticle=  manageService.saveArticleContent(tArticle);
