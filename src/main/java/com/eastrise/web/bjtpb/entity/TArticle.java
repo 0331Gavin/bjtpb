@@ -75,6 +75,16 @@ public class TArticle {
     @Column(name="STATUS")
     private String status;
 
+    @Column(name="CREATE_LOGINNAME")
+    private String createLoginName;
+
+    public String getCreateLoginName() {
+        return createLoginName;
+    }
+
+    public void setCreateLoginName(String createLoginName) {
+        this.createLoginName = createLoginName;
+    }
 
     @Column(name="ARTICLE_TAG")
     private String articleTag;
