@@ -29,7 +29,8 @@
 				          panelHeight:'auto',
                         data: [{
                             label: '1',
-                            value: '有效'
+                            value: '有效',
+                            selected: 'true'
                         },{
                             label: '0',
                             value: '无效'
