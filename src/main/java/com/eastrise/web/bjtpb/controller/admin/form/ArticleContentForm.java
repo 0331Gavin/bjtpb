@@ -6,7 +6,7 @@ public class ArticleContentForm {
 
     private String articleTypeId;
 
-    private String tiltle;
+    private String title;
 
     private String content;
 
@@ -70,12 +70,12 @@ public class ArticleContentForm {
         this.articleTypeId = articleTypeId;
     }
 
-    public String getTiltle() {
-        return tiltle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTiltle(String tiltle) {
-        this.tiltle = tiltle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
