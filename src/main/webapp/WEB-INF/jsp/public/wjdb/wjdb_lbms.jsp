@@ -60,12 +60,17 @@
         overflow: hidden;
         text-overflow: ellipsis;
         float: left;
-        font-size: 14px;
     }
    .right1{float: right;
     width: 100px;}
 
-
+    .newslist li{
+        width:100%;
+        height:30px;
+        line-height:30px;
+        background:url(../images/inner_images/dot02.gif) no-repeat 7px 17px;
+        text-indent:15px
+    }
 </style>
 <body>
 <div id="bg">
@@ -97,7 +102,7 @@
                     <div class="title w100">
                         <h3 class="fl font14">${titLeftRout}</h3>
                     </div>
-                    <div class="pd10 grey LeftSide_con " id="accordion">
+                    <div class="pd10 grey LeftSide_con  font12" id="accordion">
 
                         <c:forEach items="${result}" var="item">
                             <dl>
@@ -151,7 +156,7 @@
                 }else if(i==0){
                     arr.push("<ul class='newslist list_con01 fl '>");
                 }
-                arr.push("<li style='font-size:14px'><div class='left1'>");
+                arr.push("<li ><div class='left1'>");
                 if(data.data[i].articleTag=="fj"){
                     arr.push("<nobr><b>["+data.data[i].articleType+"]</b><img src=\"<%=appPath%>/images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a> </nobr>");
                 }else{

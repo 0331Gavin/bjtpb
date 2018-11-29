@@ -74,7 +74,7 @@
                         </p>
                         <div class="RightSide_con font12">
                             <div class="pd20 news_con">
-                                <h3 class="text-center yahei font18 font-w"> ${article.title}</h3>
+                                <h3 class="text-center yahei font18 font-w">${article.tiltle}</h3>
                             </div>
                             <div id="zoom" class="pd20">
                                 ${article.content}
