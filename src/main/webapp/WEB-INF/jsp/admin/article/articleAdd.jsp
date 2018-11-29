@@ -10,7 +10,7 @@
                 </tr>
                 <tr>
                     <td colspan="1">&nbsp;&nbsp;&nbsp;&nbsp;文章标题:</td>
-                    <td colspan="5"><input class="easyui-textbox" type="text" name="tiltle" id="tiltle" value="${articles.tiltle}" data-options="required:true,validType:'length[1,100]'" style="width:460px;"></input></td>
+                    <td colspan="5"><input class="easyui-textbox" type="text" name="title" id="title" value="${articles.title}" data-options="required:true,validType:'length[1,100]'" style="width:460px;"></input></td>
                 </tr>
                 <tr>
                    <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>

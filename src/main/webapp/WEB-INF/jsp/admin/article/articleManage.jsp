@@ -6,15 +6,15 @@
 <body>
 <div style="padding:0px;background:#fafafa;width:100%;border:0px solid #ccc">
 </div>
-<table id="Twznr" class="easyui-datagrid"  style="width:100%;height:100%;"
-       data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'post',toolbar:'#tb',rownumbers:'true'" pagination="true">
+<table id="Twznr" class="easyui-datagrid"  style="width:100%;height:100%;" url="/admin/article/getArticleContent"
+       data-options="singleSelect:true,method:'post',toolbar:'#tb',rownumbers:'true'" pagination="true">
     <thead>
     <tr>
-        <th data-options="formatter:addTitle,field:'TITLE',width:340,align:'left' , halign: 'center'">文章标题</th>
-        <th data-options="field:'CATEGORY_NAME',width:140,align:'center'">文章类别</th>
-        <th data-options="field:'PUBLISH_DEPT_NAME',width:200,align:'center'">发布部门</th>
-           <th data-options="field:'PUBLISH_TIME',width:180,align:'center'">发布时间</th>
-           <th data-options="field:'CREATE_USER_NAME',width:160,align:'center'">录入人</th>
+        <th data-options="formatter:addTitle,field:'title',width:340,align:'left' , halign: 'center'">文章标题</th>
+        <th data-options="field:'categoryName',width:140,align:'center'">文章类别</th>
+        <th data-options="field:'publishDeptName',width:200,align:'center'">发布部门</th>
+           <th data-options="field:'publishTime',width:180,align:'center'">发布时间</th>
+           <th data-options="field:'createUserName',width:160,align:'center'">录入人</th>
            <th data-options="field:'_operate',width:140,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
@@ -33,7 +33,7 @@
 </div>
 <script>
     function addTitle(value,row,index) {
-        return"<a title='"+row.TITLE+"'>"+row.TITLE+"</a>";
+        return"<a title='"+row.title+"'>"+row.title+"</a>";
     }
     $(function(){
         var pager = $('#Twznr').datagrid().datagrid('getPager');	// get the pager of datagrid
@@ -62,7 +62,7 @@
         })
     });*/
     function formatOper(val,row,index){
-        val = "<a href='#' onclick='edit(\""+row.ID+"\")'>修改</a>|<a href='#' onclick='del(\""+row.ID+"\")'>删除</a>";
+        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
         return val;
     }
     var isFirst = true;
@@ -106,7 +106,7 @@
     }
     function doload() {
         $('#Twznr').datagrid('load',{
-            tiltle:$("#aticleTitle").val(),
+            title:$("#aticleTitle").val(),
             articleTypeId:$("#articleTypeId").val()==0?"":$("#articleTypeId").val(),
             kssj:$("#kssj").val(),
             jssj:$("#jssj").val()

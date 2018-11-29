@@ -1,6 +1,8 @@
 package com.eastrise.web.bjtpb.service.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.CommonQueryRepository;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
@@ -101,7 +103,7 @@ public class ArticleManageService {
         return true;
     }
     public boolean isArticleContentExist(ArticleContentForm articleContentForm) throws Exception {
-        String sql = " select t.* from T_ARTICLE t where 1=1 and t.title='" + articleContentForm.getTiltle() + "'";
+        String sql = " select t.* from T_ARTICLE t where 1=1 and t.title='" + articleContentForm.getTitle() + "'";
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
         if (result.size() > 0) {
             return false;
@@ -109,11 +111,11 @@ public class ArticleManageService {
         return true;
     }
 
-    public JSONObject getArticleContent(ArticleContentForm articleContentForm) throws Exception {
+    public JSONObject getArticleContent(ArticleContentForm articleContentForm,int pageSize,int pageNumber) throws Exception {
         JSONObject json = new JSONObject();
         StringBuilder sb =new StringBuilder("select t.*,a.category_name from T_ARTICLE t  left join T_SYS_ARTICLEMANAGE a on t.article_type_id =a.id where 1=1 ");
-        if(StringUtils.isNotEmpty(articleContentForm.getTiltle())){
-            sb.append(" and t.TITLE like '%"+articleContentForm.getTiltle()+"%'");
+        if(StringUtils.isNotEmpty(articleContentForm.getTitle())){
+            sb.append(" and t.TITLE like '%"+articleContentForm.getTitle()+"%'");
         }
         if(StringUtils.isNotEmpty(articleContentForm.getPublishDept())){
             sb.append(" and t.PUBLISH_DEPT_NAME like '%"+articleContentForm.getPublishDept()+"%'");
@@ -127,9 +129,8 @@ public class ArticleManageService {
         if(StringUtils.isNotEmpty(articleContentForm.getArticleTypeId())){
             sb.append(" and t.ARTICLE_TYPE_ID ='"+articleContentForm.getArticleTypeId()+"'");
         }
-        List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sb.toString());
-        json.put("rows", result);
-        json.put("total", result.size());
+        json.put("rows", commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString()).getRows());
+        json.put("total", commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString()).getTotal());
         return json;
     }
     /**

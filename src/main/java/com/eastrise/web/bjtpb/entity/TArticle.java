@@ -31,7 +31,7 @@ public class TArticle {
      * 文章标题
      */
     @Column(name = "TITLE", length=1000)
-    private String tiltle;
+    private String title;
     /*
     * 文章内容
     **/
@@ -112,12 +112,12 @@ public class TArticle {
         this.id = id;
     }
 
-    public String getTiltle() {
-        return tiltle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTiltle(String tiltle) {
-        this.tiltle = tiltle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {

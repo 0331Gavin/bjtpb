@@ -3,6 +3,7 @@ package com.eastrise.web.bjtpb.controller.admin;
 import com.alibaba.fastjson.JSONObject;
 import com.eastrise.utils.DateHelper;
 import com.eastrise.utils.OperationFileUtil;
+import com.eastrise.web.base.ApiPageResponse;
 import com.eastrise.web.base.ApiResponse;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleContentForm;
 import com.eastrise.web.bjtpb.controller.admin.form.ArticleTypeForm;
@@ -108,8 +109,8 @@ public class ArticleManageController {
 
     @PostMapping("/getArticleContent")
     @ResponseBody
-    public String getArticleContent(ArticleContentForm articleContentForm)throws Exception{
-        return manageService.getArticleContent(articleContentForm).toString();
+    public String getArticleContent(ArticleContentForm articleContentForm,@RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize)throws Exception{
+        return manageService.getArticleContent(articleContentForm,pageSize,pageNumber).toString();
     }
 
     @GetMapping("/toAddArticleContent")
