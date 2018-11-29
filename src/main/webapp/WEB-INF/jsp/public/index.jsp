@@ -73,7 +73,7 @@
     }
 
     ul.nice-list li:first-child {border-top: none;}
-    ul.nice-list li .right {color: #999;}
+    ul.nice-list li .right {color: #999;font-size: 10px;}
 
     .post {
         padding: 0 20px;

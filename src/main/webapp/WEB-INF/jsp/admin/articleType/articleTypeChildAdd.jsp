@@ -23,7 +23,8 @@
 				          panelHeight:'auto',
                         data: [{
                             label: '1',
-                            value: '有效'
+                            value: '有效',
+                            selected: 'true'
                         },{
                             label: '0',
                             value: '无效'
@@ -63,7 +64,7 @@
                 if($("#id").val()==""){
                     var data = $('#viewModel').combobox('getData');
                     //增加默认选中
-                    $("#viewModel").combobox('select', data[2].text);
+                    $("#viewModel").combobox('select', data[2].id);
                 }
             }
         });

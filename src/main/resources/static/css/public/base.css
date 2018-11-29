@@ -83,7 +83,7 @@ body {
 .menu ul ul li {display:block;width: auto;height:auto;position:relative;line-height:1em; border-bottom:1px #2384BF solid;}
 
 /* style the links for the top level */
-.menu a, .menu a:visited {display:block;float:left;height:100%;font-size:12px;text-decoration:none;color:#fff;background:#05619b;padding:0 14px 0 14px;}
+.menu a, .menu a:visited {display:block;float:left;height:100%;font-size:14px;text-decoration:none;color:#fff;background:#05619b;padding:0 14px 0 14px;}
 .menu a.current{background:#3da1e0;}
 /* style the sub level links */
 .menu ul ul a, .menu ul ul a:visited {display:block;background:#267cb2; color:#fff;width:12em;height:100%;line-height:1em; padding:0.5em 1em;}
