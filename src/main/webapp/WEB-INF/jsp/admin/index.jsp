@@ -54,7 +54,10 @@
 		</div>
 		<div title="文章类别管理" data-options="iconCls:'icon-application-form-edit'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
-				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleTypeAdd" iframe="1">添加文章类别</a></li>
+				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+					<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/articleTypeAdd" iframe="1">添加文章类别</a></li>
+				</sec:authorize>
+
 				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/articleTypeManage" iframe="1">文章类别管理</a></li>
 			</ul>
 		</div>
@@ -66,11 +69,14 @@
 		<div title="系统管理" data-options="iconCls:'icon-wrench'" style="padding:5px;">
 			<ul class="easyui-tree wu-side-tree">
 				<li iconCls="icon-chart-organisation"><a href="javascript:void(0)" data-icon="icon-chart-organisation" data-link="/admin/system/xgMa" iframe="1">修改密码</a></li>
-				<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/system/userManage" iframe="1">用户管理</a></li>
-				<li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="/admin/system/deptManage" iframe="1">部门管理</a></li>
-				<li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="/admin/system/sjZd" iframe="1">数据字典</a></li>
-				<%--<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="1">系统日志</a></li>--%>
-			</ul>
+				<sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+					<li iconCls="icon-users"><a href="javascript:void(0)" data-icon="icon-users" data-link="/admin/system/userManage" iframe="1">用户管理</a></li>
+					<li iconCls="icon-user-group"><a href="javascript:void(0)" data-icon="icon-user-group" data-link="/admin/system/deptManage" iframe="1">部门管理</a></li>
+					<li iconCls="icon-book"><a href="javascript:void(0)" data-icon="icon-book" data-link="/admin/system/sjZd" iframe="1">数据字典</a></li>
+					<%--<li iconCls="icon-cog"><a href="javascript:void(0)" data-icon="icon-cog" data-link="temp/layout-3.html" iframe="1">系统日志</a></li>--%>
+				</sec:authorize>
+
+				</ul>
 		</div>
 
 	</div>

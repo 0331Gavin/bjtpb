@@ -17,12 +17,14 @@
 			">
     <thead frozen="true">
     <tr>
-        <th field="categoryName" width="60%">类别名称</th>
+        <th field="categoryName" width="50%">类别名称</th>
     </tr>
     </thead>
     <thead>
     <tr>
+
         <th data-options="formatter:rowformaterView"  field="view" width="20%" align="center">视图模型</th>
+        <th data-options="formatter:formatStatus"  field="status" width="10%" align="center">状态</th>
         <th data-options="formatter:rowformater" field="f8" width="20%" align="center">操作选项</th>
     </tr>
     </thead>
@@ -38,13 +40,21 @@
         value = "<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='updataSet("+row.id+")'><u>修改设置</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='deleteRow("+row.id+")'><u>删除</u></a>";
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_RECORDER')">
-        value = "<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>";
+        value = "";
 
         </sec:authorize>
         return value;
     }
     function rowformaterView(value,row,index) {
         return "<font>"+row.viewModel+"</font>";
+    }
+    function formatStatus(val,row,index) {
+        if(val=="0"){
+            val="无效";
+        }else if(val =="1"){
+            val="有效";
+        }
+        return val;
     }
     function addChild(id){
         openxzWindow("新增子项","/admin/article/toArticleaddChild?id="+id);

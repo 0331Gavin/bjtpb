@@ -48,6 +48,7 @@ public class ArticleManageService {
                 map.put("categoryCode", result.get(i).get("CATEGORY_CODE"));
                 map.put("categoryName", result.get(i).get("CATEGORY_NAME"));
                 map.put("viewModel", result.get(i).get("SJMC"));
+                map.put("status", result.get(i).get("STATUS"));
                 if (!parentId.equals("0")) {
                     map.put("_parentId", Integer.valueOf(parentId));
                 }
