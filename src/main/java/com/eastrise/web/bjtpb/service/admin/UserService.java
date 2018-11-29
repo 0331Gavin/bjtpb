@@ -121,6 +121,7 @@ public class UserService {
         LocalUserDetails localUserDetails = new LocalUserDetails();
         localUserDetails.setId(result.get(0).get("id")+"");
         localUserDetails.setLoginName(loginName);
+        localUserDetails.setUserName(result.get(0).get("userName")+"");
         localUserDetails.setDeptName(result.get(0).get("orgName")+"");
         localUserDetails.setDeptId(Long.parseLong(result.get(0).get("deptId")+""));
         return localUserDetails;

@@ -156,6 +156,9 @@ public class ArticleManageController {
             }
             //添加
             TArticle tArticle =new TArticle();
+            LocalUserDetails localUserDetails =userService.findUserDetails();
+            tArticle.setCreateUserId(localUserDetails.getId());
+            tArticle.setCreateUserName(localUserDetails.getUserName());
             BeanUtils.copyProperties(articleContentForm,tArticle);
             try{
                 tArticle=  manageService.saveArticleContent(tArticle);
