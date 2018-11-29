@@ -54,7 +54,16 @@
         border-radius: 4px;
         display: block;
     }
-
+    .left1{
+        width: 80%;
+        word-break: keep-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: left;
+        font-size: 14px;
+    }
+   .right1{float: right;
+    width: 100px;}
 
 
 </style>
@@ -138,18 +147,18 @@
             var arr = []
             for(var i=0;i<data.data.length;i++){
                 if((i%5==0)&&(i!=0)){
-                    arr.push("<ul class='newslist list_con01 fl mgt20 '>");
+                    arr.push("<ul class='newslist list_con01 fl mgt20 ' >");
                 }else if(i==0){
                     arr.push("<ul class='newslist list_con01 fl '>");
                 }
-                arr.push("<li><b>["+data.data[i].articleType+"]</b>");
+                arr.push("<li style='font-size:14px'><div class='left1'>");
                 if(data.data[i].articleTag=="fj"){
-                    arr.push("<img src=\"<%=appPath%>/images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                    arr.push("<nobr><b>["+data.data[i].articleType+"]</b><img src=\"<%=appPath%>/images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a> </nobr>");
                 }else{
-                    arr.push("<a href=\"<%=appPath%>/public/content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                    arr.push("<nobr><b>["+data.data[i].articleType+"]</b><a href=\"<%=appPath%>/public/content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a></nobr>");
                 }
 
-                arr.push("<span class=\"fr\">"+data.data[i].time+"</span></li>");
+                arr.push("</div><div class='right1'>"+data.data[i].time+"</div><div class=\"clearer\">&nbsp;</div></li>");
                 if(((i+1)%5==0)&&(i!=0)){
                     arr.push("</ul>");
                 }
