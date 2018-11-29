@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <%@ include file="../common.jsp" %>
@@ -29,7 +31,17 @@
 </div>
 <script>
     function rowformater(value,row,index) {
-        return"<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='updataSet("+row.id+")'><u>修改设置</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='deleteRow("+row.id+")'><u>删除</u></a>";
+        if(row.categorySeq.indexOf(".")>-1){
+
+        }
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
+        value = "<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='updataSet("+row.id+")'><u>修改设置</u></a>&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='deleteRow("+row.id+")'><u>删除</u></a>";
+        </sec:authorize>
+        <sec:authorize access="hasAnyRole('ROLE_RECORDER')">
+        value = "<a style='cursor:pointer;' onclick='addChild("+row.id+")'><u>添加子类别</u></a>";
+
+        </sec:authorize>
+        return value;
     }
     function rowformaterView(value,row,index) {
         return "<font>"+row.viewModel+"</font>";

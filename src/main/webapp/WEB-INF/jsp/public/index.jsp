@@ -407,7 +407,7 @@
                         <ul class="frient-link">
                             <c:forEach items="${yqlj}" var="list">
                             <li>
-                                <img src="images/public/list02.gif" alt="">&nbsp;<a href="${list.ljurl}">${list.ljmc}</a>
+                                <img src="images/public/list02.gif" alt="">&nbsp;<a href="${list.ljurl}"  target="_blank">${list.ljmc}</a>
                             </li>
                             </c:forEach>
                         </ul>

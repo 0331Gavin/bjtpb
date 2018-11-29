@@ -52,7 +52,11 @@
         });
     }
     function formatOper(val,row,index) {
-        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        if(row.loginName=='admin'){
+            val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>";
+        }else{
+            val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        }
         return val;
     }
     function formatRole(val,row,index) {

@@ -36,14 +36,16 @@ public class ArticleManageService {
     private IAttachmentRepository attachmentRepository;
 
     public List<Map<String, Object>> getArticleGateGory() throws Exception {
-        String sql = "select t.*,z.sjmc from T_SYS_ARTICLEMANAGE t left join T_SYS_SJZD z on t.view_model =z.sjbm  where t.status <>0 order by t.article_order";
+        String sql = "select t.*,z.sjmc from T_SYS_ARTICLEMANAGE t left join T_SYS_SJZD z on t.view_model =z.sjbm  where t.status >'-1' order by t.article_order";
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
         List<Map<String, Object>> arrayList = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < result.size(); i++) {
-            if(!(result.get(i).get("ID")+"").equals("0")){
+            if(!(result.get(i).get("ID")+"").equals("-1")){
                 Map<String, Object> map = new HashMap<String, Object>();
                 String parentId = result.get(i).get("PARENT_ID") + "";
                 map.put("id", Integer.valueOf(result.get(i).get("ID") + ""));
+                map.put("categorySeq", result.get(i).get("CATEGORY_SEQ"));
+                map.put("categoryCode", result.get(i).get("CATEGORY_CODE"));
                 map.put("categoryName", result.get(i).get("CATEGORY_NAME"));
                 map.put("viewModel", result.get(i).get("SJMC"));
                 if (!parentId.equals("0")) {
