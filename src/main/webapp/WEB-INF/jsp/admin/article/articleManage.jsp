@@ -10,7 +10,7 @@
        data-options="singleSelect:true,collapsible:true,url:'/admin/article/getArticleContent',method:'post',toolbar:'#tb',rownumbers:'true'" pagination="true">
     <thead>
     <tr>
-        <th data-options="field:'TITLE',width:340,align:'center'">文章标题</th>
+        <th data-options="formatter:addTitle,field:'TITLE',width:340,align:'left' , halign: 'center'">文章标题</th>
         <th data-options="field:'CATEGORY_NAME',width:140,align:'center'">文章类别</th>
         <th data-options="field:'PUBLISH_DEPT_NAME',width:200,align:'center'">发布部门</th>
            <th data-options="field:'PUBLISH_TIME',width:180,align:'center'">发布时间</th>
@@ -32,6 +32,9 @@
 
 </div>
 <script>
+    function addTitle(value,row,index) {
+        return"<a title='"+row.TITLE+"'>"+row.TITLE+"</a>";
+    }
     $(function(){
         var pager = $('#Twznr').datagrid().datagrid('getPager');	// get the pager of datagrid
         pager.pagination({
