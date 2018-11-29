@@ -65,7 +65,7 @@
             onLoadSuccess:function () {
                 var data = $('#viewModel').combobox('getData');
                 //增加默认选中
-                $("#viewModel").combobox('select', data[2].text);
+                $("#viewModel").combobox('select', data[2].id);
             }
         });
 
