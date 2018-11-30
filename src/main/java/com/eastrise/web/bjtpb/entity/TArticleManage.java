@@ -41,15 +41,16 @@ public class TArticleManage {
     @Column(name = "VIEW_MODEL", length=100)
     private String viewModel;
 
-    /*
-     *下级信息
-     */
-    @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_id",insertable = false, updatable = false)
-    @Where(clause="status=1")
-    @org.hibernate.annotations.OrderBy(clause="articleorder asc")
+//    /*
+//     *下级信息
+//     */
+//    @OneToMany(cascade = CascadeType.REFRESH , fetch = FetchType.LAZY)
+//    @JoinColumn(name = "parent_id",insertable = false, updatable = false)
+//    @Where(clause="status=1")
+//    @org.hibernate.annotations.OrderBy(clause="articleorder asc")
+    @Transient
     private List<TArticleManage> children;
-
+//
     public List<TArticleManage> getChildren() {
         return children;
     }

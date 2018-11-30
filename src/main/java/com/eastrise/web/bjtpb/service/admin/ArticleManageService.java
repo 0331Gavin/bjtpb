@@ -139,13 +139,13 @@ public class ArticleManageService {
      * @param
      * @return
      */
-    public List<TArticleManage> findChildArticleById() {
+    public List<TArticleManage> findChildArticleById( int id) {
         Specification specification=new Specification<TArticleManage>() {
             @Override
             public Predicate toPredicate(Root<TArticleManage> root, CriteriaQuery<?> criteriaQuery,
                                          CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicates = new ArrayList<>();
-                int rootId=0;
+                int rootId=id;
                 predicates.add(criteriaBuilder.equal(root.get("id"), rootId ));
                 predicates.add(criteriaBuilder.equal(root.get("status"), "1"));
                 criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));

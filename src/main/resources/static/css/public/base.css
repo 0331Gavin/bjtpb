@@ -13,7 +13,7 @@ body {
 }
 
 #bg {
-    background: url('../../images/public/highlight.png') top left repeat-x;
+    /*background: url('../../images/public/highlight.png') top left repeat-x;*/
     padding: 30px 0 20px 0;
 }
 #outer {
@@ -132,7 +132,7 @@ body {
 
 
 /* make the second level visible when hover on first level list OR link */
-.menu ul li:hover ul, .menu ul a:hover ul {visibility:visible; height:auto; padding-bottom:3em; background:transparent url(images/trans.gif);}
+.menu ul li:hover ul, .menu ul a:hover ul {visibility:visible; height:auto; padding-bottom:3em; background:transparent;}
 /* keep the third level hidden when you hover on first level list OR link */
 .menu ul :hover ul ul{visibility:hidden;}
 /* keep the fourth level hidden when you hover on second level list OR link */

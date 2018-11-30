@@ -83,6 +83,10 @@ public class IndexController {
 
     public void getMenuList(HttpServletRequest request){
         List<TArticleManage> articleManageList = articleManageService.findArticleByParentId("0","1");
+        for(TArticleManage articleManage:articleManageList){
+            List result = articleManageService.findArticleByParentId(articleManage.getId()+"","1");
+            articleManage.setChildren(result);
+        }
         System.out.println(JSONObject.toJSONString(articleManageList));
         request.setAttribute("menuList",articleManageList);
     }

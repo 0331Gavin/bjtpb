@@ -11,6 +11,7 @@ import com.eastrise.web.bjtpb.controller.admin.form.AttachmentForm;
 import com.eastrise.web.bjtpb.entity.*;
 import com.eastrise.web.bjtpb.service.admin.ArticleManageService;
 import com.eastrise.web.bjtpb.service.admin.UserService;
+import org.assertj.core.util.Lists;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -229,9 +230,20 @@ public class ArticleManageController {
     @PostMapping("/listArticles")
     @ResponseBody
     public List<TArticleManage> listArticles(){
-        List<TArticleManage> articles = manageService.findChildArticleById();
-        System.out.println(JSONObject.toJSONString(articles));
-        return articles;
+        TArticleManage article= manageService.findArticle(0+"");
+        List<TArticleManage> list = manageService.findArticleByParentId(0+"","1");
+        getArticleManages(list);
+        article.setChildren(list);
+        return Lists.newArrayList(article);
+    }
+    private void getArticleManages(List<TArticleManage> articleManages){
+
+        for(TArticleManage articleManage : articleManages){
+            articleManage.setChildren(manageService.findArticleByParentId(articleManage.getId()+"","1"));
+            if(articleManage.getChildren()!=null&&articleManage.getChildren().size()>0){
+                getArticleManages(articleManage.getChildren());
+            }
+        }
     }
     @PostMapping(value = "/listSysSjzd",produces = "text/html;charset:utf-8")
     @ResponseBody
