@@ -18,7 +18,7 @@
     <%@ include file="../base/common.jsp" %>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>中国铁路总公司北京特派办</title>
-    <script type="text/javascript" src="easyui/1.6.7/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>--%>
 
     <link rel="stylesheet" type="text/css" href="css/public/base.css" />
 </head>
@@ -223,7 +223,22 @@
                             </div>
                             <div class="content">
                                 <ul class="nice-list">
-
+                                    <c:forEach items="${jcapjzj}" var="item">
+                                        <li>
+                                            <div class="left">
+                                                <c:if test="${item.articleTag=='fj'}">
+                                                    <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                        <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                                    </nobr>
+                                                </c:if>
+                                                <c:if test="${item.articleTag=='tw'}">
+                                                    <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                                </c:if>
+                                            </div>
+                                            <div class="right">${item.time}</div>
+                                            <div class="clearer">&nbsp;</div>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
 
                             </div>
@@ -242,7 +257,22 @@
                             </div>
                             <div class="content">
                                 <ul class="nice-list">
-
+                                    <c:forEach items="${jcdy}" var="item">
+                                        <li>
+                                            <div class="left">
+                                                <c:if test="${item.articleTag=='fj'}">
+                                                    <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                        <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                                    </nobr>
+                                                </c:if>
+                                                <c:if test="${item.articleTag=='tw'}">
+                                                    <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                                </c:if>
+                                            </div>
+                                            <div class="right">${item.time}</div>
+                                            <div class="clearer">&nbsp;</div>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
 
                             </div>
@@ -309,7 +339,22 @@
 
                     <div class="content">
                         <ul class="nice-list">
-
+                            <c:forEach items="${sggzdc}" var="item">
+                                <li>
+                                    <div class="left">
+                                        <c:if test="${item.articleTag=='fj'}">
+                                            <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                            </nobr>
+                                        </c:if>
+                                        <c:if test="${item.articleTag=='tw'}">
+                                            <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                        </c:if>
+                                    </div>
+                                    <div class="right">${item.time}</div>
+                                    <div class="clearer">&nbsp;</div>
+                                </li>
+                            </c:forEach>
                         </ul>
 
                     </div>
@@ -327,7 +372,22 @@
 
                     <div class="content">
                         <ul class="nice-list">
-
+                            <c:forEach items="${dqgz}" var="item">
+                                <li>
+                                    <div class="left">
+                                        <c:if test="${item.articleTag=='fj'}">
+                                            <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                            </nobr>
+                                        </c:if>
+                                        <c:if test="${item.articleTag=='tw'}">
+                                            <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
+                                        </c:if>
+                                    </div>
+                                    <div class="right">${item.time}</div>
+                                    <div class="clearer">&nbsp;</div>
+                                </li>
+                            </c:forEach>
                         </ul>
 
                     </div>

@@ -39,6 +39,10 @@ public class IndexController {
         request.setAttribute("yqlj",yqljService.findAll());
         getArticleList(request,"wjdb");
         getArticleList(request,"fgzd");
+        getArticleList(request,"jcapjzj");
+        getArticleList(request,"sggzdc");
+        getArticleList(request,"jcdy");
+        getArticleList(request,"dqgz");
 
 
 
@@ -51,6 +55,10 @@ public class IndexController {
         request.setAttribute("yqlj",yqljService.findAll());
         getArticleList(request,"wjdb");
         getArticleList(request,"fgzd");
+        getArticleList(request,"jcapjzj");
+        getArticleList(request,"sggzdc");
+        getArticleList(request,"jcdy");
+        getArticleList(request,"dqgz");
         getMenuList(request);
         //如果已经登陆跳转到个人首页
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
