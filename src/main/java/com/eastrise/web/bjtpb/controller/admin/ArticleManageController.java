@@ -109,8 +109,8 @@ public class ArticleManageController {
 
     @PostMapping("/getArticleContent")
     @ResponseBody
-    public String getArticleContent(ArticleContentForm articleContentForm,@RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize)throws Exception{
-        return manageService.getArticleContent(articleContentForm,pageSize,pageNumber).toString();
+    public ApiPageResponse getArticleContent(ArticleContentForm articleContentForm,@RequestParam(value = "page")int pageNumber, @RequestParam(value = "rows") int pageSize)throws Exception{
+        return manageService.getArticleContent(articleContentForm,pageSize,pageNumber);
     }
 
     @GetMapping("/toAddArticleContent")

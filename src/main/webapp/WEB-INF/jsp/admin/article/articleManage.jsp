@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <%@ include file="../common.jsp" %>
@@ -62,7 +64,18 @@
         })
     });*/
     function formatOper(val,row,index){
+        <sec:authentication property="name" var="username"/>
+        <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
         val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        </sec:authorize>
+        <sec:authorize access="hasAnyRole('ROLE_RECORDER')">
+            if("${username}"==row.createLoginname){
+                val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+            }else{
+                val = "";
+            }
+        </sec:authorize>
+
         return val;
     }
     var isFirst = true;

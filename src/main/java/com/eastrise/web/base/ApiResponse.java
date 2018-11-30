@@ -75,6 +75,9 @@ public class ApiResponse {
         SAVE_FAILD(204,"保存失败"),
         DEL_FAILD(205,"删除失败"),
         DATA_EXISTED(206,"保存失败"),
+        RESET_PWD_SUCCESS(210,"重置密码成功"),
+        RESET_PWD_FAILD(211,"重置密码失败"),
+
         SUCCESS(200,"OK"),
         BAS_REQUEST(400,"Bad Request"),
         NOT_FOUND(404,"NOT FOUNT"),

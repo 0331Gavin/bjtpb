@@ -15,6 +15,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +33,8 @@ public class UserService {
     private IUserRepository userRepository;
     @Autowired
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     /**
      * 用户分页查询
      * @param pageSize
@@ -128,4 +131,7 @@ public class UserService {
     }
 
 
+    public void resetPassword(String id) {
+        commonQueryRepository.executeUpdate("update t_sys_user t set t.pwd = '"+passwordEncoder.encode("666666")+"' where t.id='"+id+"'");
+    }
 }

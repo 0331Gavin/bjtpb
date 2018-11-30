@@ -33,8 +33,8 @@ public class ArticleService {
     private ArticleContentRepository articleContentRepository;
 
 
-    public List<TArticle> getArticleListByArticleTypeId(String articleTypeId){
-        return articleContentRepository.findAllByArticleTypeIdAndStatusOrderByPublishTimeDesc(articleTypeId,"1");
+    public List<TArticle> getArticleListByArticleTypeId(String articleTypeId,String articleTag){
+        return articleContentRepository.findAllByArticleTypeIdAndStatusAndArticleTagOrderByPublishTimeDesc(articleTypeId,"1",articleTag);
     }
     public List<Map<String, Object>> findById(String id) throws Exception {
         //定义 用于查询的SQL

@@ -98,6 +98,18 @@ public class UserController {
         }
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
+    @PostMapping(value = "/resetPassword")
+    public ApiResponse resetPassword(String id){
+        try{
+            userService.resetPassword(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            ApiResponse.ofStatus(ApiResponse.Status.RESET_PWD_FAILD);
+        }
+        return ApiResponse.ofStatus(ApiResponse.Status.RESET_PWD_SUCCESS);
+    }
+
+
 
     private boolean checkUserIsExist(UserAddData userAddData){
         return userService.checkUserIsExist(userAddData);

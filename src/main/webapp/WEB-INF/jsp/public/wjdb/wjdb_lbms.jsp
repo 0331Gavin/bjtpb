@@ -87,7 +87,7 @@
                             </span>
                         </p>
                         <div class="RightSide_con font12">
-                            <div class="newsbox list_con pd20 pdb10 song hidden" id="newsData">
+                            <div class="newsbox list_con pdb10 song hidden" id="newsData">
 
                             </div>
 

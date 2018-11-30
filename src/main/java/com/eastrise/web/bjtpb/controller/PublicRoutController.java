@@ -64,7 +64,7 @@ public class PublicRoutController {
         if(Constants.CKMS_LBMS.equals(articleManage.getViewModel())){
             return "/public/wjdb/wjdb_lbms.jsp";
         }else if(Constants.CKMS_TWMS.equals(articleManage.getViewModel())){
-            List<TArticle> articles = articleService.getArticleListByArticleTypeId(articleManage.getId()+"");
+            List<TArticle> articles = articleService.getArticleListByArticleTypeId(articleManage.getId()+"","tw");
             request.setAttribute("article",articles.size()>0?articles.get(0):new TArticle());
             return "/public/wjdb/wjdb_twms.jsp";
         }else if(Constants.CKMS_SSLB.equals(articleManage.getViewModel())){
@@ -107,7 +107,7 @@ public class PublicRoutController {
         if(Constants.CKMS_LBMS.equals(articleManage.getViewModel())){
             return "/public/wjdb/wjdb_lbms.jsp";
         }else if(Constants.CKMS_TWMS.equals(articleManage.getViewModel())){
-            List<TArticle> articles = articleService.getArticleListByArticleTypeId(articleManage.getId()+"");
+            List<TArticle> articles = articleService.getArticleListByArticleTypeId(articleManage.getId()+"","tw");
             request.setAttribute("article",articles.size()>0?articles.get(0):new TArticle());
             return "/public/wjdb/wjdb_twms.jsp";
         }else if(Constants.CKMS_SSLB.equals(articleManage.getViewModel())){

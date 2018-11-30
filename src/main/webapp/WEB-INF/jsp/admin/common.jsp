@@ -57,5 +57,6 @@
     var saveSuccessCode=201;
     var delSuccessCode=203;
     var editSuccessCode=202;
+    var restPwdSuccessCode=210;
 </script>
 </html>

@@ -9,8 +9,8 @@
         <thead>
         <tr>
             <th data-options="field:'id',width:80,hidden:true">用户ID</th>
-            <th data-options="field:'userName',width:100,align:'center'">用户名</th>
             <th data-options="field:'loginName',width:80,align:'center'">登录名</th>
+            <th data-options="field:'userName',width:100,align:'center'">用户名</th>
             <th data-options="field:'orgName',width:150,align:'center'">所属部门</th>
             <th data-options="field:'roleIds',width:180,align:'left',formatter:formatRole">用户角色</th>
             <th data-options="field:'status',width:60,align:'center',formatter:formatStatus">状态</th>
@@ -55,7 +55,7 @@
         if(row.loginName=='admin'){
             val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>";
         }else{
-            val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+            val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>|<a href='#' onclick='resetPassword(\""+row.id+"\")'>重置密码</a>";
         }
         return val;
     }
@@ -89,6 +89,24 @@
                     success : function(data) {
                         message(data.message);
                         if(data.code==delSuccessCode){
+                            doSearch();
+                        }
+                    }
+                })
+            }
+        });
+    }
+    function resetPassword(id) {
+        $.messager.confirm('系统提示','是否确认重置密码?',function(r){
+            if (r){
+                $.ajax({
+                    url : "/admin/user/resetPassword?id="+id,
+                    type : "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType : "json",
+                    success : function(data) {
+                        message(data.message);
+                        if(data.code==restPwdSuccessCode){
                             doSearch();
                         }
                     }

@@ -183,7 +183,7 @@
                 <div class="post">
 
                     <div class="title">
-                        <h3>文件电报<a href="/public/more/wjdb" target="_blank" class="more"></a></h3>
+                        <h3>文件电报<a href="/public/more/wjdb" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
 
@@ -218,7 +218,7 @@
 
                         <div class="post">
                             <div class="title">
-                                <h3>检查安排及总结<a href="/public/more/jcapjzj" target="_blank" class="more"></a></h3>
+                                <h3>检查安排及总结<a href="/public/more/jcapjzj" class="more"></a></h3>
                                 <div class="line"></div>
                             </div>
                             <div class="content">
@@ -237,7 +237,7 @@
 
                         <div class="post">
                             <div class="title">
-                                <h3>检查调研<a href="/public/more/jcdy" target="_blank" class="more"></a></h3>
+                                <h3>检查调研<a href="/public/more/jcdy" class="more"></a></h3>
                                 <div class="line"></div>
                             </div>
                             <div class="content">
@@ -256,7 +256,7 @@
 
                         <div class="post">
                             <div class="title">
-                                <h3>文件电报<a href="/subject/4.html" target="_blank" class="more"></a></h3>
+                                <h3>文件电报<a href="/subject/4.html" class="more"></a></h3>
                                 <div class="line"></div>
                             </div>
 
@@ -273,7 +273,7 @@
 
                 <div class="post">
                     <div class="title">
-                        <h3>法规制度<a href="/public/more/fgzd" target="_blank" class="more"></a></h3>
+                        <h3>法规制度<a href="/public/more/fgzd" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
                     <div class="content">

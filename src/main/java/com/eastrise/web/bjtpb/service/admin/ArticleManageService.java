@@ -114,8 +114,7 @@ public class ArticleManageService {
         return true;
     }
 
-    public JSONObject getArticleContent(ArticleContentForm articleContentForm,int pageSize,int pageNumber) throws Exception {
-        JSONObject json = new JSONObject();
+    public ApiPageResponse getArticleContent(ArticleContentForm articleContentForm,int pageSize,int pageNumber) throws Exception {
         StringBuilder sb =new StringBuilder("select t.*,a.category_name from T_ARTICLE t  left join T_SYS_ARTICLEMANAGE a on t.article_type_id =a.id where 1=1 ");
         if(StringUtils.isNotEmpty(articleContentForm.getTitle())){
             sb.append(" and t.TITLE like '%"+articleContentForm.getTitle()+"%'");
@@ -132,9 +131,8 @@ public class ArticleManageService {
         if(StringUtils.isNotEmpty(articleContentForm.getArticleTypeId())){
             sb.append(" and t.ARTICLE_TYPE_ID ='"+articleContentForm.getArticleTypeId()+"'");
         }
-        json.put("rows", commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString()).getRows());
-        json.put("total", commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString()).getTotal());
-        return json;
+        sb.append("  order by t.publish_time desc ,t.article_type_id,t.article_tag,t.create_user_id,t.title,t.status");
+        return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString());
     }
     /**
      * 通过ID查询下级

@@ -73,10 +73,10 @@
                             </span>
                         </p>
                         <div class="RightSide_con font12">
-                            <div class="pd20 news_con">
+                            <div class="pd10 news_con">
                                 <h3 class="text-center yahei font18 font-w">${article.title}</h3>
                             </div>
-                            <div id="zoom" class="pd20">
+                            <div id="zoom" class="pd10">
                                 ${article.content}
                             </div>
                             <div class="operation text-right">
