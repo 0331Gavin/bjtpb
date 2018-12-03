@@ -409,7 +409,9 @@
                     <%--<div class="small_title"> 用户登录</div>--%>
                     <div class="section-content">
                         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION }">
-                            <p style='color: red'><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></p>
+                            <c:if test="${param.error==true }">
+                                <p style='color: red'>用户名或密码不正确</p>
+                            </c:if>
                         </c:if>
                         <sec:authentication property="name" var="username"/>
                         <c:if test="${username!=null&&username!='anonymousUser'}">
