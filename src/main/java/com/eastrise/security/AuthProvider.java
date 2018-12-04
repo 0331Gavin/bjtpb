@@ -2,6 +2,7 @@ package com.eastrise.security;
 
 import com.eastrise.base.IUserRepository;
 import com.eastrise.base.TSysUser;
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class AuthProvider implements AuthenticationProvider {
 
     private final Logger log = LoggerFactory.getLogger(AuthProvider.class);
 
+
     @Autowired
     private IUserRepository userRepo;
     private final PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -32,6 +34,9 @@ public class AuthProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String userName = authentication.getName();
         String inputPassword = (String) authentication.getCredentials();
+        if (StringUtils.isBlank(userName)||StringUtils.isBlank(inputPassword)) {
+            throw new BadCredentialsException("用户名或密码不能为空");
+        }
         //web，取得远程ip
         String remoteAddress = null;
         Object details = authentication.getDetails();
@@ -42,10 +47,10 @@ public class AuthProvider implements AuthenticationProvider {
         log.info("Authenticating {},ip {}", authentication.getName(),remoteAddress);
         TSysUser user = userRepo.findByLoginNameAndStatus(userName);
         if (user == null) {
-            throw new UsernameNotFoundException("用户名或密码不正确");
+            throw new BadCredentialsException("用户名或密码不正确");
         }
         if(!user.isEnabled()){
-            throw new DisabledException("该账号不可用，请联系管理员");
+            throw new DisabledException("您的账号已被停用");
         }
         if (passwordEncoder.matches(inputPassword,"{bcrypt}"+user.getPwd())) {
             user.setAuthorityList(user.getAuthorityList());

@@ -13,25 +13,25 @@
                     <td colspan="5"><input class="easyui-textbox" type="text" name="title" id="title" value="${articles.title}" data-options="required:true,validType:'length[1,100]'" style="width:460px;"></input></td>
                 </tr>
                 <tr>
-                   <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>
-                    <td><input id="sj" name="publishTime" value="${articles.publishTime}" type="text" class="easyui-datebox" required="required" style="width:150px;"></td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布部门:</td>
-                    <td><input class="easyui-textbox" type="text" name="publishDept" id="publishDept" value="${articles.publishDept}" data-options="required:false,validType:'length[1,40]'" style="width:140px;"></input></td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
                     <td>
-                        <input type="text" class="easyui-combobox" id="status" name="status" value="" editable="false" data-options="required:true,
+                        <input type="text" class="easyui-combobox" id="status" name="status" value="${articles.status}" editable="false" data-options="required:true,
                         valueField: 'label',
                         textField: 'value',
 				          panelHeight:'auto',
                         data: [{
                             label: '1',
                             value: '有效',
-                            selected: 'true'
                         },{
                             label: '0',
                             value: '无效'
                         }]" />
-                    </td></tr>
+                    </td>
+                   <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>
+                    <td><input id="sj" name="publishTime" value="${articles.publishTime}" type="text" class="easyui-datebox" required="required" style="width:150px;"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布部门:</td>
+                    <td><input class="easyui-textbox" type="text" name="publishDept" id="publishDept" value="${articles.publishDept}" data-options="required:false,validType:'length[1,40]'" style="width:140px;"></input></td>
+                    </tr>
                 <input type="hidden" id="articleTag" name="articleTag" value="${articleTag}">
             </table>
             <table id="tab">

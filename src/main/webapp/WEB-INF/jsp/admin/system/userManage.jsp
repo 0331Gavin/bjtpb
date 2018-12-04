@@ -9,12 +9,12 @@
         <thead>
         <tr>
             <th data-options="field:'id',width:80,hidden:true">用户ID</th>
-            <th data-options="field:'loginName',width:80,align:'center'">登录名</th>
-            <th data-options="field:'userName',width:100,align:'center'">用户名</th>
-            <th data-options="field:'orgName',width:150,align:'center'">所属部门</th>
-            <th data-options="field:'roleIds',width:180,align:'left',formatter:formatRole">用户角色</th>
-            <th data-options="field:'status',width:60,align:'center',formatter:formatStatus">状态</th>
-            <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
+            <th data-options="field:'loginName',width:130,align:'center'">登录名</th>
+            <th data-options="field:'userName',width:130,align:'center'">用户名</th>
+            <th data-options="field:'orgName',width:170,align:'center'">所属部门</th>
+            <th data-options="field:'roleIds',width:180,align:'center',formatter:formatRole">用户角色</th>
+            <th data-options="field:'status',width:90,align:'center',formatter:formatStatus">状态</th>
+            <th data-options="field:'op',width:180,align:'center',formatter:formatOper">操作</th>
         </tr>
         </thead>
     </table>

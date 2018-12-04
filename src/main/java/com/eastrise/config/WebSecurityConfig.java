@@ -51,7 +51,8 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .antMatchers("/public/**").permitAll()
                 .antMatchers("/uedit1.4.3.3/**","/uploadImg/**").permitAll()
                  .anyRequest().authenticated()
-                .and().formLogin().loginPage("/")
+                .and().formLogin()
+                .loginPage("/")
                 .loginProcessingUrl("/login")
                 .failureHandler(loginAuthFailHandler()).permitAll()
                 .successHandler(loginSuccessHandler())
@@ -62,6 +63,9 @@ public class WebSecurityConfig  extends WebSecurityConfigurerAdapter {
                 .tokenValiditySeconds(604800) //记住我功能，cookies有限期是一周
                     .rememberMeParameter("remember-me") //登陆时是否激活记住我功能的参数名字，在登陆页面有展示
                     .rememberMeCookieName("workspace"); //cookies的名字，登陆后可以通过浏览器查看cookies名字;
+        //session管理
+        //session失效后跳转
+        http.sessionManagement().invalidSessionUrl("/");
     }
 
     @Bean

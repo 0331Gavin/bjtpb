@@ -79,7 +79,7 @@ public class ArticleManageService {
     }
 
     public void delArticle(String id) {
-        articleManageRepository.deleteById(Integer.valueOf(id));
+        commonQueryRepository.executeUpdate("update T_SYS_ARTICLEMANAGE t set t.status = '-1' where t.id = '"+id+"'");
     }
 
     public boolean isArticleExist(ArticleTypeForm articleTypeForm) throws Exception {
@@ -99,6 +99,9 @@ public class ArticleManageService {
      */
     public boolean isArticleCodeExist(ArticleTypeForm articleTypeForm) throws Exception {
         String sql = " select t.* from T_SYS_ARTICLEMANAGE t where 1=1 and t.category_code='" + articleTypeForm.getCategorycode() + "'";
+        if(StringUtils.isNotEmpty(articleTypeForm.getId())){
+            sql+=" and t.id !='"+articleTypeForm.getId()+"'";
+        }
         List<Map<String, Object>> result = commonQueryRepository.findResultBySqlQuery(sql);
         if (result.size() > 0) {
             return false;
@@ -129,10 +132,42 @@ public class ArticleManageService {
             sb.append(" and t.PUBLISH_TIME <='"+articleContentForm.getJssj()+"'");
         }
         if(StringUtils.isNotEmpty(articleContentForm.getArticleTypeId())){
-            sb.append(" and t.ARTICLE_TYPE_ID ='"+articleContentForm.getArticleTypeId()+"'");
+            sb.append(" and (a.category_seq = '"+articleContentForm.getArticleTypeId()+"' or a.category_seq like '"+articleContentForm.getArticleTypeId()+".%' or a.category_seq like '%."+articleContentForm.getArticleTypeId()+"' )");
         }
-        sb.append("  order by t.publish_time desc ,t.article_type_id,t.article_tag,t.create_user_id,t.title,t.status");
-        return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString());
+        sb.append(" order by ");
+        if(StringUtils.isNotEmpty(articleContentForm.getSort())){
+            if("articleTag".equals(articleContentForm.getSort())){
+                sb.append(" t.article_Tag ");
+            }else if("title".equals(articleContentForm.getSort())){
+                sb.append(" t.title ");
+            }else if("categoryName".equals(articleContentForm.getSort())){
+                sb.append(" a.category_name ");
+            }else if("publishTime".equals(articleContentForm.getSort())){
+                sb.append(" t.publish_Time ");
+            }else if("publishDeptName".equals(articleContentForm.getSort())){
+                sb.append(" t.publish_Dept_Name ");
+            }else if("createUserName".equals(articleContentForm.getSort())){
+                sb.append(" t.create_User_Name ");
+            }else if("status".equals(articleContentForm.getSort())){
+                sb.append(" t.status ");
+            }
+            if(StringUtils.isNotEmpty(articleContentForm.getOrder())){
+                sb.append(articleContentForm.getOrder()+",");
+            }else{
+                sb.append(",");
+            }
+        }
+        sb.append("  t.publish_time desc ,t.article_type_id,t.article_tag,t.create_user_id,t.title,t.status");
+        ApiPageResponse response = commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString());
+//        List<Map<String, Object>> rows = response.getRows();
+//        for(Map<String, Object> map:rows){
+//            if(map.get("articleTypeId")!=null){
+//                map.put("articleTypeSeqName",getCategorySeqNameListById(map.get("articleTypeId").toString()));
+//            }else{
+//                map.put("articleTypeSeqName",map.get("categoryName"));
+//            }
+//        }
+        return response;
     }
     /**
      * 通过ID查询下级
@@ -184,6 +219,21 @@ public class ArticleManageService {
             }
         }
         return articleManageList;
+    }
+    public String getCategorySeqNameListById(String id) {
+        String result = "";
+        TArticleManage articleManage = findArticle(id);
+        if (StringUtils.isNotEmpty(articleManage.getCategoryseq())) {
+            String[] ids = articleManage.getCategoryseq().split("\\.");
+            for (String s : ids) {
+                articleManage = findArticle(s);
+                result+=articleManage.getCategoryname()+".";
+            }
+        }
+        if(result.length()>0){
+            result = result.substring(0,result.length()-1);
+        }
+      return result;
     }
 
     public TArticle saveArticleContent(TArticle tArticle)throws Exception {

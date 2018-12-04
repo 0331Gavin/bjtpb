@@ -72,16 +72,17 @@ public class ArticleManageController {
     @PostMapping(value = "/saveArticle",produces = "text/html;charset:utf-8")
     @ResponseBody
     public ApiResponse saveArticle(ArticleTypeForm articleTypeForm)throws Exception{
+        //验重
+        if(!manageService.isArticleCodeExist(articleTypeForm)){
+            return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该类别编码已存在，不能重复添加");
+        }
         //id判断新增   修改
         if(StringUtils.isNotEmpty(articleTypeForm.getId())){
             TArticleManage tArticleManage = manageService.findArticle(articleTypeForm.getId());
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
             manageService.savearticleManage(tArticleManage);
         }else{
-            //验重
-            if(!manageService.isArticleCodeExist(articleTypeForm)){
-                return ApiResponse.ofMessage(ApiResponse.Status.SAVE_FAILD.getCode(),"该文章编码已存在，不能重复添加");
-            }
+
             TArticleManage tArticleManage=new TArticleManage();
             BeanUtils.copyProperties(articleTypeForm,tArticleManage);
             tArticleManage= manageService.savearticleManage(tArticleManage);
@@ -224,6 +225,23 @@ public class ArticleManageController {
             }
         }
         manageService.delArticleCont(id);
+        return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
+    }
+
+    @PostMapping(value = "/removeArticleCont")
+    @ResponseBody
+    public ApiResponse removeArticleCont(String[] ids){
+        for(String id:ids){
+            TArticle tArticle = manageService.findArticleContByid(id);
+            if(tArticle.getArticleTag().equals("fj")){
+                TAttachment tAttachment =manageService.findTAttachmentByBuzId(id);
+                if(tAttachment!=null){
+                    manageService.delAttachment(tAttachment.getId());
+                    OperationFileUtil.deleteFile(tAttachment.getAttachmentPath());
+                }
+            }
+            manageService.delArticleCont(id);
+        }
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
 

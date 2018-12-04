@@ -54,7 +54,7 @@ public class YqljService {
     public List<Map<String, Object>> findAll() throws Exception {
         //定义 用于查询的SQL
         StringBuffer sql = new StringBuffer();
-        sql.append("select t.* from t_sys_yqlj t ");
+        sql.append("select t.id,t.ljmc,t.ljurl from t_sys_yqlj t order by t.ljsx");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
 

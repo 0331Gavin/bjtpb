@@ -169,7 +169,19 @@
     #bg {
         background: url('images/public/highlight.png') top left repeat-x;
     }
-
+    .btn06{
+        padding:0;
+        width:70px;
+        height:30px;
+        line-height:29px;
+        border:1px solid #666;
+        font-size:14px;
+        color:#333;
+        background-color:white;
+        border-radius:3px;
+        cursor: pointer;
+    }
+    .bgblue{background-color:#267cb2;color:white}
 </style>
 <body>
 <div id="bg">
@@ -410,7 +422,7 @@
                     <div class="section-content">
                         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION }">
                             <c:if test="${param.error==true }">
-                                <p style='color: red'>用户名或密码不正确</p>
+                                <p style='color: red'>${SPRING_SECURITY_LAST_EXCEPTION.message }</p>
                             </c:if>
                         </c:if>
                         <sec:authentication property="name" var="username"/>
@@ -442,13 +454,14 @@
                         </div>
                     </c:if>
                         <c:if test="${username==null||username=='anonymousUser'}">
-                                <form name='f' action='/login' method='POST'>
+                                <form name='f' id="loginForm" action='/login' method='POST'>
                                     <div class="form"  >
 
-                                            <div class="form_row"><label class="left">用户名: </label><input type='text'  class="form_input" name='username' value='admin'  placeholder="输入帐号"></div>
-                                            <div class="form_row"><label class="left">密&nbsp;&nbsp;&nbsp;&nbsp;码: </label><input  type='password'  class="form_input" name='password' value='666666' placeholder="输入密码"/></div>
+                                            <div class="form_row"><label class="left">用户名: </label><input type='text'  class="form_input" name='username' value=''  placeholder="输入帐号"></div>
+                                            <div class="form_row"><label class="left">密&nbsp;&nbsp;&nbsp;码: </label><input  type='password'  class="form_input" name='password' value='' placeholder="输入密码"/></div>
                                         <div class="form_row"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;记住我</label></div>
-                                            <div class="form_row"> <input type="submit" value="登&nbsp;&nbsp;录"/></div>
+                                            <div class="form_row"><input type="button" value="登&nbsp;录" class="btn06 bgblue" id="checkLogin" onclick="login();"/></div>
+
                                     </div>
                                 </form>
                      </c:if>
@@ -493,8 +506,8 @@
     function toAdminIndex(){
         window.open("../adminIndex");
     }
-    function wjdbMore() {
-
+    function login() {
+        document.getElementById("loginForm").submit()
     }
 </script>
 </html>

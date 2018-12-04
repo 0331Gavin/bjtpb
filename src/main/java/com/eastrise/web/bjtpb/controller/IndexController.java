@@ -43,9 +43,18 @@ public class IndexController {
         getArticleList(request,"sggzdc");
         getArticleList(request,"jcdy");
         getArticleList(request,"dqgz");
-
-
-
+        getMenuList(request);
+        return "public/index.jsp";
+    }
+    @RequestMapping(value = {"/login2"}, method = RequestMethod.GET)
+    public String login2(HttpServletRequest request) throws  Exception{
+        request.setAttribute("yqlj",yqljService.findAll());
+        getArticleList(request,"wjdb");
+        getArticleList(request,"fgzd");
+        getArticleList(request,"jcapjzj");
+        getArticleList(request,"sggzdc");
+        getArticleList(request,"jcdy");
+        getArticleList(request,"dqgz");
         getMenuList(request);
         return "public/index.jsp";
     }
@@ -95,7 +104,6 @@ public class IndexController {
             List result = articleManageService.findArticleByParentId(articleManage.getId()+"","1");
             articleManage.setChildren(result);
         }
-        System.out.println(JSONObject.toJSONString(articleManageList));
         request.setAttribute("menuList",articleManageList);
     }
 }

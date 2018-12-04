@@ -10,10 +10,10 @@
     <thead>
     <tr>
         <th data-options="field:'id',width:80,hidden:true">链接ID</th>
-        <th data-options="field:'ljmc',width:220,align:'center'">链接名称</th>
-        <th data-options="field:'ljurl',width:200,align:'center'">链接地址</th>
-        <th data-options="field:'ljsx',width:80,align:'center',hidden:true">顺序</th>
-        <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
+        <th data-options="field:'ljmc',width:280,align:'center'">链接名称</th>
+        <th data-options="field:'ljurl',width:280,align:'center'">链接地址</th>
+        <th data-options="field:'ljsx',width:120,align:'center',hidden:true">顺序</th>
+        <th data-options="field:'op',width:140,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
 </table>

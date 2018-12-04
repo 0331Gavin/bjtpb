@@ -10,13 +10,13 @@
     <thead>
     <tr>
         <th data-options="field:'id',width:80,hidden:true">部门ID</th>
-        <th data-options="field:'orgName',width:130,align:'center'">部门名称</th>
-        <th data-options="field:'sjorgname',width:130,align:'center'">上级部门</th>
-        <th data-options="field:'memo',width:130,align:'center'">备注</th>
+        <th data-options="field:'orgName',width:180,align:'center'">部门名称</th>
+        <th data-options="field:'sjorgname',width:180,align:'center'">上级部门</th>
+        <th data-options="field:'memo',width:220,align:'center'">备注</th>
         <th data-options="field:'orgOrder',width:80,align:'center',hidden:true">顺序</th>
-        <th data-options="field:'status',width:80,align:'center',formatter:formatStatus">状态</th>
+        <th data-options="field:'status',width:90,align:'center',formatter:formatStatus">状态</th>
         <th data-options="field:'orgSeq',width:80,align:'center',hidden:true">seq</th>
-        <th data-options="field:'op',width:120,align:'center',formatter:formatOper">操作</th>
+        <th data-options="field:'op',width:160,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
 </table>
