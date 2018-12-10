@@ -23,7 +23,7 @@
 <div id="tb" style="padding:5px;height:auto">
 
     <div>
-        部门名称: <input class="easyui-combotree" name="orgName" id="orgNameQ"   data-options="url:'/admin/org/listOrgs',method:'post'" >
+        部门名称:  <input class="easyui-textbox" name="orgName" id="orgNameQ"/>
         上级部门: <input class="easyui-combotree" name="sjorgname" id="sjorgnameQ"   data-options="url:'/admin/org/listOrgs',method:'post'" >
         <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doSearch()">查询</a>
     </div>
@@ -55,7 +55,7 @@
         });
     }
     function formatOper(val,row,index) {
-        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.orgSeq+"\")'>删除</a>";
+        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
         return val;
     }
     function edit(id) {

@@ -13,5 +13,5 @@ public interface ArticleContentRepository extends JpaRepository<TArticle, String
 
     @Query("select u from TArticle u where u.id = ?1 ")
     TArticle findByIdAndStatus(String id);
-    List<TArticle> findAllByArticleTypeIdAndStatusAndArticleTagOrderByPublishTimeDesc(String articleTypeId,String status,String articleTag);
+    List<TArticle> findAllByArticleTypeIdAndStatusAndArticleTagOrderByIsTopDescPublishTimeDesc(String articleTypeId,String status,String articleTag);
 }

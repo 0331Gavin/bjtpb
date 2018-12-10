@@ -153,7 +153,7 @@
                         ,KeyWordType:$("#KeyWordType").val()}
                 ,cols: [[
                      {field:'ida', width:'10%', title: '序号',type:'numbers'}
-                    ,{field:'id', width:'10%', title: 'id'}
+                    ,{field:'id', width:'1%', title: 'id'}
                     ,{field:'title', width:'52%', title: '标题'}
                     ,{field:'deptName', width:'20%', title: '发布机构'}
                     ,{field:'articleTag', width:'20%', title: '类型'}

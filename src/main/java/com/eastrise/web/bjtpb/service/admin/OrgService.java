@@ -96,12 +96,11 @@ public class OrgService {
 
         StringBuilder sql = new StringBuilder("select dept.* from (select   g.*,bm.sjorgname   from   t_sys_org g  left      join   (select t.org_name sjorgname,t.id from t_sys_org t)bm    on   bm.id=g.parent_id )dept where 1=1 ");
         if(Strings.isNotEmpty(orgName)) {
-            long deptid =Long.valueOf(orgName);
-            sql.append(" and dept.id='"+deptid+"'");
+            sql.append(" and dept.org_name like '%"+orgName+"%'");
         }
         if(Strings.isNotEmpty(sjorgname)){
             long pardeptid =Long.valueOf(sjorgname);
-            sql.append(" and dept.parent_id like '%"+pardeptid+"%'");
+            sql.append(" and dept.parent_id = '"+pardeptid+"'");
         }
         sql.append(" and dept.status>'-1' ");
         sql.append("order by dept.org_order");
@@ -136,14 +135,14 @@ public class OrgService {
 
     /**
      * 根据seq查询其部门和子部门的id
-     * @param seq
+     * @param id
      * @return
      * @throws Exception
      */
-    public List<Map<String, Object>> findallOrgid(String seq) throws Exception {
+    public List<Map<String, Object>> findallOrgid(String id) throws Exception {
         //定义 用于查询的SQL
         StringBuffer sql = new StringBuffer();
-        sql.append("select t.id  from T_SYS_ORG  t where t.org_seq like'"+"%"+seq+"%"+"'");
+        sql.append("select t.id  from T_SYS_ORG  t where ( t.org_seq like'"+""+id+".%"+"' or t.id='"+id+"')");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
     }
 
@@ -188,12 +187,12 @@ public class OrgService {
     }
 
     /**
-     * 根据seq删除该部门以及子部门
+     * 根据id删除该部门以及子部门
      * @param id
      * @throws Exception
      */
     public void del(String id) throws Exception{
-        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where org_seq  like '"+"%"+id+"%"+"'");
+        StringBuilder sql = new StringBuilder("delete from T_SYS_ORG  where ( id = '"+id+"' or org_seq like '"+id+"%')");
         commonQueryRepository.executeUpdate(sql.toString());
     }
     /**

@@ -108,6 +108,18 @@ public class ArticleManageController {
         manageService.delArticle(id);
         return ApiResponse.ofStatus(ApiResponse.Status.DEL_SUCCESS);
     }
+    @PostMapping(value = "/upTop")
+    @ResponseBody
+    public ApiResponse upTop(String id,String value){
+        manageService.upTop(id,value);
+        String message="";
+        if(value.equals("1")){
+            message="置顶成功";
+        }else{
+            message="取消置顶成功";
+        }
+        return ApiResponse.ofMessage(1,message);
+    }
 
     @PostMapping("/getArticleContent")
     @ResponseBody

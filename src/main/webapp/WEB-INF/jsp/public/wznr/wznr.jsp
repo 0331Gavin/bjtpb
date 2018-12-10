@@ -37,7 +37,7 @@
                     <h3 class="text-center yahei font18 font-w">${wz.TITLE}</h3>
                     <p class="date font12 mgt20 grey text-center">
                         发布部门：${wz.PUBLISH_DEPT_NAME} 发布时间：${wz.PUBLISH_TIME}
-
+                        <span>阅读数：${wz.LOOK_TOTAL}</span>
                         <%--<span><a href="#" onclick="docClick(621523)">全文下载</a></span>--%>
                     </p>
 

@@ -20,7 +20,7 @@
         <th data-options="field:'publishDeptName',width:180,align:'center',sortable:true">发布部门</th>
            <th data-options="field:'createUserName',width:120,align:'center',sortable:true">录入人</th>
         <th data-options="field:'status',width:90,align:'center',formatter:formatStatus,sortable:true">状态</th>
-           <th data-options="field:'_operate',width:140,align:'center',formatter:formatOper">操作</th>
+           <th data-options="field:'_operate',width:160,align:'center',formatter:formatOper">操作</th>
     </tr>
     </thead>
 </table>
@@ -38,10 +38,13 @@
 </div>
 <script>
     function addTitle(value,row,index) {
-        return"<a title='"+row.title+"'>"+row.title+"</a>";
+        if(row.isTop=='1'){
+            return "<a title='"+row.title+"'>【置顶】"+row.title+"</a>";
+        }
+        return "<a title='"+row.title+"'>"+row.title+"</a>";
     }
     function formatType(value,row,index) {
-        return"<a title='"+row.articleTypeSeqName+"'>"+value+"</a>";
+        return "<a title='"+row.articleTypeSeqName+"'>"+value+"</a>";
     }
     $(function(){
         var pager = $('#Twznr').datagrid().datagrid('getPager');	// get the pager of datagrid
@@ -95,15 +98,32 @@
         return val;
     }
     function formatOper(val,row,index){
+        val="";
         <sec:authentication property="name" var="username"/>
         <sec:authorize access="hasAnyRole('ROLE_ADMIN')">
-        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        if(row.isTop=='1'){
+            val+="<a href='#' onclick='upTop(\""+row.id+"\",0)'>取消置顶</a>|";
+        }else{
+            val+="<a href='#' onclick='upTop(\""+row.id+"\",1)'>置顶</a>|";
+        }
+        if(row.articleTag=="tw"){
+            val+="<a href='<%=appPath%>/public/content/"+row.id+"' target='_blank' >查看</a>|";
+        }
+        val += "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
         </sec:authorize>
         <sec:authorize access="hasAnyRole('ROLE_RECORDER')">
+            if(row.articleTag=="tw"){
+                val+="<a href='<%=appPath%>/public/content/\""+row.id+"\"' target='_blank' >查看</a>|";
+            }
             if("${username}"==row.createLoginname){
-                val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+                if(row.isTop=='1'){
+                    val+="<a href='#' onclick='upTop(\""+row.id+"\",0)'>取消置顶</a>|";
+                }else{
+                    val+="<a href='#' onclick='upTop(\""+row.id+"\",1)'>置顶</a>|";
+                }
+                val += "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
             }else{
-                val = "";
+                val += "";
             }
         </sec:authorize>
 
@@ -127,6 +147,28 @@
         }
 
     }
+    function upTop(id,value){
+        var title="";
+        if(value==0){
+            title="确定要取消置顶该文章吗？";
+        }else{
+            title="确定要置顶该文章吗？";
+        }
+        $.messager.confirm('系统提示',title,function(r){
+            if (r){
+                $.ajax({
+                    url : "/admin/article/upTop?id="+id+"&value="+value,
+                    type : "POST",
+                    contentType: "application/json;charset=utf-8",
+                    dataType : "json",
+                    success : function(data) {
+                        message(data.message);
+                        doload();
+                    }
+                })
+            }
+        })
+    }
     function edit(id) {
        opennrWindow("修改文章内容","/admin/article/toUpdateArticleCont?id="+id);
     }
@@ -148,6 +190,7 @@
             }
         })
     }
+
     function removeArticleCont() {
         var checkRows = $('#Twznr').datagrid('getChecked');
         if(checkRows.length==0){

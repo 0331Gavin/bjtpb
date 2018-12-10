@@ -15,18 +15,14 @@
                 </tr>
                 <tr>
                     <td>上级部门名称:</td>
-                    <td> <input class="easyui-textbox" name="parentId" id="parentId"  value="${dept.PARENT_ID }" readonly>
+                    <td>
+                        <input class="easyui-combotree" name="parentId" id="parentId"  value="${dept.PARENT_ID}"  data-options="url:'/admin/org/listOrgs',method:'post',required:true,validType:'length[1,1000]'" >
                     </td>
                 </tr>
                 <tr>
                     <td>顺序:</td>
                     <td><input class="easyui-textbox" type="text" name="orgOrder" id="orgOrder"  value="${dept.ORG_ORDER}" data-options=""></input></td>
                 </tr>
-                <tr>
-                    <td>备注:</td>
-                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options=""></input></td>
-                </tr>
-
                 <tr>
                     <td>状态:</td>
                     <td>
@@ -43,6 +39,12 @@
                         }]" />
                     </td>
                 </tr>
+                <tr>
+                    <td>备注:</td>
+                    <td><input class="easyui-textbox" type="text" name="memo" id="memo"  value="${dept.memo}" data-options=""></input></td>
+                </tr>
+
+
             </table>
             <input type="hidden" id="id" name="id" value="${dept.id}"/>
         </form>

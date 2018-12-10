@@ -75,6 +75,18 @@ public class TArticle {
     @Column(name="STATUS")
     private String status;
 
+    /*
+    * 置顶 （0：没置顶，1：已置顶）
+    * */
+    @Column(name="IS_TOP")
+    private String isTop="0";
+
+    /*
+    *
+    * */
+    @Column(name="LOOK_TOTAL")
+    private int lookTotal=0;
+
     @Column(name="CREATE_LOGINNAME")
     private String createLoginName;
 
@@ -182,5 +194,21 @@ public class TArticle {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getIsTop() {
+        return isTop;
+    }
+
+    public void setIsTop(String isTop) {
+        this.isTop = isTop;
+    }
+
+    public int getLookTotal() {
+        return lookTotal;
+    }
+
+    public void setLookTotal(int lookTotal) {
+        this.lookTotal = lookTotal;
     }
 }

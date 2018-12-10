@@ -108,23 +108,12 @@ public class OrgController {
 
     /**
      * 根据id删除部门
-     * @param id（部门seq）
+     * @param id
      * @return
      */
     @PostMapping(value = "/del")
     public ApiResponse del(String id){
         try{
-            List<Map<String, Object>> mapList= orgService.findallOrgid(id);
-            for (Map<String,Object> map:mapList) {
-                for (String s:map.keySet() ) {
-                    String deptid=map.get("ID").toString();
-
-                    if(orgService.findCountyh(deptid)){
-                        return ApiResponse.ofStatus(ApiResponse.Status.DELORG_FAILD);
-                    };
-
-                }
-            }
             orgService.del(id);
         }catch (Exception e){
             e.printStackTrace();

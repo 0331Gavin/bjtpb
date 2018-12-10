@@ -29,6 +29,7 @@
 
 </div>
 <script>
+
     function save() {
         $('#xzzx').form('submit', {
             url:"/admin/user/updatemima",
@@ -37,15 +38,20 @@
             },
             success:function(data){
                 var data = eval('(' + data + ')'); // change the JSON string to javascript object
-                message(data.message);
-
                 if (data.code == saveSuccessCode) {
-                    $('#xzzx').form('reset');
+                    $.messager.alert("系统提示", "修改密码成功，请重新登录!", "info", function () {
+                        window.location.href="/logout"
+                    });
+//                    $('#xzzx').form('reset');
+                }else{
+                    message(data.message);
                 }
+
             }
         });
 
     }
+
 </script>
 <script type="text/javascript">
     $.extend($.fn.validatebox.defaults.rules, {

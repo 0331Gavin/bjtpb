@@ -422,7 +422,10 @@
                     <div class="section-content">
                         <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION }">
                             <c:if test="${param.error==true }">
-                                <p style='color: red'>${SPRING_SECURITY_LAST_EXCEPTION.message }</p>
+                                <p style='color: red'>
+                                        <%--${SPRING_SECURITY_LAST_EXCEPTION.message }--%>
+                                    用户名或密码不正确
+                                </p>
                             </c:if>
                         </c:if>
                         <sec:authentication property="name" var="username"/>
@@ -459,7 +462,7 @@
 
                                             <div class="form_row"><label class="left">用户名: </label><input type='text'  class="form_input" name='username' value=''  placeholder="输入帐号"></div>
                                             <div class="form_row"><label class="left">密&nbsp;&nbsp;&nbsp;码: </label><input  type='password'  class="form_input" name='password' value='' placeholder="输入密码"/></div>
-                                        <div class="form_row"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;记住我</label></div>
+                                        <div class="form_row"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;下次自动登录</label></div>
                                             <div class="form_row"><input type="button" value="登&nbsp;录" class="btn06 bgblue" id="checkLogin" onclick="login();"/></div>
 
                                     </div>

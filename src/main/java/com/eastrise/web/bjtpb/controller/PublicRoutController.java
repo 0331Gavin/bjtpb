@@ -130,10 +130,11 @@ public class PublicRoutController {
     public String toWzView(@PathVariable String id, HttpServletRequest request) throws Exception {
         getMenuList(request);
         if(id!=null){
-
+            articleService.upLookTotal(id);
             Map<String, Object> list =articleService.findById(id).get(0);
             getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
-            request.setAttribute("wz",list);}
+            request.setAttribute("wz",list);
+        }
         return "/public/wznr/wznr.jsp";
     }
 
@@ -143,7 +144,6 @@ public class PublicRoutController {
             List result = articleManageService.findArticleByParentId(articleManage.getId()+"","1");
             articleManage.setChildren(result);
         }
-        System.out.println(JSONObject.toJSONString(articleManageList));
         request.setAttribute("menuList",articleManageList);
     }
 

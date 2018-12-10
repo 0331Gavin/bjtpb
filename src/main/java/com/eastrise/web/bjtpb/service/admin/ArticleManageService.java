@@ -51,6 +51,9 @@ public class ArticleManageService {
                 map.put("categoryName", result.get(i).get("CATEGORY_NAME"));
                 map.put("viewModel", result.get(i).get("SJMC"));
                 map.put("status", result.get(i).get("STATUS"));
+                if(!result.get(i).get("CATEGORY_SEQ").toString().contains(".")){
+                    map.put("state", "closed");
+                }
                 if (!parentId.equals("0")) {
                     map.put("_parentId", Integer.valueOf(parentId));
                 }
@@ -134,7 +137,7 @@ public class ArticleManageService {
         if(StringUtils.isNotEmpty(articleContentForm.getArticleTypeId())){
             sb.append(" and (a.category_seq = '"+articleContentForm.getArticleTypeId()+"' or a.category_seq like '"+articleContentForm.getArticleTypeId()+".%' or a.category_seq like '%."+articleContentForm.getArticleTypeId()+"' )");
         }
-        sb.append(" order by ");
+        sb.append(" order by t.is_top desc,");
         if(StringUtils.isNotEmpty(articleContentForm.getSort())){
             if("articleTag".equals(articleContentForm.getSort())){
                 sb.append(" t.article_Tag ");
@@ -261,5 +264,9 @@ public class ArticleManageService {
     }
     public void delAttachment(String id) {
         attachmentRepository.deleteById(id);
+    }
+
+    public void upTop(String id, String value) {
+        commonQueryRepository.executeUpdate("update T_ARTICLE t set t.is_top='"+value+"' where t.id ='"+id+"' ");
     }
 }

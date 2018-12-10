@@ -34,7 +34,7 @@ public class ArticleService {
 
 
     public List<TArticle> getArticleListByArticleTypeId(String articleTypeId,String articleTag){
-        return articleContentRepository.findAllByArticleTypeIdAndStatusAndArticleTagOrderByPublishTimeDesc(articleTypeId,"1",articleTag);
+        return articleContentRepository.findAllByArticleTypeIdAndStatusAndArticleTagOrderByIsTopDescPublishTimeDesc(articleTypeId,"1",articleTag);
     }
     public List<Map<String, Object>> findById(String id) throws Exception {
         //定义 用于查询的SQL
@@ -52,7 +52,7 @@ public class ArticleService {
             sql.append(" and t.PUBLISH_DEPT_NAME like '%"+KeyWord+"%' ");
         if(StringUtils.isNotEmpty(KeyWordType)&& Constants.S_FBRQ.equals(KeyWordType)&&StringUtils.isNotEmpty(KeyWord))
             sql.append(" and t.publish_time like '%"+KeyWord+"%' ");
-       sql.append(" order by t.publish_time desc ");
+       sql.append(" order by T.is_top desc,t.publish_time desc ");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
     public List<Map<String, Object>> getFilebyId(String id) throws Exception {
@@ -60,5 +60,9 @@ public class ArticleService {
         StringBuffer sql = new StringBuffer();
         sql.append("select t.* from T_ATTACHMENT t  where t.buz_id='"+id+"'");
         return commonQueryRepository.findResultBySqlQuery(sql+"");
+    }
+
+    public void upLookTotal(String id) {
+        commonQueryRepository.executeUpdate("update t_Article t  set t.look_total=(t.look_total+1) where t.id='"+id+"'");
     }
 }
