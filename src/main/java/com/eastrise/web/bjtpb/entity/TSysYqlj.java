@@ -30,13 +30,14 @@ public class TSysYqlj {
     * 链接地址
     **/
 
-    @Column(name = "LJURL", columnDefinition = "CLOB")
+    @Column(name = "LJURL")
+
     private String ljurl;
     /*
     * 链接顺序
     **/
 
-    @Column(name="LJSX", columnDefinition = "CLOB")
+    @Column(name="LJSX")
     private String ljsx;
 
     public String getId() {

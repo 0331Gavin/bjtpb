@@ -34,6 +34,10 @@ public class UeditorController {
 
     @Value("${file-service-path}")
     private String path;
+    @Value("${image-Url}")
+    private String imageUrl;
+    @Value("${image-path}")
+    private String imagePath;
     @Autowired
     private ArticleManageService manageService;
     @Autowired
@@ -51,7 +55,7 @@ public class UeditorController {
                "    \"imageCompressEnable\": true, /* 是否压缩图片,默认是true */\n" +
                "    \"imageCompressBorder\": 600, /* 图片压缩最长边限制 */\n" +
                "    \"imageInsertAlign\": \"none\", /* 插入的图片浮动方式 */\n" +
-               "    \"imageUrlPrefix\": \"\", /* 图片访问路径前缀 */\n" +
+               "    \"imageUrlPrefix\": \""+imageUrl+"\", /* 图片访问路径前缀 */\n" +
                "    \"imagePathFormat\": \"/uedit1.4.3.3/jsp/upload/image/{yyyy}{mm}{dd}/{time}{rand:6}\", /* 上传保存路径,可以自定义保存路径和文件名格式 */\n" +
                "                                /* {filename} 会替换成原文件名,配置这项需要注意中文乱码问题 */\n" +
                "                                /* {rand:6} 会替换成随机数,后面的数字是随机数的位数 */\n" +
@@ -174,7 +178,7 @@ public class UeditorController {
     @ResponseBody
     public Map<String,String> returnImgUrl(@RequestParam("upfile") MultipartFile upfile, HttpServletRequest request)throws Exception{
         String fileName=upfile.getOriginalFilename();
-        String imgPath=request.getSession().getServletContext().getRealPath("/uploadImg/img");
+        String imgPath=new String(imagePath);
         if(fileName.contains("\\")){
             String[] Str1Array = fileName.split("\\\\");
             fileName = Str1Array[Str1Array.length-1];
@@ -184,7 +188,7 @@ public class UeditorController {
         if(!upfile.isEmpty()){
             OperationFileUtil.uploadFile(upfile,imgPath,nowName);
         }
-       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/uploadImg/img/"+nowName,upfile.getSize()+"");
+       return this.getUeditorMap(nowName,fileName,fileName.substring(fileName.lastIndexOf(".")),"/"+nowName,upfile.getSize()+"");
     }
 
     @RequestMapping("/download")

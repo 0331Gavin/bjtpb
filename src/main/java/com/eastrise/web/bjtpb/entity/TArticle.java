@@ -36,13 +36,15 @@ public class TArticle {
     * 文章内容
     **/
     @Lob
-    @Column(name = "CONTENT", columnDefinition = "CLOB")
+//    @Column(name = "CONTENT", columnDefinition = "CLOB")
+    @Column(columnDefinition = "text")
     private String content;
     /*
     * 文章HTML内容
     **/
     @Lob
-    @Column(name="CONTENT_HTML", columnDefinition = "CLOB")
+//    @Column(name="CONTENT_HTML", columnDefinition = "CLOB")
+    @Column(columnDefinition = "text")
     private String contentHtml;
     /*
     * 发布部门

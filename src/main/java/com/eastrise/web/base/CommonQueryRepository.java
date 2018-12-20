@@ -28,7 +28,7 @@ public class CommonQueryRepository {
      */
     public ApiPageResponse findPageBySqlQuery(int pageSize, int pageNumber, String sql) {
         //查询结果
-        String pageSql = PageSqlUtil.getPageSql(pageSize,pageNumber, sql);
+        String pageSql = PageSqlUtil.getMysqlPageSql(pageSize,pageNumber, sql);
         logger.info("pageSql:"+pageSql);
         List<Map<String, Object>> pageResult = jdbcTemplate.queryForList(pageSql);
         return ApiPageResponse.of(findCountBySqlQuery(sql),ChangeNameForm.changeSqlResult(pageResult));

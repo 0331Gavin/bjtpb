@@ -57,6 +57,8 @@ public class PublicController {
         List<Map<String, Object>> filea= articleService.getFilebyId(id);
         String fileName=filea.get(0).get("ATTACHMENT_NAME").toString();
         String filePath=filea.get(0).get("ATTACHMENT_PATH").toString();
+        String fileId=filea.get(0).get("ID").toString();
+        String fileType=filea.get(0).get("ATTACHMENT_TYPE").toString();
         if (StringUtils.isNotEmpty(filePath) && StringUtils.isNotEmpty(fileName)) {
             response.reset();
             response.setContentType("application/force-download");// 设置强制下载不打开
@@ -70,7 +72,7 @@ public class PublicController {
             }
             File file = null;
             try {
-                file = new File(filePath);
+                file = new File(filePath,fileId+"."+fileType);
                 if (!file.exists()) {
                     throw new Exception();
                 }

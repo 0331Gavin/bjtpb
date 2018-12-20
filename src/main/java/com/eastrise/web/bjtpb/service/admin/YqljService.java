@@ -27,7 +27,7 @@ public class YqljService {
      * 系统管理/友情链接管理列表
      */
     public ApiPageResponse findPageData(int pageSize, int pageNumber, String ljmc) {
-        StringBuilder sql = new StringBuilder("select t.* from t_sys_yqlj t where 1=1");
+        StringBuilder sql = new StringBuilder("select t.* from t_sys_yqlj t where 1=1 ");
         if(Strings.isNotEmpty(ljmc)) {
             ljmc=ljmc.trim();
             sql.append(" and t.ljmc like '%"+ljmc+"%'");

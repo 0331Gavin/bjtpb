@@ -42,7 +42,7 @@ public class TSysUser  implements UserDetails {
     /**
      * 密码
      */
-    @Column(name = "pwd",length = 50)
+    @Column(name = "pwd",length = 100)
     private String pwd;
     @Column(name = "phone_number")
     private String phoneNumber;

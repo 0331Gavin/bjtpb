@@ -11,4 +11,10 @@ public class PageSqlUtil {
         return bf.toString();
     }
 
+    public static String getMysqlPageSql( int pageSize, int pageNumber,String sql){
+        StringBuffer bf = new StringBuffer("");
+        bf.append(sql+" limit "+(pageNumber-1)*pageSize+","+pageSize);
+        return bf.toString();
+    }
+
 }

@@ -21,9 +21,10 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * create by FQY
@@ -199,9 +200,10 @@ public class ArticleManageController {
                 fileNames = Str1Array[Str1Array.length-1];
             }
             String prefix = fileNames.substring(fileNames.lastIndexOf(".") + 1);
-            String filePath=path+articleContentForm.getPublishTime().substring(0,4)+"/"+tArticleManage.getCategoryseq().replace(".","/");
+            String filePath=path+"/"+articleContentForm.getPublishTime().substring(0,4)+"/"+tArticleManage.getCategoryseq().replace(".","/");
+            String fileName_uuid = UUID.randomUUID().toString().replaceAll("-","")+"."+prefix;
             try {
-                OperationFileUtil.uploadFile(file, filePath, fileNames);
+                OperationFileUtil.uploadFile(file, filePath, fileName_uuid);
             }catch (Exception e){
                 System.out.println("文件保存失败！");
                 e.printStackTrace();
@@ -220,7 +222,8 @@ public class ArticleManageController {
             tAttachment.setUploadTime(DateHelper.getDateTime());
             tAttachment.setUploadUserId(localUserDetails.getId());
             tAttachment.setUploadUserName(localUserDetails.getUserName());
-            manageService.saveAttachment(tAttachment);
+            tAttachment = manageService.saveAttachment(tAttachment);
+            new File(filePath,fileName_uuid).renameTo(new File(filePath,tAttachment.getId()+"."+prefix));
         }
         return true;
     }

@@ -55,7 +55,11 @@
         });
     }
     function formatOper(val,row,index) {
-        val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        if(row.id=='1'){
+
+        }else{
+            val = "<a href='#' onclick='edit(\""+row.id+"\")'>修改</a>|<a href='#' onclick='del(\""+row.id+"\")'>删除</a>";
+        }
         return val;
     }
     function edit(id) {
