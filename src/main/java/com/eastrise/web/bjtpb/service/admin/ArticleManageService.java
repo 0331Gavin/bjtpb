@@ -121,7 +121,7 @@ public class ArticleManageService {
     }
 
     public ApiPageResponse getArticleContent(ArticleContentForm articleContentForm,int pageSize,int pageNumber) throws Exception {
-        StringBuilder sb =new StringBuilder("select t.*,a.category_name from T_ARTICLE t  left join T_SYS_ARTICLEMANAGE a on t.article_type_id =a.id where 1=1 ");
+        StringBuilder sb =new StringBuilder("select t.id,t.article_tag,t.article_type_id,t.create_loginname,t.create_time,t.create_user_id,t.create_user_name,t.is_top,t.PUBLISH_DEPT_NAME,t.publish_time,t.status,t.title,t.is_open,t.seq,a.category_name from T_ARTICLE t  left join T_SYS_ARTICLEMANAGE a on t.article_type_id =a.id where 1=1 ");
         if(StringUtils.isNotEmpty(articleContentForm.getTitle())){
             sb.append(" and t.TITLE like '%"+articleContentForm.getTitle()+"%'");
         }
@@ -137,8 +137,9 @@ public class ArticleManageService {
         if(StringUtils.isNotEmpty(articleContentForm.getArticleTypeId())){
             sb.append(" and (a.category_seq = '"+articleContentForm.getArticleTypeId()+"' or a.category_seq like '"+articleContentForm.getArticleTypeId()+".%' or a.category_seq like '%."+articleContentForm.getArticleTypeId()+"' )");
         }
-        sb.append(" order by t.is_top desc,");
+
         if(StringUtils.isNotEmpty(articleContentForm.getSort())){
+            sb.append(" order by ");
             if("articleTag".equals(articleContentForm.getSort())){
                 sb.append(" t.article_Tag ");
             }else if("title".equals(articleContentForm.getSort())){
@@ -154,13 +155,19 @@ public class ArticleManageService {
             }else if("status".equals(articleContentForm.getSort())){
                 sb.append(" t.status ");
             }
+            else if("seq".equals(articleContentForm.getSort())){
+                sb.append(" t.seq ");
+            }
             if(StringUtils.isNotEmpty(articleContentForm.getOrder())){
                 sb.append(articleContentForm.getOrder()+",");
             }else{
                 sb.append(",");
             }
+        }else{
+            sb.append(" order by t.seq asc,");
         }
         sb.append("  t.publish_time desc ,t.article_type_id,t.article_tag,t.create_user_id,t.title,t.status");
+
         ApiPageResponse response = commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sb.toString());
 //        List<Map<String, Object>> rows = response.getRows();
 //        for(Map<String, Object> map:rows){

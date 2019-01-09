@@ -82,6 +82,16 @@ public class TArticle {
     * */
     @Column(name="IS_TOP")
     private String isTop="0";
+    /*
+    * 对外开放 （0：否，1：是）
+    * */
+    @Column(name="IS_OPEN")
+    private String isOpen="1";
+    /*
+    * 排序
+    * */
+    @Column(name="SEQ")
+    private double seq=999;
 
     /*
     *
@@ -212,5 +222,21 @@ public class TArticle {
 
     public void setLookTotal(int lookTotal) {
         this.lookTotal = lookTotal;
+    }
+
+    public String getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(String isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public double getSeq() {
+        return seq;
+    }
+
+    public void setSeq(double seq) {
+        this.seq = seq;
     }
 }

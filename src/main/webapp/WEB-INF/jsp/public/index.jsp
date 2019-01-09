@@ -198,20 +198,26 @@
                         <h3>文件电报<a href="/public/more/wjdb" target="_blank" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
-
+                    <sec:authentication property="name" var="username"/>
                     <div class="content">
                         <ul class="nice-list">
                             <c:forEach items="${wjdb}" var="item">
                                 <li>
-                                    <div class="left">
+                                    <div class="left"><nobr>
+                                        <c:if test="${username==null||username=='anonymousUser'}">
+                                        <c:if test="${item.isOpen!='1'}">
+                                            <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可查看"/>
+                                        </c:if>
+                                        </c:if>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                            <img src="images/public/fileIcon.png"  alt="文件" title="文件"/>
                                                 <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
-                                            </nobr>
+
                                          </c:if>
                                         <c:if test="${item.articleTag=='tw'}">
                                             <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
+                                    </nobr>
                                     </div>
                                     <div class="right">${item.time}</div>
                                     <div class="clearer">&nbsp;</div>
@@ -238,14 +244,16 @@
                                     <c:forEach items="${jcapjzj}" var="item">
                                         <li>
                                             <div class="left">
+                                                <nobr>
                                                 <c:if test="${item.articleTag=='fj'}">
-                                                    <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                    <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
                                                         <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
-                                                    </nobr>
+
                                                 </c:if>
                                                 <c:if test="${item.articleTag=='tw'}">
                                                     <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                                 </c:if>
+                                                </nobr>
                                             </div>
                                             <div class="right">${item.time}</div>
                                             <div class="clearer">&nbsp;</div>
@@ -272,14 +280,16 @@
                                     <c:forEach items="${jcdy}" var="item">
                                         <li>
                                             <div class="left">
+                                                <nobr>
                                                 <c:if test="${item.articleTag=='fj'}">
-                                                    <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                                    <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
                                                         <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
-                                                    </nobr>
+
                                                 </c:if>
                                                 <c:if test="${item.articleTag=='tw'}">
                                                     <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                                 </c:if>
+                                                </nobr>
                                             </div>
                                             <div class="right">${item.time}</div>
                                             <div class="clearer">&nbsp;</div>
@@ -323,13 +333,15 @@
                             <c:forEach items="${fgzd}" var="item">
                                 <li>
                                     <div class="left">
+                                        <nobr>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <img src="images/public/icon-file.png"  alt="文件" />
+                                            <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
                                             <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
                                         <c:if test="${item.articleTag=='tw'}">
                                             <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
+                                        </nobr>
                                     </div>
                                     <div class="right">${item.time}</div>
                                     <div class="clearer">&nbsp;</div>
@@ -354,14 +366,19 @@
                             <c:forEach items="${sggzdc}" var="item">
                                 <li>
                                     <div class="left">
+                                        <nobr>
+                                         <c:if test="${item.isOpen!='1'}">
+                                                <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可访问"/>
+                                        </c:if>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                            <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
                                                 <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
-                                            </nobr>
+
                                         </c:if>
                                         <c:if test="${item.articleTag=='tw'}">
                                             <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
+                                        </nobr>
                                     </div>
                                     <div class="right">${item.time}</div>
                                     <div class="clearer">&nbsp;</div>
@@ -387,14 +404,16 @@
                             <c:forEach items="${dqgz}" var="item">
                                 <li>
                                     <div class="left">
+                                        <nobr>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <nobr><img src="images/public/icon-file.png"  alt="文件" />
+                                            <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
                                                 <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
-                                            </nobr>
+
                                         </c:if>
                                         <c:if test="${item.articleTag=='tw'}">
                                             <a href="public/content/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
+                                        </nobr>
                                     </div>
                                     <div class="right">${item.time}</div>
                                     <div class="clearer">&nbsp;</div>
@@ -428,7 +447,7 @@
                                 </p>
                             </c:if>
                         </c:if>
-                        <sec:authentication property="name" var="username"/>
+
                         <c:if test="${username!=null&&username!='anonymousUser'}">
                         <div class="form">
                             <div class="form_row">
@@ -459,10 +478,10 @@
                         <c:if test="${username==null||username=='anonymousUser'}">
                                 <form name='f' id="loginForm" action='/login' method='POST'>
                                     <div class="form"  >
-
-                                            <div class="form_row"><label class="left">用户名: </label><input type='text'  class="form_input" name='username' value=''  placeholder="输入帐号"></div>
+                                        <input type="password" name="password1"  style="display:none"/>
+                                        <div class="form_row"><label class="left">用户名: </label><input type='text'  class="form_input" name='username' value=''  placeholder="输入帐号"></div>
                                             <div class="form_row"><label class="left">密&nbsp;&nbsp;&nbsp;码: </label><input  type='password'  class="form_input" name='password' value='' placeholder="输入密码"/></div>
-                                        <div class="form_row"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;下次自动登录</label></div>
+                                        <div class="form_row" style="display:none;"><label class="left_long"  for="remember-me"><input id="remember-me" name="remember-me"  type="checkbox"/>&nbsp;下次自动登录</label></div>
                                             <div class="form_row"><input type="button" value="登&nbsp;录" class="btn06 bgblue" id="checkLogin" onclick="login();"/></div>
 
                                     </div>

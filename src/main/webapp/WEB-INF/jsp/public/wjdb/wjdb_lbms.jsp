@@ -76,7 +76,7 @@
 <div id="bg">
     <div id="outer">
         <jsp:include page="../../base/header.jsp"/>
-
+        <sec:authentication property="name" var="username"/>
         <div class="in_main mgOauto" >
             <div class="disInBlk">
                 <div class="hd_box01 xxgk_box01 mgl10 fr RightSide ">
@@ -156,11 +156,16 @@
                 }else if(i==0){
                     arr.push("<ul class='newslist list_con01 fl '>");
                 }
-                arr.push("<li ><div class='left1'>");
+                arr.push("<li ><div class='left1'><nobr><b>["+data.data[i].articleType+"]</b>");
+                if(${username==null||username=='anonymousUser'}){
+                    if(data.data[i].isOpen!="1"){
+                        arr.push("<img src=\"<%=appPath%>/images/public/icon-lock.png\"  alt=\"锁\" title=\"登录后才可查看\"/>");
+                    }
+                }
                 if(data.data[i].articleTag=="fj"){
-                    arr.push("<nobr><b>["+data.data[i].articleType+"]</b><img src=\"<%=appPath%>/images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a> </nobr>");
+                    arr.push("<img src=\"<%=appPath%>/images/public/fileIcon.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a> </nobr>");
                 }else{
-                    arr.push("<nobr><b>["+data.data[i].articleType+"]</b><a href=\"<%=appPath%>/public/content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a></nobr>");
+                    arr.push("<a href=\"<%=appPath%>/public/content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a></nobr>");
                 }
 
                 arr.push("</div><div class='right1'>"+data.data[i].time+"</div><div class=\"clearer\">&nbsp;</div></li>");

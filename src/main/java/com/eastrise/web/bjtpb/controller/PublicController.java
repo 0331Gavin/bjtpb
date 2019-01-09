@@ -7,6 +7,8 @@ import com.eastrise.web.bjtpb.service.admin.ArticleService;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.io.*;
@@ -52,68 +54,7 @@ public class PublicController {
         jsonObject.put("data", response.getRows());
         return jsonObject;
     }
-    @RequestMapping("/articlefile/{id}")
-    public String toWzView(@PathVariable String id, HttpServletResponse response) throws Exception {
-        List<Map<String, Object>> filea= articleService.getFilebyId(id);
-        String fileName=filea.get(0).get("ATTACHMENT_NAME").toString();
-        String filePath=filea.get(0).get("ATTACHMENT_PATH").toString();
-        String fileId=filea.get(0).get("ID").toString();
-        String fileType=filea.get(0).get("ATTACHMENT_TYPE").toString();
-        if (StringUtils.isNotEmpty(filePath) && StringUtils.isNotEmpty(fileName)) {
-            response.reset();
-            response.setContentType("application/force-download");// 设置强制下载不打开
-            //从path中读取文件
-            try{
-                filePath = URLDecoder.decode( filePath , "UTF-8") ;
-                fileName = URLDecoder.decode( fileName , "UTF-8") ;
-                response.addHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName,"UTF-8"));// 设置文件名
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-            File file = null;
-            try {
-                file = new File(filePath,fileId+"."+fileType);
-                if (!file.exists()) {
-                    throw new Exception();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
 
-            byte[] buffer = new byte[1024];
-            FileInputStream fis = null;
-            BufferedInputStream bis = null;
-            try {
-                fis = new FileInputStream(file);
-                bis = new BufferedInputStream(fis);
-                OutputStream os = response.getOutputStream();
-                int i = bis.read(buffer);
-                while (i != -1) {
-                    os.write(buffer, 0, i);
-                    i = bis.read(buffer);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if (bis != null) {
-                    try {
-                        bis.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (fis != null) {
-                    try {
-                        fis.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            return filePath;
-        }
-        return null;
-    }
 
 
 }

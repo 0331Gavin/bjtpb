@@ -44,7 +44,7 @@ public class ArticleService {
     }
 
     public ApiPageResponse findPublicPageData(int pageSize, int pageNumber, String articleTypeId, String KeyWord, String KeyWordType) {
-       StringBuilder sql = new StringBuilder("select t.id,t.title,t.publish_dept_name deptName,t.publish_time time, type.category_name article_type,t.article_tag from T_ARTICLE t,T_SYS_ARTICLEMANAGE type where t.status='1' and t.article_type_id = type.id  ");
+       StringBuilder sql = new StringBuilder("select t.id,t.title,t.publish_dept_name deptName,t.publish_time time, type.category_name article_type,t.article_tag,t.is_open from T_ARTICLE t,T_SYS_ARTICLEMANAGE type where t.status='1' and t.article_type_id = type.id  ");
         if(StringUtils.isNotEmpty(articleTypeId)) sql.append(" and ( type.category_seq like '%."+articleTypeId+".%' or type.category_seq like '"+articleTypeId+".%' or type.category_seq like '%."+articleTypeId+"' or type.category_seq like '%"+articleTypeId+"%' ) ");
         if(StringUtils.isNotEmpty(KeyWordType)&& Constants.S_BT.equals(KeyWordType)&&StringUtils.isNotEmpty(KeyWord))
             sql.append(" and t.title like '%"+KeyWord+"%' ");
@@ -52,7 +52,7 @@ public class ArticleService {
             sql.append(" and t.PUBLISH_DEPT_NAME like '%"+KeyWord+"%' ");
         if(StringUtils.isNotEmpty(KeyWordType)&& Constants.S_FBRQ.equals(KeyWordType)&&StringUtils.isNotEmpty(KeyWord))
             sql.append(" and t.publish_time like '%"+KeyWord+"%' ");
-       sql.append(" order by T.is_top desc,t.publish_time desc ");
+       sql.append(" order by T.seq,t.publish_time desc ");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
     public List<Map<String, Object>> getFilebyId(String id) throws Exception {

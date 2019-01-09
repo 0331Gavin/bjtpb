@@ -14,11 +14,13 @@
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
         <th data-options="field:'articleTag',width:80,align:'center',formatter:formatTag,sortable:true">文章类型</th>
+        <th data-options="field:'isOpen',width:80,align:'center',formatter:formatIsOpen,sortable:true">对外开放</th>
         <th data-options="formatter:addTitle,field:'title',width:350,align:'left' , halign: 'center',sortable:true">文章标题</th>
         <th data-options="field:'categoryName',width:150,align:'center',sortable:true">文章类别</th>
         <th data-options="field:'publishTime',width:120,align:'center',sortable:true">发布时间</th>
         <th data-options="field:'publishDeptName',width:180,align:'center',sortable:true">发布部门</th>
            <th data-options="field:'createUserName',width:120,align:'center',sortable:true">录入人</th>
+        <th data-options="field:'seq',width:90,align:'center',sortable:true">排序</th>
         <th data-options="field:'status',width:90,align:'center',formatter:formatStatus,sortable:true">状态</th>
            <th data-options="field:'_operate',width:160,align:'center',formatter:formatOper">操作</th>
     </tr>
@@ -27,7 +29,7 @@
 <div id="tb" style="padding:5px;height:auto">
     <div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章标题: <input class="easyui-textbox" name="aticleTitle" id="aticleTitle"  style="width: 180px" >
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章类别: <input id="articleTypeId" name="articleTypeId" value="" class="easyui-combotree" data-options="validType:'articleType',url:'/admin/article/listArticles',method:'post'" style="width:180px;"></input>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;文章类别: <input id="articleTypeId" name="articleTypeId" value="" class="easyui-combotree" data-options="url:'/admin/article/listArticles',method:'post'" style="width:180px;"></input>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布时间: <input class="easyui-datebox" name="kssj" id="kssj"  >
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 至: <input class="easyui-datebox" name="jssj" id="jssj"  >
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="doload()">查询</a>
@@ -86,6 +88,16 @@
             val = "附件";
         }else{
             val = "其他";
+        }
+        return val;
+    }
+    function formatIsOpen(val,row,index){
+        if(val=="0"){
+            val = "否";
+        }else if(val=="1"){
+            val = "是";
+        }else{
+            val = "否";
         }
         return val;
     }

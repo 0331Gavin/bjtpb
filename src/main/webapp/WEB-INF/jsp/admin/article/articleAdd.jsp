@@ -13,7 +13,18 @@
                     <td colspan="5"><input class="easyui-textbox" type="text" name="title" id="title" value="${articles.title}" data-options="required:true,validType:'length[1,100]'" style="width:460px;"></input></td>
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</td>
+
+                   <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>
+                    <td><input id="sj" name="publishTime" value="${articles.publishTime}" type="text" class="easyui-datebox" required="required" style="width:140px;"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布部门:</td>
+                    <td><input class="easyui-textbox" type="text" name="publishDept" id="publishDept" value="${articles.publishDept}" data-options="required:false,validType:'length[1,40]'" style="width:140px;"></input></td>
+                    <td></td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;<span  title="是否对外发布显示此文章" class="easyui-tooltip">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</span></td>
                     <td>
                         <input type="text" class="easyui-combobox" id="status" name="status" value="${articles.status}" editable="false" data-options="required:true,
                         valueField: 'label',
@@ -27,11 +38,25 @@
                             value: '无效'
                         }]" />
                     </td>
-                   <td>&nbsp;&nbsp;&nbsp;&nbsp;发布时间:</td>
-                    <td><input id="sj" name="publishTime" value="${articles.publishTime}" type="text" class="easyui-datebox" required="required" style="width:150px;"></td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发布部门:</td>
-                    <td><input class="easyui-textbox" type="text" name="publishDept" id="publishDept" value="${articles.publishDept}" data-options="required:false,validType:'length[1,40]'" style="width:140px;"></input></td>
-                    </tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  title="是否登录后才可以查看文章内容" class="easyui-tooltip">对外开放:</span></td>
+                    <td>
+                        <input type="text" class="easyui-combobox" id="isOpen" name="isOpen" value="${articles.isOpen}" editable="false" data-options="required:true,
+                        valueField: 'label',
+                        textField: 'value',
+				          panelHeight:'auto',
+                        data: [{
+                            label: '1',
+                            value: '是',
+                        },{
+                            label: '0',
+                            value: '否'
+                        }]" />
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span  title="排序规则，只能输入数字" class="easyui-tooltip">排&nbsp;&nbsp;&nbsp;&nbsp;序:</span></td>
+                    <td><input class="easyui-numberbox" name="seq" id="seq" value="${articles.seq}" precision="2" data-options="min:0,max:999,required:true,validType:'length[1,6]'" style="width:140px;"></input></td>
+                </tr>
+
+                </tr>
                 <input type="hidden" id="articleTag" name="articleTag" value="${articleTag}">
             </table>
             <table id="tab">

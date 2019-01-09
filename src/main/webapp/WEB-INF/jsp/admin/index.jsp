@@ -92,6 +92,7 @@
 <!-- begin of footer -->
 <div class="wu-footer" data-options="region:'south',border:true,split:true" style="height: 40px;">
 	版权所有：中国铁路总公司北京特派办 | 技术支持： <a href="#" rel="nofollow">北京东方坦达科技有限公司</a>
+	【请使用 IE11浏览器 或 360浏览器-极速模式 访问 后台管理】
 </div>
 <!-- end of footer -->
 <script type="text/javascript">

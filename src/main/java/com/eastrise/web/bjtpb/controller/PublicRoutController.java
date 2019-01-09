@@ -8,6 +8,8 @@ import com.eastrise.web.bjtpb.service.admin.*;
 import org.apache.commons.lang.StringUtils;
 import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,7 +141,90 @@ public class PublicRoutController {
             getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
             request.setAttribute("wz",list);
         }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
+
+        }else{
+            return "/public/wznr/wznr_401.jsp";
+        }
         return "/public/wznr/wznr.jsp";
+    }
+
+    @RequestMapping("/articlefile/{id}")
+    public String toWzView(@PathVariable String id, HttpServletResponse response, HttpServletRequest request) throws Exception {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
+
+        }else{
+            getMenuList(request);
+            if(id!=null){
+                articleService.upLookTotal(id);
+                Map<String, Object> list =articleService.findById(id).get(0);
+                getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
+                request.setAttribute("wz",list);
+            }
+            return "/public/wznr/wznr_401.jsp";
+        }
+        List<Map<String, Object>> filea= articleService.getFilebyId(id);
+        String fileName=filea.get(0).get("ATTACHMENT_NAME").toString();
+        String filePath=filea.get(0).get("ATTACHMENT_PATH").toString();
+        String fileId=filea.get(0).get("ID").toString();
+        String fileType=filea.get(0).get("ATTACHMENT_TYPE").toString();
+        if (StringUtils.isNotEmpty(filePath) && StringUtils.isNotEmpty(fileName)) {
+            response.reset();
+            response.setContentType("application/force-download");// 设置强制下载不打开
+            //从path中读取文件
+            try{
+                filePath = URLDecoder.decode( filePath , "UTF-8") ;
+                fileName = URLDecoder.decode( fileName , "UTF-8") ;
+                response.addHeader("Content-Disposition", "attachment;fileName=" + URLEncoder.encode(fileName,"UTF-8"));// 设置文件名
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+            File file = null;
+            try {
+                file = new File(filePath,fileId+"."+fileType);
+                if (!file.exists()) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null;
+            BufferedInputStream bis = null;
+            try {
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                OutputStream os = response.getOutputStream();
+                int i = bis.read(buffer);
+                while (i != -1) {
+                    os.write(buffer, 0, i);
+                    i = bis.read(buffer);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (bis != null) {
+                    try {
+                        bis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (fis != null) {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            return filePath;
+        }
+        return null;
     }
 
     public void getMenuList(HttpServletRequest request){

@@ -40,7 +40,7 @@
 <div id="bg">
     <div id="outer">
         <jsp:include page="../../base/header.jsp"/>
-
+        <sec:authentication property="name" var="username"/>
         <div class="in_main mgOauto">
             <div class="in_box01 song">
                 <div class="title w100 disInBlk">
@@ -90,8 +90,14 @@
                 }
                 arr.push("<li style='font-size:14px'><div class='left1'>");
                 arr.push("<nobr><b>["+data.data[i].articleType+"]</b>");
+                if(${username==null||username=='anonymousUser'}){
+                    if(data.data[i].isOpen!="1"){
+                        arr.push("<img src=\"<%=appPath%>/images/public/icon-lock.png\"  alt=\"锁\" title=\"登录后才可查看\"/>");
+                    }
+                }
+
                 if(data.data[i].articleTag=="fj"){
-                    arr.push("<img src=\"<%=appPath%>/images/public/icon-file.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
+                    arr.push("<img src=\"<%=appPath%>/images/public/fileIcon.png\"  alt=\"文件\" /><a href=\"../articlefile/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
                 }else{
                     arr.push("<a href=\"<%=appPath%>/public/content/"+data.data[i].id+"\" target=\"_blank\" title=\""+data.data[i].title+"\">"+data.data[i].title+"</a>");
                 }

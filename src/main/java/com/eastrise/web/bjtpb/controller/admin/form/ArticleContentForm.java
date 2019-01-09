@@ -25,6 +25,9 @@ public class ArticleContentForm {
         this.status = status;
     }
 
+    private String isOpen;
+    private double seq;
+
     private String kssj;
     private String jssj;
 
@@ -127,5 +130,21 @@ public class ArticleContentForm {
 
     public void setPublishDept(String publishDept) {
         this.publishDept = publishDept;
+    }
+
+    public String getIsOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(String isOpen) {
+        this.isOpen = isOpen;
+    }
+
+    public double getSeq() {
+        return seq;
+    }
+
+    public void setSeq(double seq) {
+        this.seq = seq;
     }
 }
