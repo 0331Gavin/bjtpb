@@ -245,8 +245,13 @@
                                         <li>
                                             <div class="left">
                                                 <nobr>
+                                                    <c:if test="${username==null||username=='anonymousUser'}">
+                                                        <c:if test="${item.isOpen!='1'}">
+                                                            <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可查看"/>
+                                                        </c:if>
+                                                    </c:if>
                                                 <c:if test="${item.articleTag=='fj'}">
-                                                    <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
+                                                    <img src="images/public/fileIcon.png"  alt="文件" title="文件"/>
                                                         <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
 
                                                 </c:if>
@@ -281,8 +286,13 @@
                                         <li>
                                             <div class="left">
                                                 <nobr>
+                                                    <c:if test="${username==null||username=='anonymousUser'}">
+                                                        <c:if test="${item.isOpen!='1'}">
+                                                            <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可查看"/>
+                                                        </c:if>
+                                                    </c:if>
                                                 <c:if test="${item.articleTag=='fj'}">
-                                                    <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
+                                                    <img src="images/public/fileIcon.png"  alt="文件" title="文件"/>
                                                         <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
 
                                                 </c:if>
@@ -334,8 +344,13 @@
                                 <li>
                                     <div class="left">
                                         <nobr>
+                                            <c:if test="${username==null||username=='anonymousUser'}">
+                                                <c:if test="${item.isOpen!='1'}">
+                                                    <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可查看"/>
+                                                </c:if>
+                                            </c:if>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
+                                            <img src="images/public/fileIcon.png"  alt="文件" title="文件"/>
                                             <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
                                         </c:if>
                                         <c:if test="${item.articleTag=='tw'}">
@@ -357,7 +372,7 @@
 
                 <div class="post">
                     <div class="title">
-                        <h3>事故故障调查<a href="/public/more/sggzdc" class="more"></a></h3>
+                        <h3>事故故障调查<a href="/public/more/sggzdc" target="_blank" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
 
@@ -367,11 +382,13 @@
                                 <li>
                                     <div class="left">
                                         <nobr>
-                                         <c:if test="${item.isOpen!='1'}">
-                                                <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可访问"/>
-                                        </c:if>
+                                            <c:if test="${username==null||username=='anonymousUser'}">
+                                                <c:if test="${item.isOpen!='1'}">
+                                                    <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可查看"/>
+                                                </c:if>
+                                            </c:if>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
+                                            <img src="images/public/fileIcon.png"  alt="文件" title="文件"/>
                                                 <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
 
                                         </c:if>
@@ -395,7 +412,7 @@
                 <div class="post">
 
                     <div class="title">
-                        <h3>党群工作<a href="/public/more/dcgz" class="more"></a></h3>
+                        <h3>党群工作<a href="/public/more/dqgz" target="_blank" class="more"></a></h3>
                         <div class="line"></div>
                     </div>
 
@@ -405,8 +422,13 @@
                                 <li>
                                     <div class="left">
                                         <nobr>
+                                            <c:if test="${username==null||username=='anonymousUser'}">
+                                                <c:if test="${item.isOpen!='1'}">
+                                                    <img src="images/public/icon-lock.png"  alt="锁" title="登录后才可查看"/>
+                                                </c:if>
+                                            </c:if>
                                         <c:if test="${item.articleTag=='fj'}">
-                                            <img src="images/public/icon-file.png"  alt="文件" title="文件"/>
+                                            <img src="images/public/fileIcon.png"  alt="文件" title="文件"/>
                                                 <a href="public/articlefile/${item.id}" target="_blank" title="${item.title}">${item.title}</a>
 
                                         </c:if>

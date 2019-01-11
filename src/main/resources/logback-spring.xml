@@ -21,7 +21,7 @@
                 <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，
                 命名日志文件 -->
                 <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                    <maxFileSize>2MB</maxFileSize>
+                    <maxFileSize>4MB</maxFileSize>
                 </timeBasedFileNamingAndTriggeringPolicy>
                 <MaxHistory>30</MaxHistory>
                 <totalSizeCap>200MB</totalSizeCap>

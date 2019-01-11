@@ -157,6 +157,8 @@ public class ArticleManageService {
             }
             else if("seq".equals(articleContentForm.getSort())){
                 sb.append(" t.seq ");
+            }else if("isOpen".equals(articleContentForm.getSort())){
+                sb.append(" t.is_open ");
             }
             if(StringUtils.isNotEmpty(articleContentForm.getOrder())){
                 sb.append(articleContentForm.getOrder()+",");

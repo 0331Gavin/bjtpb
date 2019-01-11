@@ -82,6 +82,9 @@
 <script type="text/javascript">
     var con='${articles.content}';
     $(function(){
+        if($('#seq').val()==''){
+            $('#seq').val(999);
+        }
         $.extend($.fn.validatebox.defaults.rules, {
             articleType: {
                 validator: function (value) {

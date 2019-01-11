@@ -52,7 +52,7 @@ public class ArticleService {
             sql.append(" and t.PUBLISH_DEPT_NAME like '%"+KeyWord+"%' ");
         if(StringUtils.isNotEmpty(KeyWordType)&& Constants.S_FBRQ.equals(KeyWordType)&&StringUtils.isNotEmpty(KeyWord))
             sql.append(" and t.publish_time like '%"+KeyWord+"%' ");
-       sql.append(" order by T.seq,t.publish_time desc ");
+       sql.append(" order by t.is_top desc,T.seq,t.publish_time desc ");
         return commonQueryRepository.findPageBySqlQuery(pageSize,pageNumber,sql.toString());
     }
     public List<Map<String, Object>> getFilebyId(String id) throws Exception {

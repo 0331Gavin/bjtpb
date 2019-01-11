@@ -9,16 +9,22 @@
 <div style="padding:0px;background:#fafafa;width:100%;border:0px solid #ccc">
 </div>
 <table id="Twznr" class="easyui-datagrid"  style="width:100%;height:100%;" url="/admin/article/getArticleContent"
-       data-options="method:'post',toolbar:'#tb',rownumbers:'true'" pagination="true">
-    <thead>
+       data-options="method:'post',toolbar:'#tb',rownumbers:'true',pageSize:20" pagination="true">
+
+
+    <thead data-options="frozen:true">
     <tr>
         <th data-options="field:'ck',checkbox:true"></th>
         <th data-options="field:'articleTag',width:80,align:'center',formatter:formatTag,sortable:true">文章类型</th>
         <th data-options="field:'isOpen',width:80,align:'center',formatter:formatIsOpen,sortable:true">对外开放</th>
         <th data-options="formatter:addTitle,field:'title',width:350,align:'left' , halign: 'center',sortable:true">文章标题</th>
+    </tr>
+    </thead>
+    <thead>
+    <tr>
         <th data-options="field:'categoryName',width:150,align:'center',sortable:true">文章类别</th>
         <th data-options="field:'publishTime',width:120,align:'center',sortable:true">发布时间</th>
-        <th data-options="field:'publishDeptName',width:180,align:'center',sortable:true">发布部门</th>
+        <th data-options="field:'publishDeptName',width:120,align:'center',sortable:true">发布部门</th>
            <th data-options="field:'createUserName',width:120,align:'center',sortable:true">录入人</th>
         <th data-options="field:'seq',width:90,align:'center',sortable:true">排序</th>
         <th data-options="field:'status',width:90,align:'center',formatter:formatStatus,sortable:true">状态</th>
@@ -51,6 +57,7 @@
     $(function(){
         var pager = $('#Twznr').datagrid().datagrid('getPager');	// get the pager of datagrid
         pager.pagination({
+            pageList: [20,50,100,500],
             buttons:[{
                 iconCls:'icon-add',
                 text:'新增文章<font><b>(图文)</b></font>',
