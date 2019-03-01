@@ -43,7 +43,7 @@
 
                 </div>
                 <div id="zoom" class="pd20" >
-                   &nbsp;&nbsp;&nbsp;&nbsp;此文章为内部文件，登录后才可查看
+                   &nbsp;&nbsp;&nbsp;&nbsp;404  此文章不存在
                 </div>
                 <div>
 

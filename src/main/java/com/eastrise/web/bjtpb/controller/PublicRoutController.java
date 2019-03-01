@@ -135,37 +135,49 @@ public class PublicRoutController {
     @GetMapping("/content/{id}")
     public String toWzView(@PathVariable String id, HttpServletRequest request) throws Exception {
         getMenuList(request);
-        if(id!=null){
-            articleService.upLookTotal(id);
-            Map<String, Object> list =articleService.findById(id).get(0);
-            getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
-            request.setAttribute("wz",list);
+        List<Map<String, Object>> list =articleService.findById(id);
+        if(list.size()==0){
+            return "/public/wznr/wznr_404.jsp";
         }
+        Map<String, Object> map = list.get(0);
+        getRoutByArticleTypeId(request,map.get("ARTICLE_TYPE_ID")==null?"":map.get("ARTICLE_TYPE_ID").toString());
+        request.setAttribute("wz",map);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
 
         }else{
-            return "/public/wznr/wznr_401.jsp";
+            if("0".equals(map.get("IS_OPEN").toString())){
+                return "/public/wznr/wznr_401.jsp";
+            }
         }
+
+        articleService.upLookTotal(id);
         return "/public/wznr/wznr.jsp";
     }
 
     @RequestMapping("/articlefile/{id}")
     public String toWzView(@PathVariable String id, HttpServletResponse response, HttpServletRequest request) throws Exception {
+
+        getMenuList(request);
+        List<Map<String, Object>> list =articleService.findById(id);
+        if(list.size()==0){
+            return "/public/wznr/wznr_404.jsp";
+        }
+        Map<String, Object> map = list.get(0);
+        getRoutByArticleTypeId(request,map.get("ARTICLE_TYPE_ID")==null?"":map.get("ARTICLE_TYPE_ID").toString());
+        request.setAttribute("wz",map);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication!=null&&!authentication.getPrincipal().equals("anonymousUser")&&authentication.isAuthenticated()){
 
         }else{
-            getMenuList(request);
-            if(id!=null){
-                articleService.upLookTotal(id);
-                Map<String, Object> list =articleService.findById(id).get(0);
-                getRoutByArticleTypeId(request,list.get("ARTICLE_TYPE_ID")==null?"":list.get("ARTICLE_TYPE_ID").toString());
-                request.setAttribute("wz",list);
-            }
-            return "/public/wznr/wznr_401.jsp";
+                if("0".equals(map.get("IS_OPEN").toString())){
+
+                    return "/public/wznr/wznr_401.jsp";
+                }
         }
+
+        articleService.upLookTotal(id);
         List<Map<String, Object>> filea= articleService.getFilebyId(id);
         String fileName=filea.get(0).get("ATTACHMENT_NAME").toString();
         String filePath=filea.get(0).get("ATTACHMENT_PATH").toString();

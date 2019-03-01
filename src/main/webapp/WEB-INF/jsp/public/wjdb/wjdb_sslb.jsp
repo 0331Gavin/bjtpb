@@ -54,6 +54,9 @@
         border-radius: 4px;
         display: block;
     }
+    .layui-table td{
+        font-size: 12px;
+    }
 
 
 
@@ -94,7 +97,7 @@
                             </div>
 
 
-                            <table class="layui-table" id="table_id"  lay-filter="test"></table>
+                            <table class="layui-table" id="table_id" style="font-size: 22px;"></table>
                             <div class="w100 fl  mgb20 text-center fenyebig">
                                 <div id="table_page"></div>
 
@@ -152,13 +155,13 @@
                         ,KeyWord:$("#KeyWord").val()
                         ,KeyWordType:$("#KeyWordType").val()}
                 ,cols: [[
-                     {field:'ida', width:'10%', title: '序号',type:'numbers'}
+                     {field:'ida', width:'9%', title: '序号',type:'numbers'}
                     ,{field:'id', width:'1%', title: 'id'}
-                    ,{field:'title', width:'52%', title: '标题'}
-                    ,{field:'deptname', width:'20%', title: '发布部门'}
+                    ,{field:'title', width:'60%', title: '标题'}
+                    ,{field:'deptname', width:'15%', title: '发布部门'}
                     ,{field:'articleTag', width:'20%', title: '类型'}
                     ,{field:'isOpen', width:'1%', title: '类型'}
-                    ,{field:'time', width:'18%', title: '发布日期'}
+                    ,{field:'time', width:'16%', title: '发布日期'}
                 ]]
                 ,page:false
                 ,done: function(res, curr, count){
